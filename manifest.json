@@ -1,0 +1,17 @@
+{
+  "name": "VoleyFit Pro",
+  "short_name": "VoleyFit",
+  "description": "Rutina 7 Días, Voleibol & Nutrición",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#070b14",
+  "theme_color": "#070b14",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,3723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#070b14">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VoleyFit Pro">
+  <title>VoleyFit Pro · Rutina 7 Días & Nutrición Offline</title>
+
+  <style>
+    :root {
+      --bg-base: #070b14;
+      --bg-surface: #0f172a;
+      --bg-card: #151f36;
+      --bg-card-hover: #1b2845;
+      --bg-subtle: #0b1222;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+
+      --accent-orange: #ff6b35;
+      --accent-orange-glow: rgba(255, 107, 53, 0.25);
+      --accent-blue: #38bdf8;
+      --accent-blue-glow: rgba(56, 189, 248, 0.25);
+      --accent-green: #10b981;
+      --accent-purple: #a855f7;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --text-highlight: #ffffff;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+
+      --safe-bottom: env(safe-area-inset-bottom, 16px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: calc(85px + var(--safe-bottom));
+      overflow-x: hidden;
+    }
+
+    /* Fuentes mono integradas para pesos y números */
+    .mono-font, .p-val, .profile-stat .val, .m-val, .ex-weight-badge, .timer-display {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    /* Header */
+    .app-header {
+      background: rgba(15, 23, 42, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 16px;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 12px var(--accent-orange-glow);
+    }
+
+    .brand-info h1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-highlight);
+    }
+
+    .brand-info p {
+      font-size: 0.72rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .user-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-green);
+    }
+
+    .app-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+
+    /* Perfil */
+    .profile-card {
+      background: linear-gradient(135deg, #0e1e38 0%, #172a4d 50%, #151f36 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .profile-stat {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    .profile-stat .lbl {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .profile-stat .val {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-highlight);
+      margin-top: 2px;
+    }
+
+    .profile-stat .val.target {
+      color: var(--accent-green);
+    }
+
+    /* Pestañas Principales */
+    .tabs-nav {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 4px 2px 14px 2px;
+      margin-bottom: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tabs-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      flex: 0 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 9px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px var(--accent-orange-glow);
+    }
+
+    /* Badges de Días */
+    .day-selector-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .day-badges {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .day-badges {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 6px;
+      }
+      .day-badge-btn {
+        flex: 0 0 62px;
+      }
+    }
+
+    .day-badge-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 9px 4px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .day-badge-btn .day-name {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .day-badge-btn .day-num {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    .day-badge-btn .day-type-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin: 4px auto 0 auto;
+      background: var(--accent-orange);
+    }
+
+    .day-badge-btn.recovery .day-type-dot { background: var(--accent-green); }
+    .day-badge-btn.voley .day-type-dot { background: var(--accent-blue); }
+
+    .day-badge-btn.active {
+      background: #1e293b;
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 12px rgba(255, 107, 53, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .day-badge-btn.active .day-name { color: var(--accent-orange); }
+    .day-badge-btn.active .day-num { color: #ffffff; }
+
+    /* Modos de visualización */
+    .view-mode-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      background: rgba(30, 41, 59, 0.4);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .view-mode-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--accent-blue);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Tarjetas de Encabezado de Día */
+    .day-header-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+
+    .day-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-strength { background: rgba(255, 107, 53, 0.15); color: var(--accent-orange); border: 1px solid rgba(255, 107, 53, 0.3); }
+    .tag-power { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tag-recovery { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    .day-header-card h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 6px;
+    }
+
+    .day-header-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .day-meta-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .meta-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .meta-chip strong { color: var(--text-primary); }
+
+    /* Calentamiento */
+    .warmup-box {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px dashed rgba(56, 189, 248, 0.35);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+
+    .warmup-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .warmup-box-header h3 {
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .warmup-content {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      display: none;
+    }
+
+    .warmup-content.open { display: block; }
+
+    .warmup-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .warmup-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: var(--bg-subtle);
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    /* Ejercicios */
+    .exercise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .exercise-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      position: relative;
+    }
+
+    .ex-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .ex-index-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ex-number {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 107, 53, 0.15);
+      color: var(--accent-orange);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .ex-title-wrap h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .ex-target-muscle {
+      font-size: 0.72rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .ex-weight-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-green);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+
+    .ex-params-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin: 12px 0 8px 0;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      padding: 8px;
+    }
+
+    .param-box { text-align: center; }
+    .param-box .p-lbl { font-size: 0.62rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .param-box .p-val { font-size: 0.9rem; font-weight: 800; color: var(--text-highlight); margin-top: 2px; }
+
+    .ex-details {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
+    }
+
+    .ex-instruction { margin-bottom: 6px; }
+    .ex-instruction strong { color: var(--text-primary); }
+
+    .ex-alt-box {
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid var(--accent-amber);
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-top: 6px;
+      font-size: 0.78rem;
+    }
+    .ex-alt-box strong { color: var(--accent-amber); }
+
+    .ex-voley-benefit {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 3px solid var(--accent-blue);
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-top: 6px;
+      font-size: 0.78rem;
+    }
+    .ex-voley-benefit strong { color: var(--accent-blue); }
+
+    .ex-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .video-link-btn {
+      color: var(--accent-blue);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .log-weight-btn {
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    /* Temporizador */
+    .timer-bar {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 62px;
+      z-index: 80;
+    }
+
+    .timer-display {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent-orange);
+      min-width: 75px;
+    }
+
+    .timer-presets { display: flex; gap: 4px; }
+
+    .preset-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .preset-btn.active {
+      background: var(--accent-orange);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    .timer-controls { display: flex; gap: 6px; }
+
+    .timer-btn {
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .timer-btn.primary {
+      background: var(--accent-green);
+      color: #000;
+      font-weight: 800;
+      border-color: transparent;
+    }
+
+    /* Pestañas Nutrición y Prevención */
+    .diet-header {
+      background: linear-gradient(135deg, #132e22 0%, #0f172a 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .diet-header h2 { font-size: 1.2rem; color: #ffffff; font-weight: 800; }
+
+    .macro-bar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .macro-card {
+      background: rgba(15, 23, 42, 0.75);
+      border-radius: var(--radius-md);
+      padding: 8px 10px;
+      border-bottom: 3px solid var(--accent-green);
+    }
+    .macro-card.carb { border-bottom-color: var(--accent-amber); }
+    .macro-card.fat { border-bottom-color: var(--accent-purple); }
+    .macro-card.cal { border-bottom-color: var(--accent-orange); }
+
+    .macro-card .m-lbl { font-size: 0.65rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+    .macro-card .m-val { font-size: 1.05rem; font-weight: 800; color: #ffffff; margin-top: 2px; }
+
+    .meal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .meal-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .meal-title { font-size: 0.95rem; font-weight: 800; color: #ffffff; }
+
+    .meal-cal-chip {
+      background: rgba(255, 107, 53, 0.15);
+      color: var(--accent-orange);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .food-items-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+    .food-item {
+      background: var(--bg-subtle);
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .food-item .food-name { color: var(--text-primary); font-weight: 600; }
+    .food-item .food-detail { font-size: 0.72rem; color: var(--text-muted); display: block; }
+    .food-item .food-cost { color: var(--accent-green); font-weight: 700; font-size: 0.78rem; white-space: nowrap; }
+
+    /* Mercado */
+    .market-checklist {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .market-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+    }
+
+    .market-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent-orange); }
+    .market-item.checked span { text-decoration: line-through; color: var(--text-muted); }
+
+    /* Prevención Voley */
+    .prevention-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .prevention-card.shoulder { border-top: 4px solid var(--accent-blue); }
+    .prevention-card.knee { border-top: 4px solid var(--accent-orange); }
+    .prevention-card.ankle { border-top: 4px solid var(--accent-green); }
+
+    .prevention-card h3 { font-size: 0.95rem; color: #ffffff; font-weight: 800; margin-bottom: 4px; }
+    .prevention-card p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+
+    .protocol-step {
+      background: var(--bg-subtle);
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      margin-top: 6px;
+      font-size: 0.78rem;
+    }
+
+    /* Barra Inferior */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.98);
+      border-top: 1px solid var(--border-subtle);
+      padding: 8px 12px calc(8px + var(--safe-bottom)) 12px;
+      z-index: 95;
+    }
+
+    .bottom-nav-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .nav-item {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      padding: 4px 10px;
+    }
+
+    .nav-item .icon { font-size: 1.2rem; }
+    .nav-item.active { color: var(--accent-orange); }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-focus);
+      border-radius: var(--radius-lg);
+      max-width: 380px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .form-group { margin-bottom: 10px; }
+    .form-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; }
+    .form-group input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .btn-submit {
+      flex: 1;
+      background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+      border: none;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Superior -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">🏐</div>
+        <div class="brand-info">
+          <h1>VOLEYFIT PRO</h1>
+          <p>Rutina 7 Días · Offline Ready</p>
+        </div>
+      </div>
+      <div class="user-pill">
+        <span>1.72 m · 56 kg</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-container">
+
+    <!-- Card de Perfil & Objetivos -->
+    <div class="profile-card">
+      <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-orange); text-transform: uppercase;">
+        PLAN 7 DÍAS SIN SOBREENTRENAMIENTO
+      </div>
+      <h2 style="font-size: 1.15rem; font-weight: 800; color: #ffffff; margin-top: 4px;">
+        1.72 m · 56 kg · Voleibol & Hipertrofia
+      </h2>
+      <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">
+        Diseño pre-renderizado: funciona <strong>100% sin internet</strong> en cualquier visor móvil o navegador.
+      </p>
+
+      <div class="profile-grid">
+        <div class="profile-stat">
+          <div class="lbl">Peso Inicial</div>
+          <div class="val">56 kg</div>
+        </div>
+        <div class="profile-stat">
+          <div class="lbl">Meta Fase 1</div>
+          <div class="val target">62 kg</div>
+        </div>
+        <div class="profile-stat">
+          <div class="lbl">Meta Atlética</div>
+          <div class="val target">66 kg</div>
+        </div>
+        <div class="profile-stat">
+          <div class="lbl">Calorías Diarias</div>
+          <div class="val" style="color: var(--accent-orange);">2,750</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pestañas Principales -->
+    <nav class="tabs-nav" id="mainTabs">
+      <button class="tab-btn active" id="tabbtn-workout" onclick="switchMainTab('tab-workout')">🏋️ Rutina 7 Días</button>
+      <button class="tab-btn" id="tabbtn-nutrition" onclick="switchMainTab('tab-nutrition')">🥑 Dieta de Mercado</button>
+      <button class="tab-btn" id="tabbtn-prevention" onclick="switchMainTab('tab-prevention')">🛡️ Prevención Voley</button>
+      <button class="tab-btn" id="tabbtn-tracker" onclick="switchMainTab('tab-tracker')">📊 Registro de Pesos</button>
+    </nav>
+
+    <!-- TAB 1: RUTINA 7 DÍAS -->
+    <section id="tab-workout" class="tab-pane" style="display: block;">
+
+      <!-- Temporizador Flotante de Descanso -->
+      <div class="timer-bar">
+        <div>
+          <div style="font-size: 0.62rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Descanso</div>
+          <div class="timer-display" id="timerDisplay">01:30</div>
+        </div>
+        <div class="timer-presets">
+          <button class="preset-btn" onclick="setTimerSeconds(60)">60s</button>
+          <button class="preset-btn active" id="pbtn-90" onclick="setTimerSeconds(90)">90s</button>
+          <button class="preset-btn" onclick="setTimerSeconds(120)">120s</button>
+        </div>
+        <div class="timer-controls">
+          <button class="timer-btn primary" id="timerToggleBtn" onclick="toggleTimer()">▶</button>
+          <button class="timer-btn" onclick="resetTimer()">↺</button>
+        </div>
+      </div>
+
+      <!-- Selector de Días 1 al 7 -->
+      <div class="day-selector-title">
+        <span>Selecciona el día de tu semana</span>
+        <span style="color: var(--accent-orange); font-size: 0.72rem;">7 Días</span>
+      </div>
+
+      <div class="day-badges" id="dayBadges">
+        <div class="day-badge-btn active" id="badge-day-1" onclick="selectDay(1)">
+          <div class="day-name">Lun</div>
+          <div class="day-num">01</div>
+          <div class="day-type-dot"></div>
+        </div>
+        <div class="day-badge-btn voley" id="badge-day-2" onclick="selectDay(2)">
+          <div class="day-name">Mar</div>
+          <div class="day-num">02</div>
+          <div class="day-type-dot"></div>
+        </div>
+        <div class="day-badge-btn recovery" id="badge-day-3" onclick="selectDay(3)">
+          <div class="day-name">Mié</div>
+          <div class="day-num">03</div>
+          <div class="day-type-dot"></div>
+        </div>
+        <div class="day-badge-btn" id="badge-day-4" onclick="selectDay(4)">
+          <div class="day-name">Jue</div>
+          <div class="day-num">04</div>
+          <div class="day-type-dot"></div>
+        </div>
+        <div class="day-badge-btn voley" id="badge-day-5" onclick="selectDay(5)">
+          <div class="day-name">Vie</div>
+          <div class="day-num">05</div>
+          <div class="day-type-dot"></div>
+        </div>
+        <div class="day-badge-btn" id="badge-day-6" onclick="selectDay(6)">
+          <div class="day-name">Sáb</div>
+          <div class="day-num">06</div>
+          <div class="day-type-dot"></div>
+        </div>
+        <div class="day-badge-btn recovery" id="badge-day-7" onclick="selectDay(7)">
+          <div class="day-name">Dom</div>
+          <div class="day-num">07</div>
+          <div class="day-type-dot"></div>
+        </div>
+      </div>
+
+      <!-- Barra de Modo de Vista -->
+      <div class="view-mode-bar">
+        <span style="font-size: 0.75rem; color: var(--text-secondary);">¿Prefieres ver todo de corrido?</span>
+        <button class="view-mode-btn" id="toggleAllDaysBtn" onclick="toggleAllDaysView()">
+          📜 Ver Todos los Días Seguidos
+        </button>
+      </div>
+
+      <!-- TODOS LOS DÍAS PRE-RENDERIZADOS EN EL DOM (100% OFFLINE) -->
+      <div id="allDaysContainer">
+        
+    <div class="day-view-block" id="day-view-1" style="display: block;">
+      <div class="day-header-card">
+        <div>
+          <span class="day-tag tag-strength">Fuerza / Hipertrofia</span>
+          <h2>Día 1: Torso Hipertrofia & Salud Escapular (Upper Push/Pull)</h2>
+          <p>Construcción de la base muscular del tren superior. Enfocado en densidad de espalda para rematar con potencia y hombros estables para el bloqueo.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Músculos: <strong>Pecho, Espalda V-Taper, Hombro 3D & Manguito Rotador</strong></span>
+            <span class="meta-chip">Ejercicios: <strong>6</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 65 min</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(1)">
+          <h3>🔥 Calentamiento Específico (8 min)</h3>
+          <span id="warmupArrow-1" style="color: var(--accent-blue); font-size: 0.8rem;">▼</span>
+        </div>
+        <div class="warmup-content open" id="warmupContent-1">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+            Haz estos movimientos antes de tocar las pesas para preparar tus tendones y evitar lesiones:
+          </p>
+          <ul class="warmup-list">
+            <li><span>⚡</span><span>Rotaciones de brazos adelante y atrás (20 seg)</span></li><li><span>⚡</span><span>Dislocaciones de hombro con pica / palo de escoba o banda elástica (15 reps suaves)</span></li><li><span>⚡</span><span>Flexiones escapulares en el piso o pared (activación del serrato anterior, 12 reps)</span></li><li><span>⚡</span><span>1 serie de aproximación con peso pluma en el primer ejercicio</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exercise-list">
+        
+    <div class="exercise-card" id="card-d1-ex1">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">1</div>
+          <div class="ex-title-wrap">
+            <h3>Press de Banca con Mancuernas en Banco Plano</h3>
+            <div class="ex-target-muscle">🎯 Pectoral Mayor, Tríceps & Deltoides Anterior</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          6 kg a 8 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Acuéstate con las escápulas retraídas (hombros hacia atrás y abajo). Baja las mancuernas controlando en 2-3 segundos hasta rozar el pecho a la altura de los pezones. Empuja en arco natural sin chocar las mancuernas arriba.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Máquina de Press de Pecho sentado (Chest Press Machine) o Barra olímpica/barra corta con discos de 5kg.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Fortalece el empuje horizontal y la desaceleración del brazo al bloquear en la red.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=press+de+banca+con+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d1-ex1', 'Press de Banca con Mancuernas en Banco Plano')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d1-ex2">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">2</div>
+          <div class="ex-title-wrap">
+            <h3>Jalón al Pecho en Polea Alta (Lat Pulldown)</h3>
+            <div class="ex-target-muscle">🎯 Dorsal Ancho, Redondo Mayor & Bíceps</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          20 kg a 25 kg en placas
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Agarre prono algo más ancho que tus hombros. Saca pecho con leve inclinación del tronco hacia atrás (15°). Lleva la barra hacia la parte superior del pecho tirando con los codos hacia abajo y adentro, no con las muñecas.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Dominadas asistidas con máquina o jalón neutro con agarre cerrado tipo V.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Crea la espalda ancha en 'V' estética y otorga la fuerza de tracción dorsal que tracciona el tronco en el salto con remate.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=jalon+al+pecho+en+polea+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d1-ex2', 'Jalón al Pecho en Polea Alta (Lat Pulldown)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d1-ex3">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">3</div>
+          <div class="ex-title-wrap">
+            <h3>Press Militar Sentado con Mancuernas</h3>
+            <div class="ex-target-muscle">🎯 Deltoides Anterior, Medio & Tríceps</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          5 kg a 7 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Banco con respaldo a 80-85° (casi vertical). Empuja verticalmente manteniendo los antebrazos perpendiculares al piso. No dejes que los codos se abran excesivamente hacia afuera para no pellizcar el manguito.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Press en máquina de hombro (Shoulder Press Machine) o Press militar de pie con mancuernas ligeras.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Estabilidad del hombro sobre la cabeza para sostener bloqueos sólidos en la red.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=press+militar+con+mancuernas+sentado" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d1-ex3', 'Press Militar Sentado con Mancuernas')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d1-ex4">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">4</div>
+          <div class="ex-title-wrap">
+            <h3>Remo en Polea Baja con Agarre Neutro (Seated Cable Row)</h3>
+            <div class="ex-target-muscle">🎯 Espalda Media, Romboides & Trapecio Medio</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          20 kg a 25 kg
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">75 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Pecho erguido, rodillas semiflexionadas. Tira de la manija hacia el ombligo apretando las escápulas durante 1 segundo al final. Regresa estirando la espalda de forma controlada sin encorvar la zona lumbar.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Remo con mancuerna a una mano apoyado en banco (Dumbbell Row) o Remo en máquina con apoyo en pecho.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Corrige la postura encorvada del estudiante y equilibra la articulación del hombro.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=remo+en+polea+baja+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d1-ex4', 'Remo en Polea Baja con Agarre Neutro (Seated Cable Row)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d1-ex5">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">5</div>
+          <div class="ex-title-wrap">
+            <h3>Face Pull con Cuerda en Polea Alta</h3>
+            <div class="ex-target-muscle">🎯 Deltoides Posterior, Manguito Rotador & Trapecio Inferior</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          10 kg a 15 kg (peso liviano)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">15 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Polea a la altura de los ojos. Agarra la cuerda con pulgares apuntando hacia atrás. Tira hacia la frente separando los extremos de la cuerda y rotando externamente los hombros. ¡Ejercicio sagrado de salud!
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Pájaros con mancuernas de 3 kg en banco inclinado o aperturas invertidas en máquina Peck Deck.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Prevención número 1 del dolor de hombro por remate en voleibol.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=face+pull+polea+tecnica+correcta" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d1-ex5', 'Face Pull con Cuerda en Polea Alta')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d1-ex6">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">6</div>
+          <div class="ex-title-wrap">
+            <h3>Elevaciones Laterales con Mancuernas</h3>
+            <div class="ex-target-muscle">🎯 Deltoides Lateral (Hombros Redondos / Caps)</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          3 kg a 4 kg por mancuerna (¡no uses más peso!)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 - 15 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Inclina el torso 5° hacia adelante. Levanta los brazos en el plano escapular (30° adelantados respecto al cuerpo) hasta la altura de los hombros. Piensa en empujar las paredes hacia los lados, no en levantar con las manos.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Elevaciones laterales en polea baja a una mano.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Estética visual de hombro redondeado que compensa tu contextura delgada.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=elevaciones+laterales+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d1-ex6', 'Elevaciones Laterales con Mancuernas')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+      </div>
+    </div>
+  
+
+    <div class="day-view-block" id="day-view-2" style="display: none;">
+      <div class="day-header-card">
+        <div>
+          <span class="day-tag tag-power">Potencia / Pierna</span>
+          <h2>Día 2: Pierna Fuerza & Potencia de Salto Vertical (Jump Focus)</h2>
+          <p>Día fundamental para elevar tu salto vertical en la cancha y dar volumen atlético a tus piernas. Combina ejercicios unilaterales y potencia.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Músculos: <strong>Cuádriceps, Glúteos, Sóleo & Triple Extensión de Salto</strong></span>
+            <span class="meta-chip">Ejercicios: <strong>5</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 65 min</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(2)">
+          <h3>🔥 Calentamiento Específico (8 min)</h3>
+          <span id="warmupArrow-2" style="color: var(--accent-blue); font-size: 0.8rem;">▼</span>
+        </div>
+        <div class="warmup-content open" id="warmupContent-2">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+            Haz estos movimientos antes de tocar las pesas para preparar tus tendones y evitar lesiones:
+          </p>
+          <ul class="warmup-list">
+            <li><span>⚡</span><span>Balanceos de pierna frontal y lateral (15 reps por pierna)</span></li><li><span>⚡</span><span>Glute Bridges (Puentes de glúteo) sin peso para activar cadera (2x15 reps)</span></li><li><span>⚡</span><span>Tobillo a la pared (Dorsiflexión de tobillo) 10 repeticiones por pie</span></li><li><span>⚡</span><span>5 saltos submáximos suaves sintiendo el aterrizaje suave con puntas y rodillas</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exercise-list">
+        
+    <div class="exercise-card" id="card-d2-ex1">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">1</div>
+          <div class="ex-title-wrap">
+            <h3>Saltos con Contramovimiento (Countermovement Jumps - CMJ)</h3>
+            <div class="ex-target-muscle">🎯 Potencia Neuromuscular, Cadena Posterior & Cuádriceps</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal (sin peso extra)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">5 saltos de máxima altura</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">120 seg (descanso completo)</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> De pie, realiza una rápida flexión de cadera y rodillas mientras balanceas los brazos hacia atrás, e inmediatamente explota hacia arriba con máxima violencia buscando tocar el techo. Aterriza amortiguando suavemente.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Saltos a cajón de 40-50 cm (Box Jumps) bajando con paso suave sin saltar hacia atrás.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Transferencia directa al salto de remate y bloqueo. Desarrolla la contracción rápida de fibras tipo II.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=countermovement+jump+technique" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d2-ex1', 'Saltos con Contramovimiento (Countermovement Jumps - CMJ)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d2-ex2">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">2</div>
+          <div class="ex-title-wrap">
+            <h3>Sentadilla Copa con Mancuerna (Goblet Squat)</h3>
+            <div class="ex-target-muscle">🎯 Cuádriceps, Glúteos & Core</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          8 kg a 10 kg (una sola mancuerna sostenida al pecho)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Sostén una mancuerna pegada al esternón con ambas manos en forma de copa. Pies al ancho de hombros con puntas ligeramente hacia afuera. Baja rompiendo el paralelo manteniendo el torso erguido. Empuja el piso con todo el pie.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Sentadilla con barra frontal o Sentadilla en máquina multipower (Smith Machine) con pies ligeramente adelantados.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Construye fuerza de cuádriceps sin comprimir la columna lumbar como la sentadilla trasera libre.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=goblet+squat+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d2-ex2', 'Sentadilla Copa con Mancuerna (Goblet Squat)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d2-ex3">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">3</div>
+          <div class="ex-title-wrap">
+            <h3>Sentadilla Búlgara con Mancuernas (Bulgarian Split Squat)</h3>
+            <div class="ex-target-muscle">🎯 Glúteo Mayor, Cuádriceps & Estabilidad de Rodilla</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          4 kg a 5 kg por mancuerna (o peso corporal si pierdes equilibrio)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por pierna</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">8 - 10 reps por pierna</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg entre piernas</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Un pie apoyado en un banco detrás tuyo. Desciende verticalmente hasta que la rodilla trasera casi toque el piso. La espinilla delantera debe mantenerse bastante vertical. Empuja desde el talón delantero.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Zancadas o estocadas caminando con mancuernas (Walking Lunges).
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> El mejor ejercicio del mundo para eliminar desbalances entre piernas y proteger la rodilla en saltos de voley.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=sentadilla+bulgara+tecnica+correcta" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d2-ex3', 'Sentadilla Búlgara con Mancuernas (Bulgarian Split Squat)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d2-ex4">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">4</div>
+          <div class="ex-title-wrap">
+            <h3>Hip Thrust con Barra o Mancuerna en Banco</h3>
+            <div class="ex-target-muscle">🎯 Glúteos (Motor principal de la extensión de cadera)</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          15 kg a 20 kg (barra con discos ligeros o mancuerna de 12kg en cadera)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Espalda alta apoyada en el borde del banco. Al subir, extiende completamente la cadera formando una línea recta entre rodillas, caderas y hombros. Aprieta los glúteos 1 segundo arriba y mete la barbilla hacia el pecho.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Máquina de Glute Drive / Hip Thrust específica del gimnasio o Puentes de glúteo en el piso con mancuerna.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> El glúteo es el músculo que más centímetros añade a tu salto vertical en carrera.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=hip+thrust+tecnica+paso+a+paso" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d2-ex4', 'Hip Thrust con Barra o Mancuerna en Banco')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d2-ex5">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">5</div>
+          <div class="ex-title-wrap">
+            <h3>Elevación de Talones de Pie en Máquina o Escalón</h3>
+            <div class="ex-target-muscle">🎯 Gastrocnemio (Gemelos) & Tendón de Aquiles</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          15 kg a 20 kg en máquina (o peso corporal unilateral)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 - 15 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Baja los talones lo más profundo posible para estirar el gemelo por 1 segundo completo. Sube de forma explosiva hasta la punta del metatarso y aguanta 1 segundo arriba. ¡Cero rebotes rápidos!
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Elevaciones de talón en la prensa de piernas (Leg Press Calf Raise).
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Rigidez elástica para el despegue inmediato y amortiguación de la caída.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=elevacion+de+talones+de+pie+gemelos" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d2-ex5', 'Elevación de Talones de Pie en Máquina o Escalón')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+      </div>
+    </div>
+  
+
+    <div class="day-view-block" id="day-view-3" style="display: none;">
+      <div class="day-header-card">
+        <div>
+          <span class="day-tag tag-recovery">Recuperación Activa</span>
+          <h2>Día 3: Recuperación Activa, Isometría de Tendón & Core Voley</h2>
+          <p>¡Aprovechas tu membresía yendo al gym! Sin fatigar el sistema nervioso. Calma dolores de rodilla, blindaje de hombros y movilidad de voleibol.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Músculos: <strong>Tendón Rotuliano, Manguito Rotador, Core Rotacional & Cardio Suave</strong></span>
+            <span class="meta-chip">Ejercicios: <strong>5</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 65 min</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(3)">
+          <h3>🔥 Calentamiento Específico (8 min)</h3>
+          <span id="warmupArrow-3" style="color: var(--accent-blue); font-size: 0.8rem;">▼</span>
+        </div>
+        <div class="warmup-content open" id="warmupContent-3">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+            Haz estos movimientos antes de tocar las pesas para preparar tus tendones y evitar lesiones:
+          </p>
+          <ul class="warmup-list">
+            <li><span>⚡</span><span>Caminata inclinada suave en cinta (Inclinación 6%, Velocidad 4.5 km/h) durante 10 minutos para subir temperatura corporal</span></li><li><span>⚡</span><span>Cat-Cow (Gato-Camello) para movilizar columna (10 repeticiones)</span></li><li><span>⚡</span><span>Rotaciones de tronco suaves con pica (20 reps)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exercise-list">
+        
+    <div class="exercise-card" id="card-d3-ex1">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">1</div>
+          <div class="ex-title-wrap">
+            <h3>Isometría de Tendón Rotuliano en Wall Sit (Silla en Pared)</h3>
+            <div class="ex-target-muscle">🎯 Tendón Rotuliano & Vasto Medial</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">45 segundos estático</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Espalda apoyada contra la pared, rodillas flexionadas a 60°-70° (no hace falta llegar a 90° si molesta). Mantén la posición sin moverte. Si quieres más intensidad, abraza una mancuerna de 5 kg.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Spanish Squat con banda elástica en rack aguantando la posición baja.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Inhibe el dolor y refuerza las fibras de colágeno del tendón rotuliano, erradicando la 'rodilla de saltador'.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=wall+sit+tendinopatia+rotuliana" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d3-ex1', 'Isometría de Tendón Rotuliano en Wall Sit (Silla en Pared)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d3-ex2">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">2</div>
+          <div class="ex-title-wrap">
+            <h3>Rotaciones Externas de Hombro con Polea o Banda</h3>
+            <div class="ex-target-muscle">🎯 Infraespinoso & Redondo Menor (Manguito Rotador)</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Placa 1 (2.5 kg o banda ligera)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por brazo</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">15 reps controladas</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">45 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Codo pegado al costado a 90 grados (puedes poner una toalla enrollada entre el codo y tus costillas). Rota el antebrazo hacia afuera alejándolo del ombligo. Controla la vuelta en 3 segundos.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Rotación externa acostado de lado en banco con mancuerna de 2 kg.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Refuerza la musculatura que frena el brazo tras el remate de voleibol, evitando bursitis y desgarros.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=rotacion+externa+en+polea+hombro" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d3-ex2', 'Rotaciones Externas de Hombro con Polea o Banda')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d3-ex3">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">3</div>
+          <div class="ex-title-wrap">
+            <h3>Pallof Press en Polea (Anti-Rotación de Core)</h3>
+            <div class="ex-target-muscle">🎯 Core Profundo, Transverso Abdominal & Oblicuos</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          7.5 kg a 10 kg en polea a la altura del pecho
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por lado</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 reps aguantando 2 seg extendido</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Párate de lado a la polea. Agarra el maneral con ambas manos al centro del pecho. Extiende los brazos rectos hacia adelante resistiendo la fuerza de la polea que intenta girarte. Mantén el cuerpo como un pilar de piedra.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Plancha frontal con toques de hombro alternados (Shoulder Tap Planks).
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Transmite la fuerza del salto a los brazos en el aire sin perder el equilibrio corporal.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=pallof+press+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d3-ex3', 'Pallof Press en Polea (Anti-Rotación de Core)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d3-ex4">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">4</div>
+          <div class="ex-title-wrap">
+            <h3>Dead Hang (Colgado Pasivo de Barra de Dominadas)</h3>
+            <div class="ex-target-muscle">🎯 Descompresión Vertebral, Dorsales & Fuerza de Agarre</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">30 a 45 segundos aguantando</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Cuélgate de una barra de dominadas con agarre prono. Relaja completamente el cuerpo dejando que la gravedad descomprima los discos lumbares y abra el espacio articular del hombro.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Colgado con pies apoyados ligeramente en un banco para reducir el peso corporal si la fuerza de manos falla.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Alivia la compresión en la columna generada por los constantes impactos de aterrizaje en la cancha.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=dead+hang+beneficios+y+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d3-ex4', 'Dead Hang (Colgado Pasivo de Barra de Dominadas)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d3-ex5">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">5</div>
+          <div class="ex-title-wrap">
+            <h3>Cardio Regenerativo en Elíptica o Bici Suave</h3>
+            <div class="ex-target-muscle">🎯 Sistema Cardiovascular Aeróbico & Flujo Sanguíneo</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Resistencia moderada-baja
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">1 bloque</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">15 a 20 minutos</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">N/A</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Pedaleo suave y continuo que te permita hablar sin ahogarte. Lleva oxígeno y nutrientes a los músculos fatigados sin generar fatiga residual.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Caminadora con inclinación moderada.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Mejora tu capacidad de recuperación aeróbica entre puntos largos de vóley.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=cardio+regenerativo+recuperacion" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d3-ex5', 'Cardio Regenerativo en Elíptica o Bici Suave')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+      </div>
+    </div>
+  
+
+    <div class="day-view-block" id="day-view-4" style="display: none;">
+      <div class="day-header-card">
+        <div>
+          <span class="day-tag tag-strength">Fuerza / Voley</span>
+          <h2>Día 4: Torso Fuerza & Potencia de Remate / Tracción</h2>
+          <p>Segundo estímulo de torso de la semana. Énfasis en pecho clavicular, dorsales unilaterales y potencia del tronco para el remate.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Músculos: <strong>Pecho Superior, Tracción Unilateral, Rotación en Polea & Brazos</strong></span>
+            <span class="meta-chip">Ejercicios: <strong>5</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 65 min</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(4)">
+          <h3>🔥 Calentamiento Específico (8 min)</h3>
+          <span id="warmupArrow-4" style="color: var(--accent-blue); font-size: 0.8rem;">▼</span>
+        </div>
+        <div class="warmup-content open" id="warmupContent-4">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+            Haz estos movimientos antes de tocar las pesas para preparar tus tendones y evitar lesiones:
+          </p>
+          <ul class="warmup-list">
+            <li><span>⚡</span><span>Rotaciones de muñecas y hombros (30 seg)</span></li><li><span>⚡</span><span>Flexiones de pecho con rodillas apoyadas o tradicionales (2x8 reps suaves)</span></li><li><span>⚡</span><span>Band pull-aparts con banda elástica (2x15 reps)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exercise-list">
+        
+    <div class="exercise-card" id="card-d4-ex1">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">1</div>
+          <div class="ex-title-wrap">
+            <h3>Press Inclinado con Mancuernas (30° de inclinación)</h3>
+            <div class="ex-target-muscle">🎯 Pectoral Superior (Porción Clavicular) & Deltoides Anterior</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          6 kg a 8 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Regula el banco a 30° (no más de 45° para que no se convierta en hombro). Desciende abriendo el pecho y empuja hacia arriba convergiendo al centro con control.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Press en máquina inclinada de pecho o Flexiones con pies elevados en banco.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> El pectoral superior le da el aspecto denso y atlético a la camiseta y potencia el remate en ángulo alto.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=press+inclinado+con+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d4-ex1', 'Press Inclinado con Mancuernas (30° de inclinación)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d4-ex2">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">2</div>
+          <div class="ex-title-wrap">
+            <h3>Remo Unilateral con Mancuerna en Banco</h3>
+            <div class="ex-target-muscle">🎯 Dorsal Ancho Unilateral, Bíceps & Oblicuos</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          8 kg a 10 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por brazo</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">75 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Una rodilla y mano apoyadas en el banco. Con la otra mano sostén la mancuerna. Tira llevando la mancuerna hacia tu cadera/bolsillo, no hacia el pecho, para enfocar el dorsal ancho sin tirar del cuello.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Remo en máquina Hammer Strength unilateral o remo en polea con manija individual.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Desarrolla fuerza unilateral idéntica al movimiento del brazo al cargar el golpe de saque o remate.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=remo+con+mancuerna+unilateral+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d4-ex2', 'Remo Unilateral con Mancuerna en Banco')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d4-ex3">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">3</div>
+          <div class="ex-title-wrap">
+            <h3>Leñador en Polea Alta a Baja (Cable Woodchopper)</h3>
+            <div class="ex-target-muscle">🎯 Oblicuos, Core Rotacional & Serrato Anterior</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          7.5 kg a 10 kg
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por lado</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 reps por lado</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Polea fijada arriba. Agarra con ambas manos y realiza una diagonal descendente girando el tronco y pivotando el pie trasero, imitando el latigazo del remate. Controla el regreso.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Giros rusos (Russian twists) con disco en el suelo o lanzamientos con balón medicinal.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Patrón neuromuscular idéntico al remate en voleibol: rotación explosiva del tronco.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=cable+woodchopper+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d4-ex3', 'Leñador en Polea Alta a Baja (Cable Woodchopper)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d4-ex4">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">4</div>
+          <div class="ex-title-wrap">
+            <h3>Fondos en Máquina Asistida o Paralelas</h3>
+            <div class="ex-target-muscle">🎯 Tríceps, Pectoral Inferior & Estabilidad Escapular</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Contrapeso de 25 kg a 30 kg en máquina asistida
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">8 - 10 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Inclina el cuerpo ligeramente hacia adelante (20°). Baja flexionando los codos hasta unos 90° sin dejar que los hombros se encorven hacia las orejas. Empuja firme hasta extender los brazos.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Fondos entre dos bancos con pies en el piso o flexiones con manos en diamante.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Desarrolla fuerza de bloqueo y extensión rápida de codos.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=fondos+en+maquina+asistida+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d4-ex4', 'Fondos en Máquina Asistida o Paralelas')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d4-ex5">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">5</div>
+          <div class="ex-title-wrap">
+            <h3>Superserie de Brazos: Curl Bíceps en Banco Inclinado + Tríceps Polea</h3>
+            <div class="ex-target-muscle">🎯 Bíceps Braquial & Tríceps (Cabeza Lateral y Medial)</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Mancuernas de 5 kg para bíceps / Placa 15 kg para tríceps cuerda
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series combinadas</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 reps bíceps + 12 reps tríceps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg tras la combinación</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Haz primero el curl de bíceps con codos hacia atrás en banco inclinado (máximo estiramiento), y de inmediato pasa a la polea con cuerda abriendo las manos al final de la extensión.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Curl con barra Z + Extensiones de tríceps copa a dos manos.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Estética de brazos más gruesos y protección de la articulación del codo ante impactos del balón.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=curl+biceps+banco+inclinado+triceps+polea" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d4-ex5', 'Superserie de Brazos: Curl Bíceps en Banco Inclinado + Tríceps Polea')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+      </div>
+    </div>
+  
+
+    <div class="day-view-block" id="day-view-5" style="display: none;">
+      <div class="day-header-card">
+        <div>
+          <span class="day-tag tag-power">Cadena Posterior / Pierna</span>
+          <h2>Día 5: Pierna Hipertrofia & Estabilidad de Aterrizaje</h2>
+          <p>Construcción de la cadena posterior y masa en cuádriceps. Esencial para no tener piernas delgadas y blindar rodillas con frenado excéntrico.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Músculos: <strong>Isquiotibiales, Glúteos, Prensa de Piernas & Absorción de Impacto</strong></span>
+            <span class="meta-chip">Ejercicios: <strong>5</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 65 min</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(5)">
+          <h3>🔥 Calentamiento Específico (8 min)</h3>
+          <span id="warmupArrow-5" style="color: var(--accent-blue); font-size: 0.8rem;">▼</span>
+        </div>
+        <div class="warmup-content open" id="warmupContent-5">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+            Haz estos movimientos antes de tocar las pesas para preparar tus tendones y evitar lesiones:
+          </p>
+          <ul class="warmup-list">
+            <li><span>⚡</span><span>Caminata lateral con banda elástica en tobillos/rodillas (2x10 pasos)</span></li><li><span>⚡</span><span>Estiramiento dinámico de isquiotibiales (toe touches dinámicos 12 reps)</span></li><li><span>⚡</span><span>Sentadillas aéreas lentas (15 reps)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exercise-list">
+        
+    <div class="exercise-card" id="card-d5-ex1">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">1</div>
+          <div class="ex-title-wrap">
+            <h3>Drop Lands (Caídas de Cajón con Aterrizaje Silencioso)</h3>
+            <div class="ex-target-muscle">🎯 Mecánica de Frenado Excéntrico & Estabilidad de Tobillo</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal (Cajón de 30 a 40 cm)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">5 caídas perfectas</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Sube a un cajón o step alto. Da un paso al vacío (sin saltar hacia arriba). Cuando tus pies toquen el suelo, absorbe el impacto instantáneamente aterrizando con metatarso, flexionando rodillas a 60° y sacando glúteos. Debe sonar casi mudo.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Aterrizajes a una pierna desde escalón bajo (Single Leg Landing).
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> El mejor ejercicio del mundo para prevenir roturas de ligamento cruzado anterior (LCA) en rematadores y bloqueadores.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=drop+landings+exercise+technique" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d5-ex1', 'Drop Lands (Caídas de Cajón con Aterrizaje Silencioso)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d5-ex2">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">2</div>
+          <div class="ex-title-wrap">
+            <h3>Prensa de Piernas Inclinada (Leg Press 45°)</h3>
+            <div class="ex-target-muscle">🎯 Cuádriceps, Glúteos & Aductores</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          La prensa sin discos adicionales (solo el carro, aprox 30-40kg) o +10kg por lado
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Pies al ancho de hombros en el centro de la plataforma. Baja despacio flexionando rodillas hasta unos 90°. Empuja con toda la planta del pie. ¡CRUCIAL: Nunca bloquees ni hiperextiendas las rodillas arriba!
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Sentadilla Hack en máquina o Sentadilla en multipower.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Permite acumular gran volumen de hipertrofia en cuádriceps de forma segura para ganar peso corporal.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=prensa+de+piernas+tecnica+correcta" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d5-ex2', 'Prensa de Piernas Inclinada (Leg Press 45°)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d5-ex3">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">3</div>
+          <div class="ex-title-wrap">
+            <h3>Peso Muerto Rumano con Mancuernas (RDL)</h3>
+            <div class="ex-target-muscle">🎯 Isquiotibiales (Femorales), Glúteos & Espalda Baja</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          8 kg a 10 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 - 12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Rodillas semiflexionadas fijas. Empuja la cadera hacia la pared detrás tuyo manteniendo las mancuernas pegadas a tus muslos y la espalda completamente recta. Siente cómo se tensan los femorales y regresa contrayendo glúteos.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Peso muerto rumano con barra olímpica o Curl femoral en máquina acostado.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Fortalece los isquiotibiales que actúan como el freno de emergencia de tu rodilla al aterrizar.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=peso+muerto+rumano+con+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d5-ex3', 'Peso Muerto Rumano con Mancuernas (RDL)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d5-ex4">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">4</div>
+          <div class="ex-title-wrap">
+            <h3>Curl Femoral Acostado o Sentado en Máquina (Leg Curl)</h3>
+            <div class="ex-target-muscle">🎯 Bíceps Femoral y Semitendinoso</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          15 kg a 20 kg en placas
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">75 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Ajusta la almohadilla justo por encima de los talones. Flexiona las piernas llevando los talones hacia los glúteos de forma controlada. Regresa en 3 segundos sin dejar que las placas choquen abajo.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Curl femoral con mancuerna entre los pies acostado en banco plano o con balón suizo.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Equilibra la fuerza de la pierna (los saltadores suelen tener cuádriceps muy dominantes y femorales débiles).
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=curl+femoral+en+maquina+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d5-ex4', 'Curl Femoral Acostado o Sentado en Máquina (Leg Curl)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d5-ex5">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">5</div>
+          <div class="ex-title-wrap">
+            <h3>Poliquin Step-Down (Step Excéntrico para VMO)</h3>
+            <div class="ex-target-muscle">🎯 Vasto Medial Oblicuo (Estabilizador de la Rótula)</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal sobre un disco de 10-15 cm de altura
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por pierna</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 reps por pierna</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Párate sobre un disco o escalón bajo con un talón colgando. Desciende suavemente flexionando la rodilla de apoyo hasta que el talón libre roce el piso. Empuja para volver a subir.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Extensiones de cuádriceps en máquina aguantando 2 segundos la contracción arriba con poco peso.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> El 'fijador de rótula' definitivo. Erradica la inestabilidad de rodilla en voleibol.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=poliquin+step+up+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d5-ex5', 'Poliquin Step-Down (Step Excéntrico para VMO)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+      </div>
+    </div>
+  
+
+    <div class="day-view-block" id="day-view-6" style="display: none;">
+      <div class="day-header-card">
+        <div>
+          <span class="day-tag tag-strength">Estética & Armadura</span>
+          <h2>Día 6: Hombros 3D, Brazos & Potencia Funcional</h2>
+          <p>Día de pura estética atlética para ensanchar los hombros y brazos, complementado con fuerza de agarre y postura.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Músculos: <strong>Deltoides Completo, Bíceps, Tríceps, Trapecios & Farmer's Walk</strong></span>
+            <span class="meta-chip">Ejercicios: <strong>5</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 65 min</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(6)">
+          <h3>🔥 Calentamiento Específico (8 min)</h3>
+          <span id="warmupArrow-6" style="color: var(--accent-blue); font-size: 0.8rem;">▼</span>
+        </div>
+        <div class="warmup-content open" id="warmupContent-6">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+            Haz estos movimientos antes de tocar las pesas para preparar tus tendones y evitar lesiones:
+          </p>
+          <ul class="warmup-list">
+            <li><span>⚡</span><span>Rotaciones de hombros con mancuernas de 1 kg (15 reps)</span></li><li><span>⚡</span><span>Flexiones escapulares y perro boca abajo para abrir cintura escapular (10 reps)</span></li><li><span>⚡</span><span>Caminar en puntas de pie y talones (1 minuto)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exercise-list">
+        
+    <div class="exercise-card" id="card-d6-ex1">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">1</div>
+          <div class="ex-title-wrap">
+            <h3>Press Arnold con Mancuernas Sentado</h3>
+            <div class="ex-target-muscle">🎯 Deltoides Anterior, Lateral & Estabilizadores de Hombro</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          5 kg a 7 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">4 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">90 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Inicia con las mancuernas a la altura de la barbilla y palmas mirando hacia ti. A medida que empujas hacia arriba, gira las muñecas para que arriba las palmas miren hacia adelante. Desciende haciendo el giro inverso.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Press militar tradicional o Press con mancuernas agarre neutro.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Movilidad articular en rotación mientras se genera fuerza vertical.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=press+arnold+con+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d6-ex1', 'Press Arnold con Mancuernas Sentado')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d6-ex2">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">2</div>
+          <div class="ex-title-wrap">
+            <h3>Elevaciones Laterales en Polea Baja a una Mano</h3>
+            <div class="ex-target-muscle">🎯 Deltoides Lateral (Tensión Continua)</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Placa 1 o 2 (2.5 kg a 5 kg)
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por brazo</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 reps por brazo</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Pasa el cable por detrás o delante de tu cuerpo. Con el brazo ligeramente adelantado, eleva la manija lateralmente hasta la altura del hombro. La polea mantiene tensión constante incluso abajo.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Elevaciones laterales con mancuernas sentado.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Crea el aspecto de hombros anchos que estiliza la silueta masculina de inmediato.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=elevaciones+laterales+en+polea+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d6-ex2', 'Elevaciones Laterales en Polea Baja a una Mano')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d6-ex3">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">3</div>
+          <div class="ex-title-wrap">
+            <h3>Pájaros / Deltoides Posterior en Máquina Peck Deck Invertida</h3>
+            <div class="ex-target-muscle">🎯 Deltoides Posterior & Romboides</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          15 kg a 20 kg
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">15 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Siéntate mirando hacia la máquina con el pecho apoyado. Brazos casi rectos con codos suaves. Abre los brazos hacia atrás apretando la parte trasera del hombro sin encoger los trapecios.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Pájaros con mancuernas ligeras de 4 kg con el pecho apoyado en banco inclinado.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Hombro equilibrado en 360 grados, evitando hombros caídos hacia adelante.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=reverse+pec+deck+deltoides+posterior" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d6-ex3', 'Pájaros / Deltoides Posterior en Máquina Peck Deck Invertida')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d6-ex4">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">4</div>
+          <div class="ex-title-wrap">
+            <h3>Curl Martillo con Mancuernas (Hammer Curl)</h3>
+            <div class="ex-target-muscle">🎯 Braquial Anterior & Braquiorradial (Antebrazo)</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          6 kg a 8 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">12 reps</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Palmas mirándose entre sí durante todo el recorrido (agarre neutro). Sube sin balancear los codos y baja controlando. El braquial empuja el bíceps hacia arriba haciendo que el brazo se vea más ancho de frente.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Curl martillo con cuerda en polea baja.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Muñeca y antebrazo de acero para no doblar las manos ante un remate fuerte rival en el bloqueo.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=curl+martillo+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d6-ex4', 'Curl Martillo con Mancuernas (Hammer Curl)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d6-ex5">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">5</div>
+          <div class="ex-title-wrap">
+            <h3>Paseo del Granjero con Mancuernas (Farmer's Walk)</h3>
+            <div class="ex-target-muscle">🎯 Antebrazos, Agarre, Trapecios & Core Estabilizador</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          10 kg a 14 kg por mancuerna
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">30 a 40 segundos caminando erguido</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">60 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Agarra dos mancuernas pesadas a los lados. Saca pecho, hombros atrás, mirada al frente y camina a pasos controlados manteniendo el torso absolutamente recto como una columna sin balanceos.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Paseo de granjero unilateral (Suitcase carry con una sola mancuerna para máximo trabajo de oblicuos).
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Postura erguida de atleta y resistencia total ante colisiones.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=farmers+walk+paseo+del+granjero+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d6-ex5', 'Paseo del Granjero con Mancuernas (Farmer\'s Walk)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+      </div>
+    </div>
+  
+
+    <div class="day-view-block" id="day-view-7" style="display: none;">
+      <div class="day-header-card">
+        <div>
+          <span class="day-tag tag-recovery">Regeneración / Sauna</span>
+          <h2>Día 7: Regeneración Total, Movilidad Torácica & Ducha Relajante</h2>
+          <p>Día reparador para recargar tu energía, dejar que los músculos crezcan y preparar el cuerpo para tus pichangas de vóley de fin de semana.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Músculos: <strong>Apertura Torácica, Movilidad de Cadera, Estiramientos & Cero Estrés</strong></span>
+            <span class="meta-chip">Ejercicios: <strong>5</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 65 min</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(7)">
+          <h3>🔥 Calentamiento Específico (8 min)</h3>
+          <span id="warmupArrow-7" style="color: var(--accent-blue); font-size: 0.8rem;">▼</span>
+        </div>
+        <div class="warmup-content open" id="warmupContent-7">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+            Haz estos movimientos antes de tocar las pesas para preparar tus tendones y evitar lesiones:
+          </p>
+          <ul class="warmup-list">
+            <li><span>⚡</span><span>Bicicleta estática muy suave (10 minutos pedalando a ritmo placentero mientras escuchas música o un podcast)</span></li><li><span>⚡</span><span>Respiraciones diafragmáticas profundas en colchoneta (inhalar 4s por nariz, exhalar 6s por boca)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exercise-list">
+        
+    <div class="exercise-card" id="card-d7-ex1">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">1</div>
+          <div class="ex-title-wrap">
+            <h3>Libro Abierto en Colchoneta (Open Books para Movilidad Torácica)</h3>
+            <div class="ex-target-muscle">🎯 Columna Torácica, Pectoral Menor & Rotación</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">2 series por lado</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 rotaciones lentas por lado</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">30 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Acuéstate de lado con rodillas flexionadas a 90°. Abre el brazo superior describiendo un semicírculo hasta que el hombro toque el suelo del otro lado, siguiendo la mano con la mirada. Vuelve suave.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Rotaciones torácicas en cuadrupedia con mano en la nuca.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> La columna torácica rígida es la causa oculta del dolor de hombro al rematar. Esto libera la rotación del tronco.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=open+books+movilidad+toracica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d7-ex1', 'Libro Abierto en Colchoneta (Open Books para Movilidad Torácica)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d7-ex2">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">2</div>
+          <div class="ex-title-wrap">
+            <h3>Estiramiento del Psoas / Flexores de Cadera en Estocada Baje</h3>
+            <div class="ex-target-muscle">🎯 Psoas Ilíaco & Recto Femoral</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series por lado</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">35 a 45 segundos por lado</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">30 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Una rodilla en el piso con toalla acolchada y el otro pie adelantado a 90°. Aprieta el glúteo del lado de la rodilla apoyada y empuja la pelvis suavemente hacia adelante hasta sentir el estiramiento profundo en la ingle.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Couch stretch (estiramiento de sofá con pie elevado en pared o banco).
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Libera la tensión acumulada de pasar horas sentado estudiando en la universidad y potencia la extensión del salto.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=estiramiento+del+psoas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d7-ex2', 'Estiramiento del Psoas / Flexores de Cadera en Estocada Baje')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d7-ex3">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">3</div>
+          <div class="ex-title-wrap">
+            <h3>Estiramiento de la Paloma (Pigeon Pose para Glúteos y Cadera)</h3>
+            <div class="ex-target-muscle">🎯 Glúteo Medio, Piriforme & Rotadores Profundos de Cadera</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">2 series por pierna</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">40 segundos por pierna</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">30 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Lleva una pierna flexionada hacia adelante con la espinilla en la colchoneta y la pierna trasera estirada. Inclina el pecho hacia el piso sobre tu pierna delantera hasta sentir un estiramiento placentero en el glúteo.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Figura 4 sentado en silla o banco.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Alivia la presión sobre el nervio ciático y mejora la profundidad natural de tu sentadilla.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=postura+de+la+paloma+pigeon+pose" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d7-ex3', 'Estiramiento de la Paloma (Pigeon Pose para Glúteos y Cadera)')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d7-ex4">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">4</div>
+          <div class="ex-title-wrap">
+            <h3>Estiramiento de Pectorales en Esquina o Marco de Puerta</h3>
+            <div class="ex-target-muscle">🎯 Pectoral Mayor y Menor</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          Peso corporal
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">3 series</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">30 segundos</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">30 seg</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Coloca los antebrazos contra un marco o columna del gimnasio a la altura de los hombros. Da un paso hacia adelante con una pierna hasta sentir la apertura del pecho y hombros sin forzar.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Estiramiento de pecho sobre un rodillo de espuma (foam roller) en la columna.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Abre los hombros y contrarresta la postura encorvada del celular y la computadora.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=estiramiento+de+pectoral+en+marco+de+puerta" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d7-ex4', 'Estiramiento de Pectorales en Esquina o Marco de Puerta')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="exercise-card" id="card-d7-ex5">
+      <div class="ex-top">
+        <div class="ex-index-title">
+          <div class="ex-number">5</div>
+          <div class="ex-title-wrap">
+            <h3>Ducha Caliente Relajante / Sauna en el Gimnasio</h3>
+            <div class="ex-target-muscle">🎯 Sistema Nervioso Parasimpático & Relajación Muscular</div>
+          </div>
+        </div>
+        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+          N/A
+        </div>
+      </div>
+
+      <div class="ex-params-grid">
+        <div class="param-box">
+          <div class="p-lbl">Series</div>
+          <div class="p-val">1 sesión</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Repeticiones</div>
+          <div class="p-val">10 a 15 minutos</div>
+        </div>
+        <div class="param-box">
+          <div class="p-lbl">Descanso</div>
+          <div class="p-val">N/A</div>
+        </div>
+      </div>
+
+      <div class="ex-details">
+        <div class="ex-instruction">
+          <strong>Técnica:</strong> Aprovecha las instalaciones de tu gimnasio. Una ducha caliente de 10 minutos o 10 minutos de sauna (bebiendo abundante agua) relaja la musculatura, reduce el cortisol y te deja listo para iniciar el Día 1 con máxima energía.
+        </div>
+        <div class="ex-alt-box">
+          <strong>Alternativa si no hay máquina:</strong> Ducha tibia en casa.
+        </div>
+        <div class="ex-voley-benefit">
+          <strong>🏐 Beneficio Voleibol & Estética:</strong> Máximo bienestar psicológico y recuperación de microfibras musculares.
+        </div>
+      </div>
+
+      <div class="ex-actions">
+        <a href="https://www.youtube.com/results?search_query=sauna+beneficios+recuperacion+muscular" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+          ▶ Ver Técnica en Video
+        </a>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="log-weight-btn" onclick="openLogModal('d7-ex5', 'Ducha Caliente Relajante / Sauna en el Gimnasio')">
+            📝 Anotar Peso
+          </button>
+        </div>
+      </div>
+    </div>
+  
+      </div>
+    </div>
+  
+      </div>
+
+    </section>
+
+    <!-- TAB 2: DIETA DE MERCADO LOCAL -->
+    <section id="tab-nutrition" class="tab-pane" style="display: none;">
+      <div class="diet-header">
+        <div style="font-size: 0.68rem; font-weight: 800; color: var(--accent-green); text-transform: uppercase;">
+          SUPERÁVIT LIMPIO (PERÚ / MERCADO)
+        </div>
+        <h2 style="margin-top: 4px;">Plan de Nutrición Económico para Subir de Peso</h2>
+        <p style="font-size: 0.82rem; color: #cbd5e1; margin-top: 4px;">
+          Para subir de 56 kg a 62-65 kg de masa magra necesitas <strong>2,750 kcal diarias</strong> con alimentos baratos de mercado local.
+        </p>
+
+        <div class="macro-bar-grid">
+          <div class="macro-card cal">
+            <div class="m-lbl">Calorías</div>
+            <div class="m-val">2,750</div>
+          </div>
+          <div class="macro-card">
+            <div class="m-lbl">Proteína (2.0g/kg)</div>
+            <div class="m-val">115 g</div>
+          </div>
+          <div class="macro-card carb">
+            <div class="m-lbl">Carbohidratos</div>
+            <div class="m-val">390 g</div>
+          </div>
+          <div class="macro-card fat">
+            <div class="m-lbl">Grasas Sanas</div>
+            <div class="m-val">70 g</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1rem; font-weight: 800; color: #ffffff; margin-bottom: 10px;">Comidas Diarias (15 Minutos de Cocina)</h3>
+
+      <div class="meal-card">
+        <div class="meal-card-top">
+          <div class="meal-title">🍳 Desayuno Potente (7:30 AM)</div>
+          <span class="meal-cal-chip">~700 kcal · 32g Prot</span>
+        </div>
+        <ul class="food-items-list">
+          <li class="food-item">
+            <div>
+              <span class="food-name">Tazón de Avena con Leche y Plátano</span>
+              <span class="food-detail">80g avena precocida + 1 taza leche fresca + 1 plátano seda + canela</span>
+            </div>
+            <span class="food-cost">S/ 2.50</span>
+          </li>
+          <li class="food-item">
+            <div>
+              <span class="food-name">3 Huevos Enteros Sancochados</span>
+              <span class="food-detail">Proteína completa, colina y grasas saludables</span>
+            </div>
+            <span class="food-cost">S/ 1.80</span>
+          </li>
+          <li class="food-item">
+            <div>
+              <span class="food-name">2 Cucharadas de Maní Tostado o Mantequilla de Maní</span>
+              <span class="food-detail">Densidad calórica limpia</span>
+            </div>
+            <span class="food-cost">S/ 0.80</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-card-top">
+          <div class="meal-title">🥪 Snack Universitario Media Mañana (10:30 AM)</div>
+          <span class="meal-cal-chip">~450 kcal · 18g Prot</span>
+        </div>
+        <ul class="food-items-list">
+          <li class="food-item">
+            <div>
+              <span class="food-name">2 Panes Franceses o Integrales con Palta y Queso Fresco</span>
+              <span class="food-detail">Fácil de llevar en táper a clases. 1/2 palta + 40g queso fresco</span>
+            </div>
+            <span class="food-cost">S/ 2.20</span>
+          </li>
+          <li class="food-item">
+            <div>
+              <span class="food-name">1 Manzana o 2 Mandarinas</span>
+              <span class="food-detail">Fructosa, micronutrientes e hidratación</span>
+            </div>
+            <span class="food-cost">S/ 0.80</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-card-top">
+          <div class="meal-title">🍗 Almuerzo de Crecimiento (1:30 PM)</div>
+          <span class="meal-cal-chip">~850 kcal · 38g Prot</span>
+        </div>
+        <ul class="food-items-list">
+          <li class="food-item">
+            <div>
+              <span class="food-name">1 Plato Generoso de Arroz Blanco o Camote</span>
+              <span class="food-detail">250g cocido para recargar glucógeno muscular</span>
+            </div>
+            <span class="food-cost">S/ 1.20</span>
+          </li>
+          <li class="food-item">
+            <div>
+              <span class="food-name">150g de Pechuga de Pollo, Pescado o Hígado</span>
+              <span class="food-detail">El hígado de res cuesta la mitad y tiene hierro y vitamina A</span>
+            </div>
+            <span class="food-cost">S/ 3.50</span>
+          </li>
+          <li class="food-item">
+            <div>
+              <span class="food-name">1 Cucharón de Menestra (Lentejas o Frijol)</span>
+              <span class="food-detail">Proteína vegetal y fibra</span>
+            </div>
+            <span class="food-cost">S/ 1.00</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-card-top">
+          <div class="meal-title">🍌 Pre-Entreno / Merienda Voley (4:30 PM)</div>
+          <span class="meal-cal-chip">~350 kcal · 12g Prot</span>
+        </div>
+        <ul class="food-items-list">
+          <li class="food-item">
+            <div>
+              <span class="food-name">Batido Rápido de Avena y Plátano</span>
+              <span class="food-detail">50g avena licuada con 1 plátano y agua/leche</span>
+            </div>
+            <span class="food-cost">S/ 1.50</span>
+          </li>
+          <li class="food-item">
+            <div>
+              <span class="food-name">1 Huevo Sancochado</span>
+              <span class="food-detail">Energía limpia sin pesadez para saltar</span>
+            </div>
+            <span class="food-cost">S/ 0.60</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-card-top">
+          <div class="meal-title">🐟 Cena Reparadora (8:30 PM)</div>
+          <span class="meal-cal-chip">~650 kcal · 30g Prot</span>
+        </div>
+        <ul class="food-items-list">
+          <li class="food-item">
+            <div>
+              <span class="food-name">1 Lata de Atún o 120g de Pollo</span>
+              <span class="food-detail">En agua o aceite escurrido</span>
+            </div>
+            <span class="food-cost">S/ 3.80</span>
+          </li>
+          <li class="food-item">
+            <div>
+              <span class="food-name">2 Papas Amarillas Grandes o Choclo</span>
+              <span class="food-detail">Fácil digestión nocturna que induce buen descanso</span>
+            </div>
+            <span class="food-cost">S/ 1.50</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Lista de Compras -->
+      <div class="market-checklist">
+        <h3 style="font-size: 1rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;">🛒 Lista de Compras del Mercado</h3>
+        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 10px;">Presupuesto semanal: ~S/ 75 - 90 en mercado local</p>
+
+        <label class="market-item" onclick="toggleCheckbox('chk-1')">
+          <input type="checkbox" id="chk-1">
+          <div style="flex:1;"><span>1 cartón de huevos (30 unidades)</span><div style="font-size:0.7rem; color:var(--text-muted);">Proteína base</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 16.50</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-2')">
+          <input type="checkbox" id="chk-2">
+          <div style="flex:1;"><span>1 kg de pechuga de pollo o filetes</span><div style="font-size:0.7rem; color:var(--text-muted);">Proteína magra</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 14.50</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-3')">
+          <input type="checkbox" id="chk-3">
+          <div style="flex:1;"><span>1/2 kg de hígado de res</span><div style="font-size:0.7rem; color:var(--text-muted);">Económico y hierro</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 5.00</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-4')">
+          <input type="checkbox" id="chk-4">
+          <div style="flex:1;"><span>3 latas de atún en trozos</span><div style="font-size:0.7rem; color:var(--text-muted);">Cenas rápidas</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 12.00</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-5')">
+          <input type="checkbox" id="chk-5">
+          <div style="flex:1;"><span>1 bolsa grande de avena (1 kg)</span><div style="font-size:0.7rem; color:var(--text-muted);">Carbohidrato complejo</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 5.50</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-6')">
+          <input type="checkbox" id="chk-6">
+          <div style="flex:1;"><span>1 mano de plátanos de seda (10-12 u.)</span><div style="font-size:0.7rem; color:var(--text-muted);">Potasio y energía</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 4.00</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-7')">
+          <input type="checkbox" id="chk-7">
+          <div style="flex:1;"><span>2 kg de arroz superior</span><div style="font-size:0.7rem; color:var(--text-muted);">Energía limpia</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 8.00</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-8')">
+          <input type="checkbox" id="chk-8">
+          <div style="flex:1;"><span>2 kg de papa amarilla o camote</span><div style="font-size:0.7rem; color:var(--text-muted);">Glucógeno</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 6.00</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-9')">
+          <input type="checkbox" id="chk-9">
+          <div style="flex:1;"><span>1/2 kg de lentejas o frijoles</span><div style="font-size:0.7rem; color:var(--text-muted);">Menestras</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 4.50</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-10')">
+          <input type="checkbox" id="chk-10">
+          <div style="flex:1;"><span>3 paltas fuertes maduras</span><div style="font-size:0.7rem; color:var(--text-muted);">Grasas saludables</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 6.00</span>
+        </label>
+        <label class="market-item" onclick="toggleCheckbox('chk-11')">
+          <input type="checkbox" id="chk-11">
+          <div style="flex:1;"><span>1/4 kg de maní tostado</span><div style="font-size:0.7rem; color:var(--text-muted);">Snack calórico</div></div>
+          <span style="font-weight:700; color:var(--accent-green);">S/ 3.50</span>
+        </label>
+      </div>
+
+    </section>
+
+    <!-- TAB 3: PREVENCIÓN VOLEY -->
+    <section id="tab-prevention" class="tab-pane" style="display: none;">
+      <div class="day-header-card">
+        <span class="day-tag tag-power">BLINDAJE DE ARTICULACIONES</span>
+        <h2>Protocolo de Longevidad para Voleibol</h2>
+        <p>Aplica estos 3 principios para no lesionarte al saltar o rematar:</p>
+      </div>
+
+      <div class="prevention-card knee">
+        <h3>🦵 1. Rodilla de Saltador (Tendón Rotuliano)</h3>
+        <p>El tendón sufre microtraumas si cuádriceps y glúteos no absorben la caída.</p>
+        <div class="protocol-step">
+          <strong>Ejercicio Clave:</strong> Wall Sit (Silla en pared) con rodillas a 60-70°.
+        </div>
+        <div class="protocol-step">
+          <strong>Dosis:</strong> 4 series de 45 segundos aguantando la posición estática. Calma el dolor tendinoso al instante.
+        </div>
+        <div class="protocol-step">
+          <strong>Aterrizaje:</strong> Toca primero con el metatarso y flexiona rodillas de inmediato para aterrizar en silencio.
+        </div>
+      </div>
+
+      <div class="prevention-card shoulder">
+        <h3>🎯 2. Hombro del Rematador (Manguito Rotador)</h3>
+        <p>Al rematar, los rotadores externos frenan el brazo bruscamente a más de 100 km/h.</p>
+        <div class="protocol-step">
+          <strong>Face Pulls en Polea:</strong> 3 series de 15 reps llevando la cuerda a la frente con pulgares hacia atrás.
+        </div>
+        <div class="protocol-step">
+          <strong>Rotaciones Externas:</strong> 3 series de 15 reps con polea o banda ligera controlando la bajada en 3 segundos.
+        </div>
+      </div>
+
+      <div class="prevention-card ankle">
+        <h3>👟 3. Tobillos Reactivos y Salto</h3>
+        <p>La mayor parte de la altura del salto proviene de la rigidez elástica del tendón de Aquiles.</p>
+        <div class="protocol-step">
+          <strong>Elevación de talones de pie:</strong> Pausa de 1 segundo abajo en estiramiento y subida explosiva.
+        </div>
+        <div class="protocol-step">
+          <strong>Drop Lands:</strong> Dar un paso desde un cajón de 30 cm y frenar el impacto en el piso de forma muda.
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: TRACKER DE PESOS -->
+    <section id="tab-tracker" class="tab-pane" style="display: none;">
+      <div class="day-header-card">
+        <span class="day-tag tag-strength">SOBRECARGA PROGRESIVA</span>
+        <h2>Tu Bitácora de Fuerza Personal</h2>
+        <p>Anota los pesos que levantas hoy para saber exactamente cuánto superar la próxima semana.</p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 1rem; font-weight: 800; color: #ffffff;">Levantamientos Guardados</h3>
+        <button class="log-weight-btn" onclick="openLogModal('', 'Ejercicio Libre')">➕ Anotar Peso</button>
+      </div>
+
+      <div id="logsHistoryList" style="display: flex; flex-direction: column; gap: 8px;">
+        <!-- Se llena con SafeStorage -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Barra Inferior Fija para Móviles -->
+  <nav class="bottom-bar">
+    <div class="bottom-nav-inner">
+      <button class="nav-item active" id="nav-btn-workout" onclick="switchMainTab('tab-workout')">
+        <span class="icon">🏋️</span>
+        <span>Rutina</span>
+      </button>
+      <button class="nav-item" id="nav-btn-nutrition" onclick="switchMainTab('tab-nutrition')">
+        <span class="icon">🥑</span>
+        <span>Dieta</span>
+      </button>
+      <button class="nav-item" id="nav-btn-prevention" onclick="switchMainTab('tab-prevention')">
+        <span class="icon">🛡️</span>
+        <span>Vóley</span>
+      </button>
+      <button class="nav-item" id="nav-btn-tracker" onclick="switchMainTab('tab-tracker')">
+        <span class="icon">📊</span>
+        <span>Progreso</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Modal para Anotar Pesos -->
+  <div class="modal-overlay" id="logModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalExerciseTitle" style="font-size: 1.05rem; font-weight: 800; color: #fff;">Registrar Peso</h3>
+        <button style="background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer;" onclick="closeLogModal()">&times;</button>
+      </div>
+      <form id="logWeightForm" onsubmit="saveExerciseLog(event)">
+        <input type="hidden" id="modalExId" value="">
+        <div class="form-group">
+          <label>Ejercicio</label>
+          <input type="text" id="modalExName" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div class="form-group">
+            <label>Peso (kg)</label>
+            <input type="text" id="modalExWeight" placeholder="ej. 8 kg c/manc" required>
+          </div>
+          <div class="form-group">
+            <label>Reps</label>
+            <input type="text" id="modalExReps" placeholder="ej. 4 x 10" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Nota (Opcional)</label>
+          <input type="text" id="modalExNotes" placeholder="ej. Cómodo, próxima subo a 10kg">
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 14px;">
+          <button type="button" class="log-weight-btn" style="flex:1;" onclick="closeLogModal()">Cancelar</button>
+          <button type="submit" class="btn-submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT ULTRA SEGURO (RESISTENTE A FALLOS DE STORAGE Y RED) -->
+  <script>
+    // Storage con protección contra SecurityError en celulares
+    const SafeStorage = {
+      get: function(key, fallback) {
+        try {
+          var val = localStorage.getItem(key);
+          return val !== null ? val : fallback;
+        } catch(e) {
+          if (!window._memStore) window._memStore = {};
+          return window._memStore[key] !== undefined ? window._memStore[key] : fallback;
+        }
+      },
+      set: function(key, val) {
+        try {
+          localStorage.setItem(key, val);
+        } catch(e) {
+          if (!window._memStore) window._memStore = {};
+          window._memStore[key] = val;
+        }
+      }
+    };
+
+    var currentActiveDay = 1;
+    var isAllDaysViewActive = false;
+
+    // Cambiar Pestañas
+    function switchMainTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(function(pane) {
+        pane.style.display = 'none';
+      });
+      var activePane = document.getElementById(tabId);
+      if (activePane) activePane.style.display = 'block';
+
+      document.querySelectorAll('#mainTabs .tab-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      var activeBtn = document.getElementById('tabbtn-' + tabId.replace('tab-', ''));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.querySelectorAll('.bottom-bar .nav-item').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      var activeNav = document.getElementById('nav-btn-' + tabId.replace('tab-', ''));
+      if (activeNav) activeNav.classList.add('active');
+
+      window.scrollTo(0, 0);
+    }
+
+    // Cambiar de Día (1 al 7)
+    function selectDay(dayNum) {
+      currentActiveDay = dayNum;
+      isAllDaysViewActive = false;
+      var toggleBtn = document.getElementById('toggleAllDaysBtn');
+      if (toggleBtn) toggleBtn.textContent = '📜 Ver Todos los Días Seguidos';
+
+      for (var i = 1; i <= 7; i++) {
+        var dayBlock = document.getElementById('day-view-' + i);
+        var badge = document.getElementById('badge-day-' + i);
+        if (dayBlock) {
+          dayBlock.style.display = (i === dayNum) ? 'block' : 'none';
+        }
+        if (badge) {
+          if (i === dayNum) {
+            badge.classList.add('active');
+          } else {
+            badge.classList.remove('active');
+          }
+        }
+      }
+
+      window.scrollTo({ top: 180, behavior: 'smooth' });
+    }
+
+    // Modo Ver Todos los Días de Corrido
+    function toggleAllDaysView() {
+      isAllDaysViewActive = !isAllDaysViewActive;
+      var toggleBtn = document.getElementById('toggleAllDaysBtn');
+
+      for (var i = 1; i <= 7; i++) {
+        var dayBlock = document.getElementById('day-view-' + i);
+        if (dayBlock) {
+          dayBlock.style.display = isAllDaysViewActive ? 'block' : (i === currentActiveDay ? 'block' : 'none');
+        }
+      }
+
+      if (toggleBtn) {
+        toggleBtn.textContent = isAllDaysViewActive ? '📑 Volver a Ver por Días' : '📜 Ver Todos los Días Seguidos';
+      }
+    }
+
+    // Calentamiento Acordeón
+    function toggleWarmup(dayNum) {
+      var content = document.getElementById('warmupContent-' + dayNum);
+      var arrow = document.getElementById('warmupArrow-' + dayNum);
+      if (content) {
+        if (content.classList.contains('open')) {
+          content.classList.remove('open');
+          if (arrow) arrow.textContent = '▼';
+        } else {
+          content.classList.add('open');
+          if (arrow) arrow.textContent = '▲';
+        }
+      }
+    }
+
+    // Checkbox de Mercado
+    function toggleCheckbox(id) {
+      var chk = document.getElementById(id);
+      if (chk) {
+        chk.checked = !chk.checked;
+        var parent = chk.closest('.market-item');
+        if (parent) {
+          if (chk.checked) parent.classList.add('checked');
+          else parent.classList.remove('checked');
+        }
+      }
+    }
+
+    // Temporizador
+    var timerSeconds = 90;
+    var timerTotal = 90;
+    var timerTimer = null;
+    var isTimerRunning = false;
+
+    function updateTimerDisplay() {
+      var m = Math.floor(timerSeconds / 60);
+      var s = timerSeconds % 60;
+      var text = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      var el = document.getElementById('timerDisplay');
+      if (el) el.textContent = text;
+    }
+
+    function setTimerSeconds(s) {
+      pauseTimer();
+      timerSeconds = s;
+      timerTotal = s;
+      updateTimerDisplay();
+
+      document.querySelectorAll('.timer-presets .preset-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      var b = document.getElementById('pbtn-' + s);
+      if (b) b.classList.add('active');
+    }
+
+    function toggleTimer() {
+      if (isTimerRunning) pauseTimer();
+      else startTimer();
+    }
+
+    function startTimer() {
+      if (isTimerRunning) return;
+      isTimerRunning = true;
+      var btn = document.getElementById('timerToggleBtn');
+      if (btn) {
+        btn.textContent = '⏸';
+        btn.style.background = 'var(--accent-orange)';
+      }
+
+      timerTimer = setInterval(function() {
+        if (timerSeconds > 0) {
+          timerSeconds--;
+          updateTimerDisplay();
+        } else {
+          pauseTimer();
+          alert('⏰ ¡Tiempo de descanso terminado! Siguiente serie.');
+          timerSeconds = timerTotal;
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      isTimerRunning = false;
+      if (timerTimer) clearInterval(timerTimer);
+      var btn = document.getElementById('timerToggleBtn');
+      if (btn) {
+        btn.textContent = '▶';
+        btn.style.background = 'var(--accent-green)';
+      }
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      timerSeconds = timerTotal;
+      updateTimerDisplay();
+    }
+
+    // Modal Logs
+    function openLogModal(exId, exName) {
+      document.getElementById('modalExId').value = exId;
+      document.getElementById('modalExName').value = exName;
+      document.getElementById('modalExWeight').value = '';
+      document.getElementById('modalExReps').value = '';
+      document.getElementById('modalExNotes').value = '';
+      document.getElementById('logModal').classList.add('open');
+    }
+
+    function closeLogModal() {
+      document.getElementById('logModal').classList.remove('open');
+    }
+
+    function saveExerciseLog(e) {
+      e.preventDefault();
+      var exName = document.getElementById('modalExName').value;
+      var weight = document.getElementById('modalExWeight').value;
+      var reps = document.getElementById('modalExReps').value;
+      var notes = document.getElementById('modalExNotes').value;
+
+      var logs = JSON.parse(SafeStorage.get('voleyfit_logs_v2', '[]'));
+      logs.unshift({
+        name: exName,
+        weight: weight,
+        reps: reps,
+        notes: notes,
+        date: new Date().toLocaleDateString()
+      });
+      SafeStorage.set('voleyfit_logs_v2', JSON.stringify(logs));
+
+      closeLogModal();
+      renderSavedLogs();
+    }
+
+    function renderSavedLogs() {
+      var container = document.getElementById('logsHistoryList');
+      if (!container) return;
+      var logs = JSON.parse(SafeStorage.get('voleyfit_logs_v2', '[]'));
+
+      if (logs.length === 0) {
+        container.innerHTML = '<div style="background:var(--bg-subtle); padding:16px; border-radius:8px; text-align:center; color:var(--text-muted); font-size:0.8rem;">Aún no has anotado pesos. Toca "➕ Anotar Peso" en cualquier ejercicio para guardarlo aquí.</div>';
+        return;
+      }
+
+      container.innerHTML = logs.slice(0, 15).map(function(l) {
+        return '<div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">' +
+          '<div><div style="font-size:0.9rem; font-weight:700; color:#fff;">' + l.name + '</div><div style="font-size:0.72rem; color:var(--text-muted);">' + l.date + (l.notes ? ' · ' + l.notes : '') + '</div></div>' +
+          '<div style="background:rgba(16,185,129,0.15); color:var(--accent-green); font-weight:700; font-size:0.8rem; padding:3px 8px; border-radius:12px;">' + l.weight + ' · ' + l.reps + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    // Inicializar de inmediato sin esperar eventos de red
+    renderSavedLogs();
+    updateTimerDisplay();
+  </script>
+</body>
+</html>

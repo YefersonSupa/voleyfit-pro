@@ -1,5 +1,11 @@
-# Manual Definitivo: Rutina 7 Días, Potencia de Salto & Nutrición de Mercado
-**Perfil del Atleta:** Estudiante · 1.72 m · 56.0 kg · Voleibol Recreativo · Gimnasio 7 Días
+# 🏐 VoleyFit Pro · App & Rutina 7 Días
+
+[![Abrir Aplicación](https://img.shields.io/badge/Abrir%20Aplicaci%C3%B3n-TOCA%20AQU%C3%8D%20PARA%20ENTRAR-orange?style=for-the-badge&logo=googlechrome&logoColor=white)](https://yefersonsupa.github.io/voleyfit-pro/)
+[![Descargar PDF](https://img.shields.io/badge/Descargar-PDF%20Oficial-blue?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://yefersonsupa.github.io/voleyfit-pro/RUTINA_VOLEYFIT_PRO.pdf)
+
+> 🚀 **[👉 HAZ CLIC AQUÍ PARA ABRIR LA APLICACIÓN INTERACTIVA EN TU CELULAR 👈](https://yefersonsupa.github.io/voleyfit-pro/)**
+>
+> *(O descárgate el PDF completo para verlo sin internet: [Descargar PDF Oficial](https://yefersonsupa.github.io/voleyfit-pro/RUTINA_VOLEYFIT_PRO.pdf))*
 
 ---
 

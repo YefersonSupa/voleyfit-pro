@@ -1,4 +1,4 @@
-const CACHE_NAME = 'voleyfit-v1';
+const CACHE_NAME = 'voleyfit-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -21,7 +21,22 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
+// Network-first for HTML pages so user gets updates when online, fallback to cache when offline
 self.addEventListener('fetch', event => {
+  if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const cloned = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, cloned));
+          return response;
+        })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
+
+  // Cache-first for other assets
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {

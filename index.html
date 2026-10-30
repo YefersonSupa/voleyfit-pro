@@ -881,6 +881,7 @@
     <nav class="tabs-nav" id="mainTabs">
       <button class="tab-btn active" id="tabbtn-workout" onclick="switchMainTab('tab-workout')">🏋️ Rutina 7 Días</button>
       <button class="tab-btn" id="tabbtn-voley" onclick="switchMainTab('tab-voley')">🏐 Vóley Pre-Partido</button>
+      <button class="tab-btn" id="tabbtn-habits" onclick="switchMainTab('tab-habits')">⚡ Hábitos & Kit GYM</button>
       <button class="tab-btn" id="tabbtn-medical" onclick="switchMainTab('tab-medical')">📋 Examen Físico</button>
       <button class="tab-btn" id="tabbtn-tests" onclick="switchMainTab('tab-tests')">📈 Tests de Salto</button>
       <button class="tab-btn" id="tabbtn-tracker" onclick="switchMainTab('tab-tracker')">📊 Bitácora Pesos</button>
@@ -2709,395 +2710,378 @@
     </div>
     
 
-    <div class="day-view-block" id="day-view-6" style="display: none;">
+        <div class="day-view-block" id="day-view-6" style="display: none;">
       <div class="day-header-card">
         <div>
-          <span class="day-tag tag-strength">Vóley Suave + Estética</span>
-          <h2>Día 6: Vóley Suave + Hombros 3D, Brazos & Armadura</h2>
-          <p>Vóley recreativo suave con compañeros + sesión de estética de tren superior en el gimnasio para ensanchar hombros y brazos sin sobrecargar las piernas fatigadas del viernes.</p>
+          <span class="day-tag tag-strength">Opción A: Tren Inferior B + Hombros 3D</span>
+          <h2>Día 6: Tren Inferior B (Cadena Posterior & Salto) + Hombros 3D & Brazos</h2>
+          <p>La sesión que equilibra tu semana: trabajamos los isquiotibiales/femorales, glúteo mayor y sóleo (los frenos del aterrizaje y el resorte de salto) sin fatigar los cuádriceps ni el tendón rotuliano, completando con deltoides 3D y brazos estéticos. En la tarde: vóley recreativo suave.</p>
           <div class="day-meta-chips">
-            <span class="meta-chip">Músculos: <strong>Deltoides Completo, Bíceps, Tríceps & Agarre (Cero fatiga de piernas)</strong></span>
+            <span class="meta-chip">Músculos: <strong>Femorales/Isquios, Glúteo, Sóleo/Tobillo, Hombros 3D & Brazos</strong></span>
             <span class="meta-chip">Ejercicios: <strong>6</strong></span>
-            <span class="meta-chip">Duración: <strong>45 - 60 min</strong></span>
+            <span class="meta-chip">Duración: <strong>50 - 60 min</strong></span>
           </div>
         </div>
       </div>
 
-      
-    <div class="warmup-box">
-      <div class="warmup-box-header" onclick="toggleWarmup(6)">
-        <h3>🔥 Calentamiento Específico con Referencias (8 min)</h3>
-        <span id="warmupArrow-6" style="color:var(--accent-blue); font-size:0.8rem;">▲</span>
-      </div>
-      <div class="warmup-content" id="warmupContent-6">
-        <p style="font-size:0.72rem; color:var(--text-muted); margin-bottom:6px;">
-          Haz estos ejercicios antes de tocar las pesas. Toca "▶ Ver técnica" si tienes dudas de cómo ejecutarlos:
-        </p>
-        <div class="warmup-items-list">
-    
-          <div class="warmup-item-card">
-            <div class="warmup-item-info">
-              <div class="warmup-item-name">⚡ Rotaciones de hombro con mancuernas de 1 kg</div>
-              <div class="warmup-item-desc">15 reps adelante y atrás para calentar la articulación glenohumeral.</div>
+      <div class="warmup-box">
+        <div class="warmup-box-header" onclick="toggleWarmup(6)">
+          <h3>🔥 Calentamiento Específico con Referencias (8 min)</h3>
+          <span id="warmupArrow-6" style="color:var(--accent-blue); font-size:0.8rem;">▲</span>
+        </div>
+        <div class="warmup-content" id="warmupContent-6">
+          <p style="font-size:0.72rem; color:var(--text-muted); margin-bottom:6px;">
+            Haz estos ejercicios antes de tocar las pesas. Toca "▶ Ver técnica" si tienes dudas de cómo ejecutarlos:
+          </p>
+          <div class="warmup-items-list">
+            <div class="warmup-item-card">
+              <div class="warmup-item-info">
+                <div class="warmup-item-name">⚡ Good Mornings corporales (Bisagra de cadera)</div>
+                <div class="warmup-item-desc">15 reps empujando glúteos atrás para despertar femorales sin peso.</div>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=good+morning+sin+peso+calentamiento" target="_blank" rel="noopener noreferrer" class="warmup-video-btn">
+                ▶ Ver técnica
+              </a>
             </div>
-            <a href="https://www.youtube.com/results?search_query=calentamiento+hombros+mancuernas+ligeras" target="_blank" rel="noopener noreferrer" class="warmup-video-btn">
-              ▶ Ver técnica
-            </a>
-          </div>
-        
-          <div class="warmup-item-card">
-            <div class="warmup-item-info">
-              <div class="warmup-item-name">⚡ Flexiones escapulares en pared o suelo</div>
-              <div class="warmup-item-desc">12 reps activando el serrato anterior.</div>
+            <div class="warmup-item-card">
+              <div class="warmup-item-info">
+                <div class="warmup-item-name">⚡ Caminata en talones y puntas de pie</div>
+                <div class="warmup-item-desc">1 minuto para activar y bombear sangre al sóleo y tendón de Aquiles.</div>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=caminar+en+talones+y+puntas+tibial+soleo" target="_blank" rel="noopener noreferrer" class="warmup-video-btn">
+                ▶ Ver técnica
+              </a>
             </div>
-            <a href="https://www.youtube.com/results?search_query=push+up+plus+serrato" target="_blank" rel="noopener noreferrer" class="warmup-video-btn">
-              ▶ Ver técnica
-            </a>
-          </div>
-        
-          <div class="warmup-item-card">
-            <div class="warmup-item-info">
-              <div class="warmup-item-name">⚡ Caminar en puntas de pie y talones</div>
-              <div class="warmup-item-desc">1 minuto para bombear sangre a gemelos y sóleo tras el partido del viernes.</div>
+            <div class="warmup-item-card">
+              <div class="warmup-item-info">
+                <div class="warmup-item-name">⚡ Dislocaciones de hombro con toalla o elástico</div>
+                <div class="warmup-item-desc">12 reps amplias adelante y atrás preparando manguito rotador y deltoides.</div>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=dislocaciones+de+hombro+con+toalla+o+pica" target="_blank" rel="noopener noreferrer" class="warmup-video-btn">
+                ▶ Ver técnica
+              </a>
             </div>
-            <a href="https://www.youtube.com/results?search_query=caminar+de+puntillas+gemelos" target="_blank" rel="noopener noreferrer" class="warmup-video-btn">
-              ▶ Ver técnica
-            </a>
+            <div class="warmup-item-card">
+              <div class="warmup-item-info">
+                <div class="warmup-item-name">⚡ Band Pull Aparts o vuelos escapulares libres</div>
+                <div class="warmup-item-desc">15 reps apretando romboides y deltoides posterior.</div>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=band+pull+apart+calentamiento+hombros" target="_blank" rel="noopener noreferrer" class="warmup-video-btn">
+                ▶ Ver técnica
+              </a>
+            </div>
           </div>
-        
         </div>
       </div>
-    </div>
-    
 
       <div class="exercise-list">
-        
-    <div class="exercise-card" id="card-d6-ex1">
-      <div class="ex-top">
-        <div class="ex-index-title">
-          <div class="ex-number">1</div>
-          <div class="ex-title-wrap">
-            <h3>Press Arnold con Mancuernas Sentado</h3>
-            <div class="ex-target-muscle">🎯 Deltoides Anterior, Lateral & Estabilizadores</div>
+        <!-- EJERCICIO 1: RDL -->
+        <div class="exercise-card" id="card-d6-ex1">
+          <div class="ex-top">
+            <div class="ex-index-title">
+              <div class="ex-number">1</div>
+              <div class="ex-title-wrap">
+                <h3>Peso Muerto Rumano con Mancuernas (RDL)</h3>
+                <div class="ex-target-muscle">🎯 Femorales/Isquiosurales, Glúteo Mayor & Erector Espinal</div>
+              </div>
+            </div>
+            <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+              8 kg a 10 kg por mancuerna
+            </div>
+          </div>
+          <div class="ex-params-grid">
+            <div class="param-box">
+              <div class="p-lbl">Series</div>
+              <div class="p-val">3 - 4 series</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Repeticiones</div>
+              <div class="p-val">8 a 10 reps</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Descanso</div>
+              <div class="p-val">90 seg</div>
+            </div>
+          </div>
+          <div class="ex-details">
+            <div class="ex-instruction">
+              <strong>Técnica:</strong> Pies al ancho de caderas. Rodillas semi-flexionadas fijas. Empuja la cadera hacia la pared de atrás manteniendo las mancuernas rozando los muslos. Baja hasta sentir un estiramiento profundo en la parte posterior de los muslos (femorales) y sube apretando glúteos. Espalda totalmente recta, pecho orgulloso.
+            </div>
+            <div class="ex-alt-box">
+              <strong>Alternativa si no hay máquina:</strong> Peso muerto rumano con barra de 15 kg a 20 kg.
+            </div>
+            <div class="ex-voley-benefit">
+              <strong>🏐 Beneficio Voleibol & Estética:</strong> Es el ejercicio #1 para absorber el impacto al caer de un salto (los femorales frenan la tibia, evitando roturas de ligamentos y sobrecarga en el tendón rotuliano) y da máxima propulsión de cadera al saltar.
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="https://www.youtube.com/results?search_query=peso+muerto+rumano+con+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+              ▶ Ver Técnica en Video
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="log-weight-btn" onclick="openLogModal('d6-ex1', 'Peso Muerto Rumano con Mancuernas')">
+                📝 Anotar Peso
+              </button>
+            </div>
           </div>
         </div>
-        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
-          5 kg a 7 kg por mancuerna
-        </div>
-      </div>
 
-      <div class="ex-params-grid">
-        <div class="param-box">
-          <div class="p-lbl">Series</div>
-          <div class="p-val">3 series</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Repeticiones</div>
-          <div class="p-val">10 reps</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Descanso</div>
-          <div class="p-val">90 seg</div>
-        </div>
-      </div>
-
-      <div class="ex-details">
-        <div class="ex-instruction">
-          <strong>Técnica:</strong> Inicia con palmas mirándote al pecho y a medida que empujas hacia arriba gira las muñecas para terminar con palmas al frente. Controla la bajada en 2 segundos.
-        </div>
-        <div class="ex-alt-box">
-          <strong>Alternativa si no hay máquina:</strong> Press militar sentado con mancuernas.
-        </div>
-        <div class="ex-voley-benefit">
-          <strong>🏐 Beneficio Voleibol & Estética:</strong> Movilidad rotacional del hombro con carga controlada.
-        </div>
-      </div>
-
-      <div class="ex-actions">
-        <a href="https://www.youtube.com/results?search_query=press+arnold+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-          ▶ Ver Técnica en Video
-        </a>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="log-weight-btn" onclick="openLogModal('d6-ex1', 'Press Arnold con Mancuernas Sentado')">
-            📝 Anotar Peso
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="exercise-card" id="card-d6-ex2">
-      <div class="ex-top">
-        <div class="ex-index-title">
-          <div class="ex-number">2</div>
-          <div class="ex-title-wrap">
-            <h3>Elevaciones Laterales en Polea Baja a una Mano</h3>
-            <div class="ex-target-muscle">🎯 Deltoides Lateral (Hombros Anchos 3D)</div>
+        <!-- EJERCICIO 2: CURL FEMORAL -->
+        <div class="exercise-card" id="card-d6-ex2">
+          <div class="ex-top">
+            <div class="ex-index-title">
+              <div class="ex-number">2</div>
+              <div class="ex-title-wrap">
+                <h3>Curl Femoral en Máquina (Tumbado o Sentado)</h3>
+                <div class="ex-target-muscle">🎯 Aislamiento de Isquiosurales (Bíceps Femoral)</div>
+              </div>
+            </div>
+            <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+              15 kg a 20 kg
+            </div>
+          </div>
+          <div class="ex-params-grid">
+            <div class="param-box">
+              <div class="p-lbl">Series</div>
+              <div class="p-val">3 series</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Repeticiones</div>
+              <div class="p-val">10 a 12 reps</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Descanso</div>
+              <div class="p-val">75 seg</div>
+            </div>
+          </div>
+          <div class="ex-details">
+            <div class="ex-instruction">
+              <strong>Técnica:</strong> Ajusta la almohadilla justo detrás de los talones. Flexiona las rodillas llevando los talones a los glúteos en 1 segundo explosivo, y aguanta la fase excéntrica (bajada) en 3 segundos controlados. Mantén las caderas pegadas al banco sin arquear la zona lumbar.
+            </div>
+            <div class="ex-alt-box">
+              <strong>Alternativa si no hay máquina:</strong> Curl femoral en el suelo con toalla/deslizadores o elevación de pelvis con pies elevados.
+            </div>
+            <div class="ex-voley-benefit">
+              <strong>🏐 Beneficio Voleibol & Estética:</strong> Aísla la flexión de rodilla, equilibrando la fuerza entre la parte delantera y trasera de la pierna (ratio cuádriceps/isquio óptimo para voleibol).
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="https://www.youtube.com/results?search_query=curl+femoral+maquina+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+              ▶ Ver Técnica en Video
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="log-weight-btn" onclick="openLogModal('d6-ex2', 'Curl Femoral en Máquina')">
+                📝 Anotar Peso
+              </button>
+            </div>
           </div>
         </div>
-        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
-          Placa 1 o 2 (2.5 kg a 5 kg)
-        </div>
-      </div>
 
-      <div class="ex-params-grid">
-        <div class="param-box">
-          <div class="p-lbl">Series</div>
-          <div class="p-val">4 series por brazo</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Repeticiones</div>
-          <div class="p-val">12 reps</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Descanso</div>
-          <div class="p-val">60 seg</div>
-        </div>
-      </div>
-
-      <div class="ex-details">
-        <div class="ex-instruction">
-          <strong>Técnica:</strong> Pasa el cable por detrás de tu espalda y eleva el brazo lateralmente hasta la altura del hombro en el plano escapular. La polea mantiene tensión continua que hace arder el hombro lateral.
-        </div>
-        <div class="ex-alt-box">
-          <strong>Alternativa si no hay máquina:</strong> Elevaciones laterales con mancuernas de 3 a 4 kg sentado.
-        </div>
-        <div class="ex-voley-benefit">
-          <strong>🏐 Beneficio Voleibol & Estética:</strong> Crea el aspecto de hombros anchos que estiliza la silueta masculina de inmediato.
-        </div>
-      </div>
-
-      <div class="ex-actions">
-        <a href="https://www.youtube.com/results?search_query=elevaciones+laterales+en+polea+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-          ▶ Ver Técnica en Video
-        </a>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="log-weight-btn" onclick="openLogModal('d6-ex2', 'Elevaciones Laterales en Polea Baja a una Mano')">
-            📝 Anotar Peso
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="exercise-card" id="card-d6-ex3">
-      <div class="ex-top">
-        <div class="ex-index-title">
-          <div class="ex-number">3</div>
-          <div class="ex-title-wrap">
-            <h3>Pájaros / Deltoides Posterior en Máquina Peck Deck Invertida</h3>
-            <div class="ex-target-muscle">🎯 Deltoides Posterior & Romboides</div>
+        <!-- EJERCICIO 3: ELEVACIÓN DE TALONES SÓLEO -->
+        <div class="exercise-card" id="card-d6-ex3">
+          <div class="ex-top">
+            <div class="ex-index-title">
+              <div class="ex-number">3</div>
+              <div class="ex-title-wrap">
+                <h3>Elevación de Talones tipo Sóleo (Sentado con Carga)</h3>
+                <div class="ex-target-muscle">🎯 Músculo Sóleo, Tendón de Aquiles & Estabilidad de Tobillo</div>
+              </div>
+            </div>
+            <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+              10 kg a 15 kg sobre rodillas o máquina
+            </div>
+          </div>
+          <div class="ex-params-grid">
+            <div class="param-box">
+              <div class="p-lbl">Series</div>
+              <div class="p-val">3 - 4 series</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Repeticiones</div>
+              <div class="p-val">12 a 15 reps</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Descanso</div>
+              <div class="p-val">60 seg</div>
+            </div>
+          </div>
+          <div class="ex-details">
+            <div class="ex-instruction">
+              <strong>Técnica:</strong> Siéntate en un banco con las rodillas a 90° (al estar flexionadas, el gemelo se inhibe y el 100% de la carga va al sóleo). Coloca la punta de los pies sobre un disco o escalón. Coloca mancuernas o discos sobre tus muslos. Baja los talones hasta el estiramiento máximo (pausa de 2 seg) y elévate en puntas de pie apretando 1 seg arriba.
+            </div>
+            <div class="ex-alt-box">
+              <strong>Alternativa si no hay máquina:</strong> Máquina de sóleo sentado (Seated Calf Machine).
+            </div>
+            <div class="ex-voley-benefit">
+              <strong>🏐 Beneficio Voleibol & Estética:</strong> El sóleo disipa más del 40% del impacto al aterrizar en vóley y es el resorte elástico que te permite impulsarte rápido en recepciones y saltos reactivos.
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="https://www.youtube.com/results?search_query=elevacion+talones+soleo+sentado+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+              ▶ Ver Técnica en Video
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="log-weight-btn" onclick="openLogModal('d6-ex3', 'Elevación de Talones tipo Sóleo Sentado')">
+                📝 Anotar Peso
+              </button>
+            </div>
           </div>
         </div>
-        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
-          15 kg a 20 kg
-        </div>
-      </div>
 
-      <div class="ex-params-grid">
-        <div class="param-box">
-          <div class="p-lbl">Series</div>
-          <div class="p-val">3 series</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Repeticiones</div>
-          <div class="p-val">15 reps</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Descanso</div>
-          <div class="p-val">60 seg</div>
-        </div>
-      </div>
-
-      <div class="ex-details">
-        <div class="ex-instruction">
-          <strong>Técnica:</strong> Pecho apoyado, abre los brazos hacia atrás apretando la parte posterior del hombro sin encoger los trapecios. Aguanta 1 segundo la contracción.
-        </div>
-        <div class="ex-alt-box">
-          <strong>Alternativa si no hay máquina:</strong> Pájaros con mancuernas de 3 a 4 kg inclinado hacia adelante.
-        </div>
-        <div class="ex-voley-benefit">
-          <strong>🏐 Beneficio Voleibol & Estética:</strong> Equilibra el hombro contra la rotación interna del remate y evita hombros caídos.
-        </div>
-      </div>
-
-      <div class="ex-actions">
-        <a href="https://www.youtube.com/results?search_query=reverse+pec+deck+deltoides+posterior" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-          ▶ Ver Técnica en Video
-        </a>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="log-weight-btn" onclick="openLogModal('d6-ex3', 'Pájaros / Deltoides Posterior en Máquina Peck Deck Invertida')">
-            📝 Anotar Peso
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="exercise-card" id="card-d6-ex4">
-      <div class="ex-top">
-        <div class="ex-index-title">
-          <div class="ex-number">4</div>
-          <div class="ex-title-wrap">
-            <h3>Curl Martillo con Mancuernas (Hammer Curl)</h3>
-            <div class="ex-target-muscle">🎯 Braquial Anterior & Braquiorradial (Antebrazo)</div>
+        <!-- EJERCICIO 4: PRESS MILITAR/ARNOLD CON MANCUERNAS -->
+        <div class="exercise-card" id="card-d6-ex4">
+          <div class="ex-top">
+            <div class="ex-index-title">
+              <div class="ex-number">4</div>
+              <div class="ex-title-wrap">
+                <h3>Press Militar con Mancuernas Sentado (o Press Arnold)</h3>
+                <div class="ex-target-muscle">🎯 Deltoides Anterior, Tríceps & Estabilidad Escapular</div>
+              </div>
+            </div>
+            <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+              6 kg a 8 kg por mancuerna
+            </div>
+          </div>
+          <div class="ex-params-grid">
+            <div class="param-box">
+              <div class="p-lbl">Series</div>
+              <div class="p-val">3 series</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Repeticiones</div>
+              <div class="p-val">10 reps</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Descanso</div>
+              <div class="p-val">75 seg</div>
+            </div>
+          </div>
+          <div class="ex-details">
+            <div class="ex-instruction">
+              <strong>Técnica:</strong> Banco a 80°-85°. Inicia con mancuernas a la altura de las orejas. Empuja verticalmente de forma fluida sin chocar las mancuernas arriba y baja en 2 segundos controlados. Mantén el abdomen contraído para proteger la espalda baja.
+            </div>
+            <div class="ex-alt-box">
+              <strong>Alternativa si no hay máquina:</strong> Press militar con mancuernas de pie o máquina de hombros.
+            </div>
+            <div class="ex-voley-benefit">
+              <strong>🏐 Beneficio Voleibol & Estética:</strong> Aumenta la fuerza overhead para sostener bloqueos firmes y hombros voluminosos.
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="https://www.youtube.com/results?search_query=press+militar+mancuernas+sentado+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+              ▶ Ver Técnica en Video
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="log-weight-btn" onclick="openLogModal('d6-ex4', 'Press Militar con Mancuernas Sentado')">
+                📝 Anotar Peso
+              </button>
+            </div>
           </div>
         </div>
-        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
-          6 kg a 8 kg por mancuerna
-        </div>
-      </div>
 
-      <div class="ex-params-grid">
-        <div class="param-box">
-          <div class="p-lbl">Series</div>
-          <div class="p-val">3 series</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Repeticiones</div>
-          <div class="p-val">12 reps</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Descanso</div>
-          <div class="p-val">60 seg</div>
-        </div>
-      </div>
-
-      <div class="ex-details">
-        <div class="ex-instruction">
-          <strong>Técnica:</strong> Palmas mirándose entre sí todo el recorrido. Sube firme sin mover los codos y baja en 3 segundos. El músculo braquial empuja el bíceps hacia arriba haciendo que el brazo se vea más grueso de frente.
-        </div>
-        <div class="ex-alt-box">
-          <strong>Alternativa si no hay máquina:</strong> Curl martillo con cuerda en polea baja.
-        </div>
-        <div class="ex-voley-benefit">
-          <strong>🏐 Beneficio Voleibol & Estética:</strong> Muñeca y antebrazo de hierro para no doblar las manos al bloquear un remate fuerte rival.
-        </div>
-      </div>
-
-      <div class="ex-actions">
-        <a href="https://www.youtube.com/results?search_query=curl+martillo+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-          ▶ Ver Técnica en Video
-        </a>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="log-weight-btn" onclick="openLogModal('d6-ex4', 'Curl Martillo con Mancuernas (Hammer Curl)')">
-            📝 Anotar Peso
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="exercise-card" id="card-d6-ex5">
-      <div class="ex-top">
-        <div class="ex-index-title">
-          <div class="ex-number">5</div>
-          <div class="ex-title-wrap">
-            <h3>Extensiones de Tríceps en Polea con Cuerda</h3>
-            <div class="ex-target-muscle">🎯 Tríceps (Cabeza Lateral y Larga)</div>
+        <!-- EJERCICIO 5: ELEVACIONES LATERALES -->
+        <div class="exercise-card" id="card-d6-ex5">
+          <div class="ex-top">
+            <div class="ex-index-title">
+              <div class="ex-number">5</div>
+              <div class="ex-title-wrap">
+                <h3>Elevaciones Laterales en Polea o con Mancuernas</h3>
+                <div class="ex-target-muscle">🎯 Deltoides Lateral (Hombros 3D Anchos)</div>
+              </div>
+            </div>
+            <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+              3 kg a 5 kg mancuernas (o placa 1 en polea)
+            </div>
+          </div>
+          <div class="ex-params-grid">
+            <div class="param-box">
+              <div class="p-lbl">Series</div>
+              <div class="p-val">4 series</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Repeticiones</div>
+              <div class="p-val">12 a 15 reps</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Descanso</div>
+              <div class="p-val">60 seg</div>
+            </div>
+          </div>
+          <div class="ex-details">
+            <div class="ex-instruction">
+              <strong>Técnica:</strong> Codos ligeramente flexionados. Eleva los brazos en el plano escapular (unos 30° adelantados respecto a la línea lateral) hasta la altura de los hombros. No uses impulso con el cuerpo; concéntrate en sentir la quemazón pura en el lateral del hombro.
+            </div>
+            <div class="ex-alt-box">
+              <strong>Alternativa si no hay máquina:</strong> Elevaciones laterales con mancuernas sentado para aislar 100%.
+            </div>
+            <div class="ex-voley-benefit">
+              <strong>🏐 Beneficio Voleibol & Estética:</strong> Es el músculo clave para que tu silueta se vea ancha y en forma de V atlética, protegiendo la bursa subacromial.
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="https://www.youtube.com/results?search_query=elevaciones+laterales+mancuernas+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+              ▶ Ver Técnica en Video
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="log-weight-btn" onclick="openLogModal('d6-ex5', 'Elevaciones Laterales en Polea o Mancuernas')">
+                📝 Anotar Peso
+              </button>
+            </div>
           </div>
         </div>
-        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
-          15 kg en polea
-        </div>
-      </div>
 
-      <div class="ex-params-grid">
-        <div class="param-box">
-          <div class="p-lbl">Series</div>
-          <div class="p-val">3 series</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Repeticiones</div>
-          <div class="p-val">12 reps</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Descanso</div>
-          <div class="p-val">60 seg</div>
-        </div>
-      </div>
-
-      <div class="ex-details">
-        <div class="ex-instruction">
-          <strong>Técnica:</strong> Codos pegados al cuerpo. Extiende los brazos hacia el piso abriendo los extremos de la cuerda al final de la bajada para apretar el tríceps con fuerza.
-        </div>
-        <div class="ex-alt-box">
-          <strong>Alternativa si no hay máquina:</strong> Press francés con barra Z o mancuernas en banco plano.
-        </div>
-        <div class="ex-voley-benefit">
-          <strong>🏐 Beneficio Voleibol & Estética:</strong> Fuerza en codos para bloqueo y empuje en la red.
-        </div>
-      </div>
-
-      <div class="ex-actions">
-        <a href="https://www.youtube.com/results?search_query=extension+de+triceps+en+polea+cuerda" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-          ▶ Ver Técnica en Video
-        </a>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="log-weight-btn" onclick="openLogModal('d6-ex5', 'Extensiones de Tríceps en Polea con Cuerda')">
-            📝 Anotar Peso
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="exercise-card" id="card-d6-ex6">
-      <div class="ex-top">
-        <div class="ex-index-title">
-          <div class="ex-number">6</div>
-          <div class="ex-title-wrap">
-            <h3>Paseo del Granjero Moderado (Farmer's Walk) o Dead Hang</h3>
-            <div class="ex-target-muscle">🎯 Fuerza de Agarre, Trapecios & Descompresión</div>
+        <!-- EJERCICIO 6: SÚPERSERIE BRAZOS -->
+        <div class="exercise-card" id="card-d6-ex6">
+          <div class="ex-top">
+            <div class="ex-index-title">
+              <div class="ex-number">6</div>
+              <div class="ex-title-wrap">
+                <h3>Súperserie Brazos: Curl Martillo + Tríceps en Polea con Cuerda</h3>
+                <div class="ex-target-muscle">🎯 Braquial/Antebrazo & Tríceps (Grosor y Articulación de Codo)</div>
+              </div>
+            </div>
+            <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
+              6-8 kg bíceps / 12-15 kg polea tríceps
+            </div>
+          </div>
+          <div class="ex-params-grid">
+            <div class="param-box">
+              <div class="p-lbl">Series</div>
+              <div class="p-val">3 series combinadas</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Repeticiones</div>
+              <div class="p-val">12 reps + 12 reps</div>
+            </div>
+            <div class="param-box">
+              <div class="p-lbl">Descanso</div>
+              <div class="p-val">75 seg al final de ambas</div>
+            </div>
+          </div>
+          <div class="ex-details">
+            <div class="ex-instruction">
+              <strong>Técnica:</strong> Realiza 12 reps de Curl Martillo con mancuernas (palmas mirándose para ensanchar el brazo de frente) y de inmediato, sin descansar, ve a la polea y haz 12 reps de extensiones de tríceps con cuerda abriendo los extremos abajo. Máxima congestión y densidad muscular en 8 minutos.
+            </div>
+            <div class="ex-alt-box">
+              <strong>Alternativa si no hay máquina:</strong> Curl concentrado con mancuerna + Fondos entre bancos.
+            </div>
+            <div class="ex-voley-benefit">
+              <strong>🏐 Beneficio Voleibol & Estética:</strong> Blindaje de muñecas y codos para bloquear remates potentes sin dolor articular y brazos con estética definida.
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="https://www.youtube.com/results?search_query=superserie+biceps+triceps+bombeo" target="_blank" rel="noopener noreferrer" class="video-link-btn">
+              ▶ Ver Técnica en Video
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="log-weight-btn" onclick="openLogModal('d6-ex6', 'Súperserie Brazos: Curl Martillo + Tríceps')">
+                📝 Anotar Peso
+              </button>
+            </div>
           </div>
         </div>
-        <div class="ex-weight-badge" title="Peso de inicio recomendado para tus 56 kg">
-          Mancuernas de 10 kg a 12 kg por mano
-        </div>
-      </div>
-
-      <div class="ex-params-grid">
-        <div class="param-box">
-          <div class="p-lbl">Series</div>
-          <div class="p-val">3 series</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Repeticiones</div>
-          <div class="p-val">30 segundos caminando erguido</div>
-        </div>
-        <div class="param-box">
-          <div class="p-lbl">Descanso</div>
-          <div class="p-val">60 seg</div>
-        </div>
-      </div>
-
-      <div class="ex-details">
-        <div class="ex-instruction">
-          <strong>Técnica:</strong> Camina erguido con paso firme sin balancear el torso. Si tus manos están fatigadas del vóley, cámbialo por colgarte pasivamente de la barra de dominadas 30 segundos.
-        </div>
-        <div class="ex-alt-box">
-          <strong>Alternativa si no hay máquina:</strong> Colgado de barra pasivo (Dead Hang).
-        </div>
-        <div class="ex-voley-benefit">
-          <strong>🏐 Beneficio Voleibol & Estética:</strong> Fortalece la postura erguida y alivia la columna tras los impactos de salto del fin de semana.
-        </div>
-      </div>
-
-      <div class="ex-actions">
-        <a href="https://www.youtube.com/results?search_query=farmers+walk+paseo+del+granjero+tecnica" target="_blank" rel="noopener noreferrer" class="video-link-btn">
-          ▶ Ver Técnica en Video
-        </a>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="log-weight-btn" onclick="openLogModal('d6-ex6', 'Paseo del Granjero Moderado (Farmer\'s Walk) o Dead Hang')">
-            📝 Anotar Peso
-          </button>
-        </div>
       </div>
     </div>
-    
-      </div>
-    </div>
-    
 
     <div class="day-view-block" id="day-view-7" style="display: none;">
       <div class="day-header-card">
@@ -3530,6 +3514,252 @@
     </section>
 
     <!-- TAB 3: EXAMEN FÍSICO & FICHA MÉDICA -->
+    
+    <!-- TAB ADICIONAL: HABITOS, SUEÑO, ALIMENTOS PROHIBIDOS & KIT GYM -->
+    <section id="tab-habits" class="tab-pane" style="display: none;">
+      <div class="day-header-card" style="background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); border-left: 4px solid #818cf8;">
+        <div>
+          <span class="day-tag" style="background: rgba(129, 140, 248, 0.2); color: #a5b4fc; border: 1px solid rgba(129, 140, 248, 0.4);">⚡ Guía Pro de Progresión</span>
+          <h2>Hábitos de Oro, Sueño, Alimentos Prohibidos & Kit GYM</h2>
+          <p>La diferencia entre quedarse estancado en 56 kg y subir a 64-66 kg con salto vertical explosivo no está en matarse 3 horas en el gym, sino en lo que haces las otras 22 horas del día.</p>
+          <div class="day-meta-chips">
+            <span class="meta-chip">Objetivo: <strong>Hipertrofia Limpia + Salto Máximo</strong></span>
+            <span class="meta-chip">Hormonas: <strong>Pico de GH y Testosterona</strong></span>
+            <span class="meta-chip">Presupuesto: <strong>Asequible Estudiante UNSAAC</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCION 1: SUEÑO & OPTIMIZACION HORMONAL -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="font-size: 1.3rem;">😴</span>
+          <h3 style="font-size: 0.95rem; font-weight: 800; color: #fff; margin: 0;">1. Horas de Sueño & Optimización Hormonal (La Anabolia Real)</h3>
+        </div>
+        <p style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 10px;">
+          En el gimnasio rompes fibras musculares y estresas el sistema nervioso. La <strong>construcción muscular y la regeneración de los tendones rotulianos ocurre al 100% mientras duermes</strong>, específicamente en las fases de sueño profundo (fase 3 y REM).
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; margin-bottom: 10px;">
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px; border-left: 3px solid var(--accent-blue);">
+            <div style="font-weight: 700; font-size: 0.8rem; color: #fff; margin-bottom: 4px;">🌙 Duración Obligatoria</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4;">
+              <strong>7.5 a 8.5 horas por noche</strong> (mínimo absoluto: 7 horas continuas). Dormir 5-6 horas reduce la testosterona hasta un 15% y duplica la secreción de cortisol (hormona catabólica que destruye el músculo).
+            </div>
+          </div>
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px; border-left: 3px solid var(--accent-orange);">
+            <div style="font-weight: 700; font-size: 0.8rem; color: #fff; margin-bottom: 4px;">🧬 Pico de Hormona de Crecimiento (GH)</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4;">
+              El mayor pulso natural de GH ocurre entre la 1ra y 3ra hora de sueño profundo. Si te acuestas a las 2:00 AM con pantallas encendidas, mutilas esta ventana anabólica.
+            </div>
+          </div>
+        </div>
+
+        <div style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; padding: 10px;">
+          <div style="font-weight: 700; font-size: 0.78rem; color: var(--accent-blue); margin-bottom: 4px;">💡 Protocolo de Sueño para Estudiantes (Cusco / UNSAAC):</div>
+          <ul style="font-size: 0.72rem; color: var(--text-muted); padding-left: 16px; margin: 0; line-height: 1.45;">
+            <li><strong>Filtro de luz azul 45 min antes:</strong> Activa el modo lectura cálido en tu celular o no uses pantallas media hora antes de dormir. La luz azul bloquea la melatonina cerebral.</li>
+            <li><strong>Temperatura fresca y oscuridad:</strong> Aprovecha el clima fresco nocturno de Cusco; dormir en habitación fresca facilita la entrada a sueño profundo.</li>
+            <li><strong>Power Nap (Siesta de 20 min):</strong> Si tienes un hueco entre clases de la universidad, una siesta de 20 a 25 min antes de las 3:00 PM restaura el sistema nervioso para saltar con máxima explosividad en la tarde.</li>
+            <li><strong>Cero cafeína después de las 4:00 PM:</strong> La cafeína tiene una vida media de 6 horas; tomar café o energizantes tarde impide el sueño profundo aunque logres cerrar los ojos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECCION 2: ALIMENTOS QUE NO SE DEBEN CONSUMIR -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="font-size: 1.3rem;">🚫</span>
+          <h3 style="font-size: 0.95rem; font-weight: 800; color: #ef4444; margin: 0;">2. Alimentos Prohibidos y a Evitar (Por qué sabotean tu progreso)</h3>
+        </div>
+        <p style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 10px;">
+          Para subir de 56 kg necesitas un superávit de calorías limpias. Si ingieres calorías vacías o pro-inflamatorias, tu cuerpo almacenará grasa en la barriga, perderás reactividad elástica en el salto e inflamarás los tendones rotulianos:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 10px; display: flex; gap: 10px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">🍟</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.8rem; color: #f87171;">Frituras de Carretilla, Broaster Callejero y Grasas Trans</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 2px;">
+                Los aceites vegetales reutilizados y quemados están oxidados. Provocan inflamación endotelial sistémica que se acumula en las articulaciones sometidas a estrés (rodillas y hombros), acelerando la tendinitis.
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 10px; display: flex; gap: 10px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">🥤</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.8rem; color: #f87171;">Gaseosas, Bebidas Energizantes Azucaradas y Jugos de Caja</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 2px;">
+                Bombas de fructosa líquida industrial. Causan un pico violento de insulina seguido de un "bajón" de glucosa a los 30 minutos que te deja sin energía en pleno entrenamiento, además de inflamar el hígado.
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 10px; display: flex; gap: 10px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">🍺</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.8rem; color: #f87171;">Alcohol (Cervezas en las pichangas de viernes/sábado)</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 2px;">
+                El veneno más efectivo contra el deportista: <strong>bloquea la síntesis de proteína miofibrilar en un 37%</strong>, deshidrata el líquido sinovial de los tendones (aumentando riesgo de desgarro al saltar) y arruina la fase REM del sueño de esa noche.
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 10px; display: flex; gap: 10px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">🌭</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.8rem; color: #f87171;">Embutidos Baratos (Hot Dogs, Salchichas económicas, Mortadela)</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 2px;">
+                Rellenos de almidón, nitritos y grasas de desecho con apenas un 6-8% de proteína de pésimo valor biológico. Reemplázalos siempre por huevos enteros o pollo sancochado/plancha.
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 10px; display: flex; gap: 10px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">🍩</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.8rem; color: #f87171;">Bollería Industrial y Golosinas justo antes de entrenar</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 2px;">
+                Comer galletas rellenas o chocolates antes de entrar al gym genera <em>hipoglucemia reactiva</em>: entras mareado, con pesadez estomacal y con cero potencia para saltar.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCION 3: BUENOS HABITOS CLAVE -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="font-size: 1.3rem;">💎</span>
+          <h3 style="font-size: 0.95rem; font-weight: 800; color: #10b981; margin: 0;">3. Buenos Hábitos de Oro para Progresar</h3>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px;">
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 12px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #fff; margin-bottom: 4px;">💧 Hidratación Calculada (2.3 a 2.6 Litros)</div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+              Regla biológica: 35-45 ml por kg de peso. Para tus 56 kg son <strong>2.3 litros de agua limpia al día</strong>. Una deshidratación de apenas 2% reduce tu salto vertical un 8%. En días de vóley (Viernes y Sábado), añade 600 ml con una pizca de sal marina y medio limón (suero casero perfecto).
+            </p>
+          </div>
+
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 12px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #fff; margin-bottom: 4px;">📈 Sobrecarga Progresiva en tu Bitácora</div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+              El músculo solo crece si tiene una razón para hacerlo. Toca el botón <strong>"📝 Anotar Peso"</strong> de tu app en cada ejercicio. Intenta subir 1 kg o sacar 1 repetición más cada 1-2 semanas con técnica perfecta.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 12px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #fff; margin-bottom: 4px;">⏱️ Nutrient Timing (Horarios de Comida)</div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+              • <strong>Pre-entreno (1.5h antes):</strong> Carbohidrato complejo (avena con plátano o arroz con huevo).<br>
+              • <strong>Post-entreno/partido (dentro de 2h):</strong> Comida sólida completa con proteína para frenar el catabolismo y reponer reservas de glucógeno.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 12px;">
+            <div style="font-weight: 700; font-size: 0.82rem; color: #fff; margin-bottom: 4px;">🚫 Calentamiento Dinámico vs Estático</div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+              <strong>NUNCA</strong> hagas estiramientos estáticos largos antes de saltar o levantar peso (anula la rigidez del tendón y saltas menos). Usa siempre el calentamiento dinámico de esta app antes, y reserva los estiramientos suaves para después.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCION 4: KIT GYM & VOLEY (QUE COMPRAR) -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="font-size: 1.3rem;">🎒</span>
+          <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--accent-orange); margin: 0;">4. Kit del GYM & Vóley: Qué Comprar para Potenciar tus Sesiones</h3>
+        </div>
+        <p style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px;">
+          Herramientas y accesorios probados que marcan una diferencia brutal en tus marcas, evitan lesiones y maximizan tu comodidad sin gastar una fortuna:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Item 1: Straps -->
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 220px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #fff;">1. Correas de Agarre / Lifting Straps (Algodón o Nylon)</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 3px;">
+                <strong>Imprescindibles para el Peso Muerto Rumano y Jalón al Pecho.</strong> Tus antebrazos pesan poco y se fatigan antes que tus piernas o tu espalda. Los straps eliminan el límite de agarre para que puedas mover 10-15 kg más sin que se te resbalen las mancuernas.
+              </div>
+            </div>
+            <div style="background: rgba(249, 115, 22, 0.15); color: var(--accent-orange); font-weight: 800; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; font-family: ui-monospace;">
+              Aprox: S/ 20 - 30
+            </div>
+          </div>
+
+          <!-- Item 2: Zapatillas planas vs Vóley -->
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 220px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #fff;">2. Zapatillas de Suela Plana (Vans, Converse o medias) vs Zapatillas de Vóley</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 3px;">
+                <strong>Regla de oro:</strong> NUNCA entrenes sentadillas ni peso muerto con zapatillas de running con cámara de aire (inestabilidad de tobillo). En el gimnasio usa zapatillas planas o medias. Para el vóley en cancha, usa zapatillas con suela de goma y tracción lateral (tipo Asics Upcourt/Gel-Rocket o similar).
+              </div>
+            </div>
+            <div style="background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); font-weight: 800; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; font-family: ui-monospace;">
+              Clave de Seguridad
+            </div>
+          </div>
+
+          <!-- Item 3: Shaker 1L -->
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 220px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #fff;">3. Botella Shaker de 1 Litro con Marcador de Medida</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 3px;">
+                Te asegura llevar tu agua medida a la universidad y al gimnasio. Sabes exactamente que si la llenas 2 veces y media, ya cumpliste tu meta de 2.5 litros diarios sin perder tiempo yendo al caño cada 5 minutos.
+              </div>
+            </div>
+            <div style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); font-weight: 800; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; font-family: ui-monospace;">
+              Aprox: S/ 15 - 25
+            </div>
+          </div>
+
+          <!-- Item 4: Mini Band -->
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 220px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #fff;">4. Banda Elástica Circular (Mini Band de resistencia media)</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 3px;">
+                Entra en cualquier bolsillo de tu short. Te sirve para calentar los rotadores del hombro y activar glúteos en 3 minutos antes de entrar a la cancha de vóley o a la sala de pesas.
+              </div>
+            </div>
+            <div style="background: rgba(249, 115, 22, 0.15); color: var(--accent-orange); font-weight: 800; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; font-family: ui-monospace;">
+              Aprox: S/ 10 - 15
+            </div>
+          </div>
+
+          <!-- Item 5: Rodillera Rotuliana -->
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 220px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #fff;">5. Cincha Rotuliana Sub-patelar (o Rodillera Neopreno 5mm)</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 3px;">
+                Una pequeña cinta ajustable que se coloca justo debajo de la rótula. Si en algún momento sientes sobrecarga o "pinchazos" al caer de saltos intensos, disipa la tensión mecánica sobre la inserción del tendón rotuliano.
+              </div>
+            </div>
+            <div style="background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); font-weight: 800; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; font-family: ui-monospace;">
+              Aprox: S/ 15 - 35
+            </div>
+          </div>
+
+          <!-- Item 6: Creatina -->
+          <div style="background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 220px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #fff;">6. Creatina Monohidratada (Creapure o 200 Mesh) - Suplemento Rey</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.35; margin-top: 3px;">
+                <strong>El suplemento con mayor respaldo científico del mundo para salto y masa muscular.</strong> Toma 3 a 5 gramos diarios todos los días a cualquier hora. Satura los depósitos de fosfocreatina: aumenta la fuerza explosiva en el despegue (+3 a 5 cm de salto vertical) y ayuda a ganar de 1 a 2 kg de masa magra limpia en el primer mes.
+              </div>
+            </div>
+            <div style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); font-weight: 800; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; font-family: ui-monospace;">
+              Aprox: S/ 70 - 110 (Dura 2-3 meses)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="tab-medical" class="tab-pane" style="display: none;">
       <div class="day-header-card">
         <span class="day-tag tag-strength">EVALUACIÓN CLÍNICA</span>
@@ -3864,6 +4094,10 @@
       <button class="nav-item" id="nav-btn-voley" onclick="switchMainTab('tab-voley')">
         <span class="icon">🏐</span>
         <span>Vóley</span>
+      </button>
+      <button class="nav-item" id="nav-btn-habits" onclick="switchMainTab('tab-habits')">
+        <span class="icon">⚡</span>
+        <span>Hábitos</span>
       </button>
       <button class="nav-item" id="nav-btn-medical" onclick="switchMainTab('tab-medical')">
         <span class="icon">📋</span>

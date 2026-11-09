@@ -1,4 +1,4 @@
-const CACHE_NAME = 'voleyfit-v8';
+const CACHE_NAME = 'voleyfit-v9';
 const ASSETS = [
   './',
   './index.html',
@@ -13,10 +13,10 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
@@ -28,14 +28,20 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Network-first for HTML pages so user gets updates when online, fallback to cache when offline
+// Network-first sin caché HTTP para documentos HTML
 self.addEventListener('fetch', event => {
-  if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+  const isHtml = event.request.mode === 'navigate' || 
+                 event.request.destination === 'document' || 
+                 event.request.url.includes('index.html');
+
+  if (isHtml) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-cache' })
         .then(response => {
-          const cloned = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, cloned));
+          if (response && response.status === 200) {
+            const cloned = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(event.request, cloned));
+          }
           return response;
         })
         .catch(() => caches.match('./index.html'))
@@ -43,7 +49,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Cache-first for other assets
+  // Cache-first para imágenes y recursos estáticos
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {

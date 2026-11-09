@@ -14,10 +14,55 @@
   <link rel="manifest" href="manifest.json">
   <title>VoleyFit Pro · Rutina 7 Días, Vóley & Examen Físico</title>
   <script>
+    // Detección automática de actualizaciones y control del Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js').catch(function(e) { console.log('SW error', e); });
+        navigator.serviceWorker.register('./sw.js?v=9').then(function(reg) {
+          reg.update();
+          reg.addEventListener('updatefound', function() {
+            var newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', function() {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('Nueva versión detectada, recargando...');
+                  window.location.reload();
+                }
+              });
+            }
+          });
+        }).catch(function(e) { console.log('SW error', e); });
+
+        var refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
       });
+    }
+
+    // Función universal para forzar actualización inmediata y limpiar cachés antiguas
+    function forceAppUpdate() {
+      if (confirm('¿Deseas recargar la app para obtener la última versión actualizada?')) {
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            return Promise.all(names.map(function(name) { return caches.delete(name); }));
+          }).then(function() {
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(function(regs) {
+                return Promise.all(regs.map(function(r) { return r.unregister(); }));
+              }).then(function() {
+                window.location.href = window.location.pathname + '?t=' + Date.now();
+              });
+            } else {
+              window.location.href = window.location.pathname + '?t=' + Date.now();
+            }
+          });
+        } else {
+          window.location.reload(true);
+        }
+      }
     }
   </script>
 
@@ -875,8 +920,11 @@
           <p>Rutina 7 Días · Vóley & Examen Físico</p>
         </div>
       </div>
-      <div class="user-pill">
-        <span>1.72 m · 55.3 kg · 8.8% Grasa (Nutri Qaly)</span>
+      <div class="user-pill" style="display:flex; align-items:center; gap:8px;">
+        <span>1.72 m · 55.3 kg · 8.8% Grasa</span>
+        <button onclick="forceAppUpdate()" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; cursor: pointer;" title="Forzar recarga de última versión">
+          🔄 Actualizar
+        </button>
       </div>
     </div>
   </header>

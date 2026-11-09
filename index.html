@@ -4401,30 +4401,38 @@
         <h3 id="modalExerciseTitle" style="font-size: 1rem; font-weight: 800; color: #fff;">Registrar Peso</h3>
         <button style="background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer;" onclick="closeLogModal()">&times;</button>
       </div>
-      <form id="logWeightForm" onsubmit="saveExerciseLog(event)">
+            <form id="logWeightForm" onsubmit="saveExerciseLog(event)">
         <input type="hidden" id="modalExId" value="">
         <div class="input-group" style="margin-bottom:8px;">
           <label>Ejercicio</label>
-          <input type="text" id="modalExName" required>
+          <input type="text" id="modalExName" required readonly style="background:rgba(255,255,255,0.05); color:#fff;">
         </div>
+
+        <!-- Indicador de Doble Progresión y Último Peso -->
+        <div id="modalTargetRepsInfo" style="background:rgba(129,140,248,0.1); border:1px solid rgba(129,140,248,0.3); border-radius:6px; padding:8px 10px; margin-bottom:8px; font-size:0.72rem; color:#cbd5e1; line-height:1.4;"></div>
+        <div id="modalLastWeightInfo" style="background:rgba(255,255,255,0.04); border-radius:6px; padding:6px 10px; margin-bottom:8px; font-size:0.72rem; color:var(--text-muted);"></div>
+
         <div class="form-grid-2">
           <div class="input-group">
-            <label>Peso (kg o placa)</label>
-            <input type="text" id="modalExWeight" placeholder="ej. 8 kg c/manc" required>
+            <label>Peso a Registrar</label>
+            <input type="text" id="modalExWeight" placeholder="ej. 10 kg c/manc" required>
           </div>
           <div class="input-group">
             <label>Reps Logradas</label>
-            <input type="text" id="modalExReps" placeholder="ej. 4 x 10" required>
+            <input type="text" id="modalExReps" placeholder="ej. 12 (o 4x12)" required oninput="onRepsInputChanged()">
           </div>
         </div>
+
+        <!-- Feedback instantáneo de sobrecarga progresiva -->
+        <div id="modalProgressionFeedback" style="margin-top:4px; min-height:18px;"></div>
+
         <div class="input-group" style="margin-top:6px;">
-          <label>Nota / Sensación (Opcional)</label>
-          <input type="text" id="modalExNotes" placeholder="ej. Cómodo, subo a 10kg próxima semana">
+          <label>Notas / Sensaciones (RIR, dolor, comodidad)</label>
+          <input type="text" id="modalExNotes" placeholder="ej. RIR 2, sentí buen ardor, sin dolor articular">
         </div>
-        <div style="display: flex; gap: 8px; margin-top: 12px;">
-          <button type="button" class="log-weight-btn" style="flex:1;" onclick="closeLogModal()">Cancelar</button>
-          <button type="submit" class="save-primary-btn" style="flex:1; margin-top:0;">Guardar</button>
-        </div>
+        <button type="submit" class="save-primary-btn" style="margin-top:12px;">
+          💾 Guardar en mi Bitácora & Progreso
+        </button>
       </form>
     </div>
   </div>
@@ -4478,6 +4486,7 @@
       if (tabId === 'tab-medical') renderMedicalSummary();
       if (tabId === 'tab-tests') renderTestsHistory();
       if (tabId === 'tab-tracker') renderSavedLogs();
+      loadAllChecks();
     }
 
     // Cambiar de Día (1 al 7)
@@ -4592,6 +4601,150 @@
       document.getElementById('logModal').classList.add('open');
     }
 
+    
+    // ==========================================================================
+    // SISTEMA DE INTERACCIÓN COMPACTA, CHECKS Y ASISTENTE DE SOBRECARGA
+    // ==========================================================================
+
+    // Desplegar / Colapsar detalles de un ejercicio
+    function toggleExerciseDetails(exId) {
+      var body = document.getElementById('body-' + exId);
+      var card = document.getElementById('card-' + exId);
+      if (!body) return;
+      var isExpanded = (body.style.display !== 'none');
+      body.style.display = isExpanded ? 'none' : 'block';
+      if (card) {
+        if (isExpanded) card.classList.remove('expanded');
+        else card.classList.add('expanded');
+      }
+    }
+
+    // Alternar Check de completado en un ejercicio
+    function toggleExerciseCheck(e, exId, dayNum) {
+      if (e) e.stopPropagation();
+      var checks = JSON.parse(SafeStorage.get('voleyfit_checks', '{}'));
+      checks[exId] = !checks[exId];
+      SafeStorage.set('voleyfit_checks', JSON.stringify(checks));
+      applyCheckUI(exId, checks[exId]);
+      updateDayProgress(dayNum);
+    }
+
+    // Aplicar estado visual del check
+    function applyCheckUI(exId, isChecked) {
+      var card = document.getElementById('card-' + exId);
+      var btn = document.getElementById('check-' + exId);
+      if (btn) {
+        if (isChecked) btn.classList.add('checked');
+        else btn.classList.remove('checked');
+      }
+      if (card) {
+        if (isChecked) card.classList.add('completed');
+        else card.classList.remove('completed');
+      }
+    }
+
+    // Actualizar barra y contador de progreso del día
+    function updateDayProgress(dayNum) {
+      var dayBlock = document.getElementById('day-view-' + dayNum);
+      if (!dayBlock) return;
+      var checks = JSON.parse(SafeStorage.get('voleyfit_checks', '{}'));
+      var cards = dayBlock.querySelectorAll('.ex-compact-card');
+      var total = cards.length;
+      if (total === 0) return;
+      var completed = 0;
+      cards.forEach(function(card) {
+        var id = card.id.replace('card-', '');
+        if (checks[id]) completed++;
+      });
+      var pct = Math.round((completed / total) * 100);
+      var bar = document.getElementById('progressBar-d' + dayNum);
+      var count = document.getElementById('progressCount-d' + dayNum);
+      if (bar) bar.style.width = pct + '%';
+      if (count) count.textContent = completed + ' / ' + total + ' completados (' + pct + '%)';
+    }
+
+    // Desmarcar todos los checks del día
+    function resetDayChecks(dayNum) {
+      if (!confirm('¿Deseas desmarcar todos los ejercicios del Día ' + dayNum + ' para una nueva sesión?')) return;
+      var dayBlock = document.getElementById('day-view-' + dayNum);
+      if (!dayBlock) return;
+      var checks = JSON.parse(SafeStorage.get('voleyfit_checks', '{}'));
+      var cards = dayBlock.querySelectorAll('.ex-compact-card');
+      cards.forEach(function(card) {
+        var id = card.id.replace('card-', '');
+        delete checks[id];
+        applyCheckUI(id, false);
+      });
+      SafeStorage.set('voleyfit_checks', JSON.stringify(checks));
+      updateDayProgress(dayNum);
+    }
+
+    // Cargar checks guardados para todos los días
+    function loadAllChecks() {
+      var checks = JSON.parse(SafeStorage.get('voleyfit_checks', '{}'));
+      for (var id in checks) {
+        if (checks[id]) applyCheckUI(id, true);
+      }
+      for (var d = 1; d <= 7; d++) {
+        updateDayProgress(d);
+      }
+    }
+
+    // Abrir modal con Asistente de Sobrecarga Progresiva
+    var currentTargetRepsMin = 8;
+    var currentTargetRepsMax = 12;
+
+    function openLogModal(exId, exName, repsMin, repsMax) {
+      currentTargetRepsMin = repsMin || 8;
+      currentTargetRepsMax = repsMax || 12;
+
+      document.getElementById('modalExId').value = exId;
+      document.getElementById('modalExName').value = exName;
+      document.getElementById('modalExerciseTitle').textContent = 'Registrar: ' + exName;
+
+      var targetInfo = document.getElementById('modalTargetRepsInfo');
+      if (targetInfo) {
+        targetInfo.innerHTML = '🎯 <strong>Rango Objetivo Fase 2:</strong> ' + currentTargetRepsMin + ' a ' + currentTargetRepsMax + ' reps (RIR 1-2)<br>' +
+          '💡 <strong>Regla de Sobrecarga:</strong> Cuando logres ' + currentTargetRepsMax + ' reps en todas tus series, ¡en tu siguiente sesión sube de peso!';
+      }
+
+      var lastInfo = document.getElementById('modalLastWeightInfo');
+      var logs = getStoredLogs();
+      var last = logs.find(function(l) { return l.name === exName; });
+      if (last && lastInfo) {
+        lastInfo.innerHTML = '⏮️ <strong>Último registro guardado:</strong> <span style="color:#fff; font-weight:700;">' + last.weight + '</span> (' + last.reps + ') el ' + last.date;
+        document.getElementById('modalExWeight').value = last.weight;
+      } else if (lastInfo) {
+        lastInfo.innerHTML = '🌱 <em>Primer registro de este ejercicio. Registra con qué peso inicias hoy.</em>';
+        document.getElementById('modalExWeight').value = '';
+      }
+
+      document.getElementById('modalExReps').value = '';
+      document.getElementById('modalExNotes').value = '';
+      var fb = document.getElementById('modalProgressionFeedback');
+      if (fb) fb.innerHTML = '';
+
+      document.getElementById('logModal').classList.add('open');
+    }
+
+    // Feedback en vivo cuando el usuario digita las repeticiones
+    function onRepsInputChanged() {
+      var val = document.getElementById('modalExReps').value;
+      var num = parseInt(val.replace(/\D/g, '')) || 0;
+      var feedbackEl = document.getElementById('modalProgressionFeedback');
+      if (!feedbackEl) return;
+
+      if (num >= currentTargetRepsMax && currentTargetRepsMax > 0) {
+        feedbackEl.innerHTML = '<div style="color:var(--accent-green); font-weight:700; font-size:0.75rem; background:rgba(16,185,129,0.1); padding:4px 8px; border-radius:4px;">🚀 ¡Tope alcanzado (' + num + ' reps)! En tu próxima sesión sube +1 a +2 kg en mancuernas (+2.5 a +5 kg en máquinas).</div>';
+      } else if (num >= currentTargetRepsMin) {
+        feedbackEl.innerHTML = '<div style="color:var(--accent-blue); font-weight:700; font-size:0.75rem; background:rgba(59,130,246,0.1); padding:4px 8px; border-radius:4px;">🔥 Buen rango hipertrófico (' + num + ' reps). Mantén el peso y busca +1 repetición la próxima semana.</div>';
+      } else if (num > 0 && num < currentTargetRepsMin) {
+        feedbackEl.innerHTML = '<div style="color:var(--accent-amber); font-weight:700; font-size:0.75rem; background:rgba(245,158,11,0.1); padding:4px 8px; border-radius:4px;">⚖️ Peso alto (' + num + ' reps). Mantén este peso hasta dominar al menos ' + currentTargetRepsMin + ' reps estrictas antes de subir.</div>';
+      } else {
+        feedbackEl.innerHTML = '';
+      }
+    }
+
     function closeLogModal() {
       document.getElementById('logModal').classList.remove('open');
     }
@@ -4629,6 +4782,7 @@
 
       closeLogModal();
       renderSavedLogs();
+      loadAllChecks();
       alert('✅ Peso registrado exitosamente en tu celular.');
     }
 
@@ -4808,6 +4962,7 @@
     // Inicialización al cargar la página
     document.addEventListener('DOMContentLoaded', function() {
       renderSavedLogs();
+      loadAllChecks();
       renderMedicalSummary();
       renderTestsHistory();
       updateTimerDisplay();

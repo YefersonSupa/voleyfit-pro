@@ -18,7 +18,7 @@
     // Detección automática de actualizaciones y control del Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js?v=10').then(function(reg) {
+        navigator.serviceWorker.register('./sw.js?v=11').then(function(reg) {
           reg.update();
           reg.addEventListener('updatefound', function() {
             var newWorker = reg.installing;
@@ -1399,7 +1399,6 @@
 </div>
 </div>
 </div>
-
 <!-- Barra de Progreso Interactivo del Día -->
 <div class="workout-progress-card">
 <div class="progress-info-row">
@@ -1471,7 +1470,6 @@
 
 <div class="exercise-list compact-mode">
 <div class="ex-compact-card" id="card-d1-ex1">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d1-ex1')">
 <div class="ex-check-circle" id="check-btn-d1-ex1" onclick="event.stopPropagation(); toggleExerciseCheck('d1-ex1', 1);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -1489,7 +1487,6 @@
 </div>
 <div class="ex-compact-arrow" id="arrow-d1-ex1">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d1-ex1" style="display: none;">
 <div class="ex-params-grid">
 <div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
@@ -1499,61 +1496,58 @@
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Acuéstate con las escápulas retraídas (hombros hacia atrás y abajo). Baja las mancuernas controlando en 2-3 segundos hasta rozar el pecho a la altura de los pezones. Empuja en arco natural sin chocar las mancuernas arriba.</div>
+<div class="ex-sec-text">Acuéstate con escápulas retraídas y deprimidas. Baja las mancuernas en 2-3 segundos hasta rozar el pecho con los codos en flecha a 45°-60°. Empuja en arco natural sin chocar las mancuernas arriba.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes una congestión y ardor directo en el centro y parte superior del pecho al empujar.</li><li>✓ Tus antebrazos se mantienen perfectamente verticales perpendiculares al suelo en todo el trayecto.</li><li>✓ NO debes sentir pinchazos ni dolor en la parte anterior del hombro (indica que bajaste demasiado los codos).</li>
+<li>✓ Sientes congestión directa en el centro y parte superior del pecho al empujar.</li><li>✓ Tus antebrazos se mantienen perfectamente verticales perpendiculares al suelo en todo el trayecto.</li><li>✓ NO sientes pinchazos en la parte frontal del hombro (los codos no están abiertos a 90°).</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Abrir los codos a 90° en cruz (deben estar en flecha a 45°-60° respecto a las costillas).</li><li>✗ Chocar las mancuernas arriba perdiendo la tensión continua en los pectorales.</li><li>✗ Despegar los glúteos del banco o perder la retracción de las escápulas.</li>
+<li>✗ Abrir los codos a 90° en cruz (lesivo para el manguito rotador).</li><li>✗ Chocar las mancuernas arriba perdiendo tensión continua en el pecho.</li><li>✗ Arquear en exceso la espalda baja despegando los glúteos del banco.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=press+de+banca+con+mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Press+de+Banca+con+Mancuernas+en+Banco+Plano+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d1-ex1', 'Press de Banca con Mancuernas en Banco Plano')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
-<div class="alt-name"><strong>Press Plano con Mancuernas en Suelo (Floor Press)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Acuéstate boca arriba en el suelo con rodillas flexionadas. Baja hasta que tus tríceps toquen suavemente el suelo y empuja explosivo. Protege al 100% los hombros.</div>
+<div class="alt-name"><strong>Floor Press con Mancuernas (Press en el Suelo)</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Acuéstate boca arriba en el suelo con rodillas flexionadas. Baja hasta que los tríceps toquen suavemente el suelo y empuja explosivo. Protege al 100% los hombros.</div>
 <div class="alt-bio"><strong>Sensación correcta:</strong> Toque suave en el suelo sin rebotar, máxima contracción de pecho arriba.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=floor+press+con+mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Cruces de Polea a la Altura del Pecho (Cable Chest Fly / Press)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Coloca las poleas a la altura de los hombros o axilas. Da un paso al frente con tronco erguido y empuja juntando las manos al frente sintiendo tensión constante en todo el recorrido.</div>
+<div class="alt-name"><strong>Cable Chest Press o Cruces de Polea a la Altura del Pecho</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Coloca las poleas a la altura de las axilas. Da un paso al frente con tronco firme y empuja juntando las manos al frente sintiendo tensión constante en todo el recorrido.</div>
 <div class="alt-bio"><strong>Sensación en polea:</strong> Ardor muscular continuo incluso cuando las manos se juntan al frente.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+chest+press+tecnica+polea" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
 <strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Fortalece el empuje horizontal y la desaceleración del brazo al bloquear en la red.
-            </div>
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d1-ex2">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d1-ex2')">
 <div class="ex-check-circle" id="check-btn-d1-ex2" onclick="event.stopPropagation(); toggleExerciseCheck('d1-ex2', 1);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -1571,7 +1565,6 @@
 </div>
 <div class="ex-compact-arrow" id="arrow-d1-ex2">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d1-ex2" style="display: none;">
 <div class="ex-params-grid">
 <div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
@@ -1581,61 +1574,58 @@
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Agarre prono algo más ancho que tus hombros. Saca pecho con leve inclinación del tronco hacia atrás (15°). Lleva la barra hacia la parte superior del pecho tirando con los codos hacia abajo y adentro, no con las muñecas.</div>
+<div class="ex-sec-text">Agarre ligeramente más ancho que los hombros. Inclina el torso 10°-15° hacia atrás, saca pecho y jala la barra hacia la parte superior del esternón llevando los codos abajo y atrás.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes que inicias el movimiento tirando con los codos hacia abajo y atrás, no jalando con los bíceps.</li><li>✓ Al tocar el esternón o clavícula, notas las escápulas completamente apretadas y el dorsal ancho expandido.</li><li>✓ NO balanceas el torso hacia atrás más de 10° a 15°.</li>
+<li>✓ Sientes que inicias el movimiento tirando con los codos hacia abajo y atrás, no jalando con los bíceps.</li><li>✓ Al tocar la clavícula notas las escápulas completamente apretadas y el dorsal ancho expandido.</li><li>✓ El torso no se balancea hacia atrás más de 10°-15°.</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Tirar la barra por detrás de la nuca (muy lesivo para el manguito rotador).</li><li>✗ Jalar encorvando los hombros hacia adelante en lugar de sacar pecho.</li><li>✗ Soltar el peso de golpe arriba sin controlar la fase excéntrica (bajada de 2-3s).</li>
+<li>✗ Tirar la barra tras la nuca (muy lesivo para las vértebras cervicales y hombros).</li><li>✗ Jalar encorvando los hombros hacia adelante en vez de sacar pecho.</li><li>✗ Soltar el peso de golpe arriba sin controlar la bajada en 2-3 segundos.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=jalon+al+pecho+en+polea+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Jalón+al+Pecho+en+Polea+Alta+(Lat+Pulldown)+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d1-ex2', 'Jalón al Pecho en Polea Alta (Lat Pulldown)')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
 <div class="alt-name"><strong>Remo con Mancuerna a Una Mano en Banco</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Apoya rodilla y mano en el banco con espalda recta. Jala la mancuerna hacia tu cadera/bolsillo sintiendo cómo se aprieta el dorsal lateral.</div>
+<div class="alt-technique"><strong>Técnica:</strong> Apoya rodilla y mano en banco con espalda recta. Jala la mancuerna hacia tu cadera/bolsillo sintiendo cómo se aprieta el dorsal lateral.</div>
 <div class="alt-bio"><strong>Sensación correcta:</strong> El codo sube pegado a las costillas y aprietas la espalda antes de bajar.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=remo+con+mancuerna+una+mano+dorsal" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Jalón Unilateral en Polea Alta de Rodillas</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Si la máquina de polea alta convencional está ocupada, arrodíllate frente a cualquier estación de polea simple con agarre de estribo y jala hacia la axila.</div>
+<div class="alt-name"><strong>Jalón Unilateral en Polea Alta de Rodillas con Estribo</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Arrodíllate frente a cualquier estación de polea simple con agarre de estribo y jala hacia la axila contrayendo el dorsal.</div>
 <div class="alt-bio"><strong>Sensación en polea:</strong> Mayor rango de recorrido y contracción pico en el dorsal de ese lado.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=single+arm+lat+pulldown+cable+polea" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Crea la espalda ancha en 'V' estética y otorga la fuerza de tracción dorsal que tracciona el tronco en el salto con remate.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Construye la espalda en V necesaria para generar tracción y velocidad en el armado de remate.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d1-ex3">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d1-ex3')">
 <div class="ex-check-circle" id="check-btn-d1-ex3" onclick="event.stopPropagation(); toggleExerciseCheck('d1-ex3', 1);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -1646,78 +1636,74 @@
 <span class="ex-compact-name">Press Militar Sentado con Mancuernas</span>
 </div>
 <div class="ex-compact-sub">
-<span class="ex-chip-sets">3 series · 10 - 12 reps</span>
-<span class="ex-chip-weight">5 kg a 7 kg por mancuerna</span>
+<span class="ex-chip-sets">4 series · 10 - 12 reps</span>
+<span class="ex-chip-weight">4 kg a 6 kg por mancuerna</span>
 <span class="ex-chip-muscle">Deltoides Anterior</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d1-ex3">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d1-ex3" style="display: none;">
 <div class="ex-params-grid">
-<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series</div></div>
+<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
 <div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">10 - 12 reps</div></div>
 <div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 seg</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">5 kg a 7 kg por mancuerna</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">4 kg a 6 kg por mancuerna</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Banco con respaldo a 80-85° (casi vertical). Empuja verticalmente manteniendo los antebrazos perpendiculares al piso. No dejes que los codos se abran excesivamente hacia afuera para no pellizcar el manguito.</div>
+<div class="ex-sec-text">Respaldo a 75°-80° (casi vertical). Inicia con mancuernas a la altura de las orejas. Presiona verticalmente hacia el techo en un arco ligeramente convergente sin chocar las mancuernas.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes el trabajo directo en la porción anterior y lateral del hombro sin molestias cervicales.</li><li>✓ Las mancuernas suben en una trayectoria natural ligeramente convergente sin tocarse arriba.</li><li>✓ El core y el abdomen están firmes, sin arquear la zona lumbar hacia adelante.</li>
+<li>✓ Sientes el trabajo directo en la porción frontal y lateral del hombro sin molestias cervicales.</li><li>✓ Las mancuernas suben en una trayectoria natural convergente.</li><li>✓ El core y el abdomen están firmes contra el respaldo, sin arquear la zona lumbar.</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Arquear la espalda baja exageradamente al subir peso (peligro para discos lumbares).</li><li>✗ Bajar las mancuernas por debajo de la altura de la mandíbula forzando la rotación extrema del hombro.</li><li>✗ Bloquear los codos bruscamente arriba.</li>
+<li>✗ Arquear la espalda baja en exceso al subir el peso (peligro para discos lumbares).</li><li>✗ Bajar las mancuernas por debajo de la mandíbula forzando la rotación extrema del hombro.</li><li>✗ Bloquear o hiperextender los codos arriba.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=press+militar+con+mancuernas+sentado" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Press+Militar+Sentado+con+Mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d1-ex3', 'Press Militar Sentado con Mancuernas')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
 <div class="alt-name"><strong>Press Arnold con Mancuernas</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Inicia con palmas mirando hacia ti a la altura del pecho. Al empujar hacia arriba, gira los antebrazos hacia afuera hasta que las palmas miren al frente.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Rotación fluida y sin dolor, activando las 3 cabezas del deltoides.</div>
+<div class="alt-technique"><strong>Técnica:</strong> Inicia con palmas mirando hacia ti al pecho. Al subir, gira los antebrazos hacia afuera hasta que las palmas miren al frente.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Rotación fluida activando las 3 cabezas del deltoides sin dolor.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=press+arnold+mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Press de Hombro en Polea Baja con Barra o Estribos</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Coloca la polea en el punto más bajo. Sube con estribos a los hombros y presiona hacia el techo. La resistencia del cable desafía la estabilidad.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Hombros ardiendo por la tensión constante desde el inicio del empuje.</div>
+<div class="alt-name"><strong>Press de Hombro en Polea Baja de Pie con Barra o Estribos</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Polea en el punto más bajo. Sube con estribos a los hombros y presiona hacia el techo con tensión continua.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Hombros activos desde el primer centímetro por la tensión del cable.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+shoulder+press+standing" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Estabilidad del hombro sobre la cabeza para sostener bloqueos sólidos en la red.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Estabilidad overhead indispensable para mantener las manos firmes sobre la red en el bloqueo.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d1-ex4">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d1-ex4')">
 <div class="ex-check-circle" id="check-btn-d1-ex4" onclick="event.stopPropagation(); toggleExerciseCheck('d1-ex4', 1);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -1728,78 +1714,74 @@
 <span class="ex-compact-name">Remo en Polea Baja con Agarre Neutro (Seated Cable Row)</span>
 </div>
 <div class="ex-compact-sub">
-<span class="ex-chip-sets">3 series · 12 reps</span>
-<span class="ex-chip-weight">20 kg a 25 kg</span>
+<span class="ex-chip-sets">4 series · 10 - 12 reps</span>
+<span class="ex-chip-weight">20 kg a 25 kg en placas</span>
 <span class="ex-chip-muscle">Espalda Media</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d1-ex4">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d1-ex4" style="display: none;">
 <div class="ex-params-grid">
-<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series</div></div>
-<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">12 reps</div></div>
-<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">75 seg</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">20 kg a 25 kg</div></div>
+<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
+<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">10 - 12 reps</div></div>
+<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 seg</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">20 kg a 25 kg en placas</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Pecho erguido, rodillas semiflexionadas. Tira de la manija hacia el ombligo apretando las escápulas durante 1 segundo al final. Regresa estirando la espalda de forma controlada sin encorvar la zona lumbar.</div>
+<div class="ex-sec-text">Pies apoyados, rodillas ligeramente flexionadas, torso erguido a 90°. Jala el agarre estrecho hacia la parte baja del abdomen/ombligo juntando las escápulas y sacando pecho.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes cómo las escápulas se juntan hacia la columna vertebral con fuerza.</li><li>✓ El tronco permanece fijo a 90° respecto a las piernas, sin inclinarse hacia atrás para darse impulso.</li><li>✓ Los hombros se mantienen alejados de las orejas (depresión escapular).</li>
+<li>✓ Sientes cómo las escápulas se juntan hacia la columna con fuerza en cada repetición.</li><li>✓ El tronco permanece fijo a 90° respecto a las piernas, sin balancearse hacia atrás para darse impulso.</li><li>✓ Los hombros se mantienen alejados de las orejas (depresión escapular).</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Usar inercia balanceando la espalda como si fuera una máquina de remo de cardio.</li><li>✗ Jalar con los bíceps encogiendo los hombros hacia arriba.</li><li>✗ Soltar el agarre y dejar que la espalda se encorve en la fase de estiramiento.</li>
+<li>✗ Balancear la espalda como si fuera remo de cardio.</li><li>✗ Jalar con los bíceps encogiendo los hombros hacia las orejas.</li><li>✗ Encorvar la espalda baja al soltar el peso.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=remo+en+polea+baja+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Remo+en+Polea+Baja+con+Agarre+Neutro+(Seated+Cable+Row)+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d1-ex4', 'Remo en Polea Baja con Agarre Neutro (Seated Cable Row)')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
 <div class="alt-name"><strong>Remo con Mancuernas en Banco Inclinado (Chest Supported Row)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Acuéstate boca abajo sobre un banco inclinado a 30°-45°. Deja colgar las mancuernas y jala los codos hacia atrás pegados al torso.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Aislamiento total de la espalda media y dorsal sin carga sobre la zona lumbar.</div>
+<div class="alt-technique"><strong>Técnica:</strong> Acuéstate boca abajo sobre un banco inclinado a 30°-45°. Jala los codos hacia atrás pegados al torso.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Aislamiento total de la espalda media sin fatiga en la zona lumbar.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=chest+supported+dumbbell+row+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
 <div class="alt-name"><strong>Remo Unilateral en Polea Media de Pie</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Coloca la polea a la altura del ombligo. Da un paso atrás en posición de zancada estable y jala con una mano rotando ligeramente el torso.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Excelente para fortalecer el tronco anti-rotacional necesario al rematar en vóley.</div>
+<div class="alt-technique"><strong>Técnica:</strong> Polea a la altura del ombligo. Da un paso atrás en posición de zancada estable y jala con una mano rotando ligeramente el torso.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Excelente para fortalecer el core anti-rotacional de voleibol.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=single+arm+cable+row+standing+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Corrige la postura encorvada del estudiante y equilibra la articulación del hombro.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Densidad de espalda que absorbe las fuerzas de frenado tras un remate violento.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d1-ex5">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d1-ex5')">
 <div class="ex-check-circle" id="check-btn-d1-ex5" onclick="event.stopPropagation(); toggleExerciseCheck('d1-ex5', 1);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -1810,78 +1792,74 @@
 <span class="ex-compact-name">Face Pull con Cuerda en Polea Alta</span>
 </div>
 <div class="ex-compact-sub">
-<span class="ex-chip-sets">3 series · 15 reps</span>
-<span class="ex-chip-weight">10 kg a 15 kg (peso liviano)</span>
+<span class="ex-chip-sets">4 series · 12 - 15 reps</span>
+<span class="ex-chip-weight">10 kg a 15 kg en placas</span>
 <span class="ex-chip-muscle">Deltoides Posterior</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d1-ex5">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d1-ex5" style="display: none;">
 <div class="ex-params-grid">
-<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series</div></div>
-<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">15 reps</div></div>
+<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
+<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">12 - 15 reps</div></div>
 <div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">60 seg</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">10 kg a 15 kg (peso liviano)</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">10 kg a 15 kg en placas</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Polea a la altura de los ojos. Agarra la cuerda con pulgares apuntando hacia atrás. Tira hacia la frente separando los extremos de la cuerda y rotando externamente los hombros. ¡Ejercicio sagrado de salud!</div>
+<div class="ex-sec-text">Polea ajustada a la altura de los ojos o frente. Agarra la cuerda con pulgares hacia atrás. Jala hacia la frente separando los extremos de la cuerda con codos altos y rotando externamente los hombros.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes ardor en la parte posterior del hombro (deltoides posterior) y entre los omóplatos.</li><li>✓ Mantienes una rotación externa con los pulgares apuntando hacia atrás en el punto de contracción.</li><li>✓ Los codos terminan altos y abiertos, alineados con las orejas.</li>
+<li>✓ Sientes ardor en la parte posterior del hombro y entre los omóplatos.</li><li>✓ Mantienes rotación externa con los pulgares apuntando hacia atrás en la contracción.</li><li>✓ Los codos terminan altos y abiertos, alineados con las orejas.</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Cargar demasiado peso y jalar hacia el pecho como si fuera un remo alto.</li><li>✗ Llevar los codos hacia abajo perdiendo la rotación externa del manguito.</li><li>✗ Adelantar el cuello para alcanzar la cuerda.</li>
+<li>✗ Cargar demasiado peso y jalar al pecho como si fuera remo.</li><li>✗ Bajar los codos perdiendo la rotación externa del manguito.</li><li>✗ Adelantar el cuello hacia la cuerda.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=face+pull+polea+tecnica+correcta" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Face+Pull+con+Cuerda+en+Polea+Alta+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d1-ex5', 'Face Pull con Cuerda en Polea Alta')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
 <div class="alt-name"><strong>Pájaros con Mancuernas Inclinado (Rear Delt Fly)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Inclina el torso hacia adelante a 45° con espalda recta o sobre un banco. Con mancuernas ligeras (2-4 kg), abre los brazos en cruz con codos semi-flexionados.</div>
+<div class="alt-technique"><strong>Técnica:</strong> Inclina el torso a 45° con espalda recta. Con mancuernas ligeras (2-4 kg), abre los brazos en cruz con codos semi-flexionados.</div>
 <div class="alt-bio"><strong>Sensación correcta:</strong> Focalización pura en el deltoides posterior sin balanceo del tronco.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=pajaros+con+mancuernas+deltoides+posterior" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
 <div class="alt-name"><strong>Cruces Invertidos en Polea Doble sin Agarre (Cable Rear Delt Fly)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Cruza los cables a la altura de los ojos sujetando directamente las bolas del cable. Abre los brazos en horizontal hacia afuera y atrás.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Tensión extrema en el manguito rotador y deltoides posterior al final del rango.</div>
+<div class="alt-technique"><strong>Técnica:</strong> Cruza los cables a la altura de los ojos sujetando directamente los topes. Abre los brazos en horizontal hacia afuera y atrás.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Tensión extrema en el manguito rotador y deltoides posterior.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+rear+delt+fly+tecnica+polea" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Prevención número 1 del dolor de hombro por remate en voleibol.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> El ejercicio #1 para prevenir el pinzamiento de hombro y la tendinitis del manguito rotador en rematadores.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d1-ex6">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d1-ex6')">
 <div class="ex-check-circle" id="check-btn-d1-ex6" onclick="event.stopPropagation(); toggleExerciseCheck('d1-ex6', 1);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -1893,73 +1871,70 @@
 </div>
 <div class="ex-compact-sub">
 <span class="ex-chip-sets">4 series · 12 - 15 reps</span>
-<span class="ex-chip-weight">3 kg a 4 kg por mancuerna (¡no uses más peso!)</span>
-<span class="ex-chip-muscle">Deltoides Lateral (Hombros Redondos / Caps)</span>
+<span class="ex-chip-weight">3 kg a 4 kg por mancuerna (¡técnica estricta!)</span>
+<span class="ex-chip-muscle">Deltoides Lateral (Hombros Anchos 3D)</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d1-ex6">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d1-ex6" style="display: none;">
 <div class="ex-params-grid">
 <div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
 <div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">12 - 15 reps</div></div>
 <div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">60 seg</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">3 kg a 4 kg por mancuerna (¡no uses más peso!)</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">3 kg a 4 kg por mancuerna (¡técnica estricta!)</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Inclina el torso 5° hacia adelante. Levanta los brazos en el plano escapular (30° adelantados respecto al cuerpo) hasta la altura de los hombros. Piensa en empujar las paredes hacia los lados, no en levantar con las manos.</div>
+<div class="ex-sec-text">Inclina el torso apenas 5° hacia adelante. Levanta los brazos en el plano escapular (30° adelantados respecto a la línea lateral) hasta la altura de los hombros. Los codos guían la subida.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes el abdomen bajo y medio como una roca apretada durante todo el minuto.</li><li>✓ La pelvis está en ligera retroversión (apretando glúteos), eliminando cualquier curva en la zona lumbar.</li><li>✓ Empujas el suelo con los codos manteniendo las escápulas activas (sin hundirte entre los hombros).</li>
+<li>✓ Sientes ardor y quemazón pura en la cara lateral del hombro.</li><li>✓ Los codos suben ligeramente por encima de las muñecas (como vertiendo una jarra).</li><li>✓ Cero impulso con rodillas o balanceo del torso; cuerpo completamente inmóvil.</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Dejar caer la cadera hacia el suelo arqueando la espalda baja (causa dolor lumbar).</li><li>✗ Subir la cadera en forma de carpa o triángulo para descansar el abdomen.</li><li>✗ Contener la respiración (debes respirar corto y rítmico manteniendo el abdomen contraído).</li>
+<li>✗ Subir las mancuernas por encima del nivel de los hombros sobrecargando los trapecios.</li><li>✗ Usar peso excesivo que obligue a encoger el cuello.</li><li>✗ Llevar los brazos 100% abiertos en cruz forzando la articulación acromioclavicular.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=elevaciones+laterales+mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Elevaciones+Laterales+con+Mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d1-ex6', 'Elevaciones Laterales con Mancuernas')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
-<div class="alt-name"><strong>Plancha con Arrastre de Mancuerna (Plank Dumbbell Pull-Through)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> En posición de plancha alta sobre las manos, pasa una mancuerna ligera por debajo de tu cuerpo de un lado al otro con una mano sin mover la cadera.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Anti-rotación extrema, crucial para no girar el cuerpo descontrolado al bloquear en la red.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=plank+dumbbell+pull+through+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+<div class="alt-name"><strong>Elevaciones Laterales Sentado en la Punta del Banco</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Siéntate en el borde del banco con pies juntos y eleva las mancuernas en plano escapular. Al estar sentado eliminas cualquier trampa con las piernas.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Aislamiento estricto del deltoides medio para ensanchar hombros.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=elevaciones+laterales+sentado+mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Press Pallof en Polea Media</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Coloca la polea a la altura del esternón. De lado a la máquina, sujeta el mango con ambas manos y estira los brazos al frente resistiendo la rotación durante 3 segundos.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> El ejercicio rey de anti-rotación de core para voleibolistas.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=press+pallof+polea+core+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+<div class="alt-name"><strong>Elevación Lateral Unilateral en Polea Baja por Detrás</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Polea en el punto más bajo. Pasa el cable por detrás de tu espalda y eleva el brazo hasta la horizontal.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Tensión constante desde el primer milímetro de elevación.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+lateral+raise+behind+the+back+polea" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Estética visual de hombro redondeado que compensa tu contextura delgada.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Desarrolla la amplitud del hombro para una presencia física sólida y potencia de brazos.
+        </div>
 </div>
 </div>
 </div>
@@ -1974,19 +1949,18 @@
 <div class="day-meta-chips">
 <span class="meta-chip" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);"><strong>⚡ Horario Martes: 6:30 PM - 7:30 PM (Tarde libre desde las 4 PM)</strong></span>
 <span class="meta-chip">Músculos: <strong>Cuádriceps, Glúteos, Sóleo &amp; Triple Extensión de Salto</strong></span>
-<span class="meta-chip">Ejercicios: <strong>5</strong></span>
+<span class="meta-chip">Ejercicios: <strong>6</strong></span>
 <span class="meta-chip">Duración: <strong>45 - 60 min</strong></span>
 </div>
 </div>
 </div>
-
 <!-- Barra de Progreso Interactivo del Día -->
 <div class="workout-progress-card">
 <div class="progress-info-row">
 <div class="progress-label">
 <span class="prog-dot"></span>
 <strong>Progreso de la sesión:</strong>
-<span id="prog-text-d2">0 de 5 completados (0%)</span>
+<span id="prog-text-d2">0 de 6 completados (0%)</span>
 </div>
 <button class="reset-day-btn" onclick="resetDayChecks(2)">↺ Reiniciar</button>
 </div>
@@ -2051,7 +2025,6 @@
 
 <div class="exercise-list compact-mode">
 <div class="ex-compact-card" id="card-d2-ex1">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d2-ex1')">
 <div class="ex-check-circle" id="check-btn-d2-ex1" onclick="event.stopPropagation(); toggleExerciseCheck('d2-ex1', 2);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -2062,78 +2035,74 @@
 <span class="ex-compact-name">Saltos con Contramovimiento (Countermovement Jumps - CMJ)</span>
 </div>
 <div class="ex-compact-sub">
-<span class="ex-chip-sets">4 series · 5 saltos de máxima altura</span>
-<span class="ex-chip-weight">Peso corporal (sin peso extra)</span>
+<span class="ex-chip-sets">3 series · 5 saltos máximos</span>
+<span class="ex-chip-weight">Peso corporal (sin carga externa)</span>
 <span class="ex-chip-muscle">Potencia Neuromuscular</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d2-ex1">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d2-ex1" style="display: none;">
 <div class="ex-params-grid">
-<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
-<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">5 saltos de máxima altura</div></div>
-<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">120 seg (descanso completo)</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">Peso corporal (sin peso extra)</div></div>
+<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series</div></div>
+<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">5 saltos máximos</div></div>
+<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 seg</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">Peso corporal (sin carga externa)</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">De pie, realiza una rápida flexión de cadera y rodillas mientras balanceas los brazos hacia atrás, e inmediatamente explota hacia arriba con máxima violencia buscando tocar el techo. Aterriza amortiguando suavemente.</div>
+<div class="ex-sec-text">De pie erguido, desciende rápido a un cuarto de sentadilla balanceando los brazos hacia atrás y despega de inmediato con máxima violencia hacia el techo. Aterriza en metatarsos y flexiona rodillas amortiguando suave como un gato.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes la fuerza empujando directamente desde todo el pie (talón y metatarso), sin despegar los talones.</li><li>✓ Las rodillas bajan y suben apuntando en la misma dirección que la punta de tus pies.</li><li>✓ Tu pecho se mantiene erguido y el core compacto al romper el paralelo (90°).</li>
+<li>✓ Despegue explosivo con triple extensión coordinada (tobillos, rodillas, caderas).</li><li>✓ El tiempo de transición entre la bajada y la subida es mínimo (ciclo estiramiento-acortamiento rápido).</li><li>✓ La caída es amortiguada y silenciosa, sin golpear los talones.</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Valgo de rodillas (las rodillas se juntan o colapsan hacia adentro al subir).</li><li>✗ Inclinar el torso excesivamente hacia adelante convirtiendo la sentadilla en un buenos días.</li><li>✗ Despegar los talones del suelo al bajar por falta de movilidad en el tobillo.</li>
+<li>✗ Caer con las rodillas bloqueadas o rígidas (altísimo riesgo articular).</li><li>✗ Hacer los saltos seguidos sin reajustar la postura entre cada uno (deben ser 5 saltos al 100% de calidad).</li><li>✗ Colapsar las rodillas hacia adentro al impulsarse.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=countermovement+jump+technique" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Saltos+con+Contramovimiento+(Countermovement+Jumps+-+CMJ)+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d2-ex1', 'Saltos con Contramovimiento (Countermovement Jumps - CMJ)')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
-<div class="alt-name"><strong>Sentadilla Goblet con Mancuerna Pesada al Pecho</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Sujeta una mancuerna vertical pegada al pecho con ambas manos. Separa los pies al ancho de hombros y desciende profundo manteniendo el torso recto.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Facilita la postura vertical perfecta y enseña a abrir las caderas.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=sentadilla+goblet+con+mancuerna+tecnica" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+<div class="alt-name"><strong>Jump Squat con Mancuernas Livianas (2 kg)</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Sostén dos mancuernas de 2 kg a los costados y realiza el salto con impulso vertical controlado amortiguando suave.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Potencia balística resistida que aumenta la tasa de desarrollo de fuerza (RFD).</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=dumbbell+jump+squat+tecnica+salto+vertical" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Sentadilla en Polea Baja con Barra Corta (Cable Squat)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Engancha una barra corta a la polea baja. Da dos pasos atrás manteniendo la tensión y realiza la sentadilla. El cable te ayuda a mantener el torso erguido sin sobrecargar la espalda.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Cuádriceps bajo tensión continua sin impacto en la columna.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+squat+polea+baja+sentadilla" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+<div class="alt-name"><strong>Triple Extensión Asistida con Banda o Polea a la Cadera</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Engancha una polea elástica o cable suave a la cintura y realiza el salto explosivo.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Reclutamiento de unidades motoras rápidas tipo IIb.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=band+resisted+vertical+jump+volleyball" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Transferencia directa al salto de remate y bloqueo. Desarrolla la contracción rápida de fibras tipo II.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> El ejercicio específico de transferencia directa para remate y bloqueo en la red.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d2-ex2">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d2-ex2')">
 <div class="ex-check-circle" id="check-btn-d2-ex2" onclick="event.stopPropagation(); toggleExerciseCheck('d2-ex2', 2);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -2144,78 +2113,74 @@
 <span class="ex-compact-name">Prensa a 45° o Sentadilla Hack / Smith (Intensity Gym)</span>
 </div>
 <div class="ex-compact-sub">
-<span class="ex-chip-sets">4 series · 8 a 10 reps</span>
-<span class="ex-chip-weight">40 kg a 60 kg en Prensa (o 10-12 kg c/manc en Goblet)</span>
+<span class="ex-chip-sets">4 series · 8 - 10 reps</span>
+<span class="ex-chip-weight">40 kg a 50 kg en discos (ajustar según fuerza)</span>
 <span class="ex-chip-muscle">Cuádriceps (Vasto Interno/Externo)</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d2-ex2">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d2-ex2" style="display: none;">
 <div class="ex-params-grid">
 <div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
-<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">8 a 10 reps</div></div>
-<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 seg</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">40 kg a 60 kg en Prensa (o 10-12 kg c/manc en Goblet)</div></div>
+<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">8 - 10 reps</div></div>
+<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 - 120 seg</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">40 kg a 50 kg en discos (ajustar según fuerza)</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">En Intensity Gym tienes la Prensa a 45° y la Sentadilla Hack: son las mejores máquinas para hipertrofiar tus muslos (43 cm) porque eliminan la carga en la columna lumbar y te permiten llevar los cuádriceps al fallo con seguridad. Pies al ancho de hombros en la plataforma, baja profundo (rodillas a 90°) en 3 segundos excéntricos y empuja con toda la planta sin bloquear las rodillas arriba.</div>
+<div class="ex-sec-text">Pies al ancho de hombros en el centro de la plataforma. Desciende controlando en 3 segundos hasta que las rodillas formen 90°. Empuja con talones y metatarso dejando una microflexión arriba (¡NUNCA bloquees las rodillas!).</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes cómo todo el empuje sale de los talones contra la plataforma con las rodillas alineadas.</li><li>✓ Al empujar arriba, mantienes una micro-flexión en las rodillas (NUNCA bloqueas ni hiperextiendes).</li><li>✓ La zona lumbar y el coxis permanecen 100% pegados al respaldo acolchado durante todo el recorrido.</li>
+<li>✓ Sientes la fuerza empujando directamente desde los talones con rodillas alineadas.</li><li>✓ Al empujar arriba mantienes una microflexión segura en las rodillas.</li><li>✓ La zona lumbar y el coxis permanecen 100% pegados al respaldo acolchado.</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Bloquear o trabar las rodillas al final del empuje (altísimo riesgo de lesión articular grave).</li><li>✗ Bajar tanto que la pelvis se despegue del respaldo redondeando la zona lumbar (guiño de glúteo).</li><li>✗ Poner las manos en las rodillas para ayudarse a empujar en lugar de usar los agarres laterales.</li>
+<li>✗ Bloquear o trabar las rodillas arriba (peligro crítico de lesión grave).</li><li>✗ Despegar la pelvis del respaldo redondeando la zona lumbar.</li><li>✗ Apoyar las manos en las rodillas para empujar.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=prensa+45+grados+tecnica+cuadriceps" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Prensa+a+45°+o+Sentadilla+Hack+/+Smith+(Intensity+Gym)+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d2-ex2', 'Prensa a 45° o Sentadilla Hack / Smith (Intensity Gym)')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
-<div class="alt-name"><strong>Zancadas Búlgaras con Mancuernas (Bulgarian Split Squat)</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Apoya el empeine trasero en un banco. Baja la rodilla trasera hacia el suelo en ángulo de 90° con la delantera. Si la prensa está ocupada, este es el mejor constructor de salto.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Ardor masivo en cuádriceps y glúteo con mejora del equilibrio unipodal.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=sentadilla+bulgara+con+mancuernas+tecnica+salto" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+<div class="alt-name"><strong>Sentadilla Goblet con Mancuerna Pesada al Pecho</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Sujeta una mancuerna pesada pegada al pecho con ambas manos. Desciende profundo manteniendo el torso recto y pecho alto.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Aprende a mantener el torso vertical y abre las caderas de forma natural.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=sentadilla+goblet+con+mancuerna+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Prensa Horizontal Asistida con Polea Doble / Sentadilla Hack con Banda</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Sujeta las poleas bajas a los lados y realiza sentadillas con tempo 3-1-1 buscando profundidad completa.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Enfoque en la aceleración concéntrica simulando la fase de impulso del salto.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+hack+squat+sentadilla+polea" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+<div class="alt-name"><strong>Sentadilla en Polea Baja con Barra Corta (Cable Squat)</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Engancha una barra a la polea baja. Da dos pasos atrás manteniendo la tensión y realiza la sentadilla profunda.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Cuádriceps bajo tensión continua sin impacto en la columna vertebral.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+squat+polea+baja+sentadilla" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Aumenta el diámetro del muslo y la fuerza de extensión de rodilla para despegar más alto en remates y recepcionar con estabilidad.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Fuerza básica para hipertrofiar los muslos de 43 cm y soportar las fuerzas de aterrizaje.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d2-ex3">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d2-ex3')">
 <div class="ex-check-circle" id="check-btn-d2-ex3" onclick="event.stopPropagation(); toggleExerciseCheck('d2-ex3', 2);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -2226,78 +2191,74 @@
 <span class="ex-compact-name">Sentadilla Búlgara con Mancuernas (Bulgarian Split Squat)</span>
 </div>
 <div class="ex-compact-sub">
-<span class="ex-chip-sets">3 series por pierna · 8 - 10 reps por pierna</span>
-<span class="ex-chip-weight">4 kg a 5 kg por mancuerna (o peso corporal si pierdes equilibrio)</span>
+<span class="ex-chip-sets">3 series · 8 - 10 reps por pierna</span>
+<span class="ex-chip-weight">4 kg a 6 kg por mancuerna</span>
 <span class="ex-chip-muscle">Glúteo Mayor</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d2-ex3">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d2-ex3" style="display: none;">
 <div class="ex-params-grid">
-<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series por pierna</div></div>
+<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series</div></div>
 <div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">8 - 10 reps por pierna</div></div>
-<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 seg entre piernas</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">4 kg a 5 kg por mancuerna (o peso corporal si pierdes equilibrio)</div></div>
+<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 seg</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">4 kg a 6 kg por mancuerna</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Un pie apoyado en un banco detrás tuyo. Desciende verticalmente hasta que la rodilla trasera casi toque el piso. La espinilla delantera debe mantenerse bastante vertical. Empuja desde el talón delantero.</div>
+<div class="ex-sec-text">Apoya el empeine del pie trasero en un banco. Da un paso largo al frente. Desciende la rodilla trasera hacia el suelo hasta rozarlo manteniendo el torso con leve inclinación al frente.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes cómo arden los isquiotibiales (parte posterior del muslo) al flexionar los talones hacia el glúteo.</li><li>✓ La pelvis y caderas permanecen bien pegadas al banco sin arquear la espalda baja para compensar.</li><li>✓ Controlas la bajada del peso en 3 segundos sintiendo el estiramiento excéntrico del tendón.</li>
+<li>✓ El 85% del esfuerzo se siente en el talón y glúteo de la pierna delantera.</li><li>✓ La rodilla delantera se mantiene vertical sobre el pie sin tambalearse.</li><li>✓ Sientes ardor masivo en cuádriceps y glúteo con equilibrio estable.</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Pegar tirones bruscos levantando la cadera de la almohadilla.</li><li>✗ Dejar caer el peso de golpe al volver (la fase de bajada es donde se previene la rotura de cruzados en vóley).</li><li>✗ Colocar el rodillo sobre los gemelos o talones en lugar de justo debajo de los gemelos en el tendón de Aquiles.</li>
+<li>✗ Dar un paso muy corto haciendo que la rodilla delantera sobrepase bruscamente el pie despegando el talón.</li><li>✗ Inclinarse de lado perdiendo el equilibrio.</li><li>✗ Empujar desde los dedos del pie en vez del talón.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=sentadilla+bulgara+tecnica+correcta" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Sentadilla+Búlgara+con+Mancuernas+(Bulgarian+Split+Squat)+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d2-ex3', 'Sentadilla Búlgara con Mancuernas (Bulgarian Split Squat)')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
-<div class="alt-name"><strong>Curl Femoral Tumbado con Mancuerna entre los Pies</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Túmbate boca abajo en una colchoneta o banco plano sujetando una mancuerna entre ambos pies. Flexiona las rodillas subiendo la mancuerna hacia los glúteos.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Activación directa de los flexores de rodilla sin necesidad de máquina.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=curl+femoral+tumbado+con+mancuerna" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+<div class="alt-name"><strong>Zancadas Caminando con Mancuernas (Walking Lunges)</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Avanza dando pasos largos y controlados por el pasillo con mancuernas a los lados, alternando piernas.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Potencia unipodal y quema de muslos en movimiento dinámico.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=zancadas+caminando+con+mancuernas+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Curl Femoral de Pie en Polea Baja con Tobillera</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Engancha una tobillera a la polea baja. De pie, flexiona una rodilla llevando el talón hacia el glúteo manteniendo los muslos paralelos.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Tensión uniforme perfecta para corregir asimetrías de fuerza entre piernas.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+hamstring+curl+standing+polea+tobillera" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+<div class="alt-name"><strong>Zancadas Estáticas Asistidas con Polea Baja (Cable Lunge)</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Sujeta los agarres de la polea baja a la altura de la cadera y realiza las zancadas en el sitio.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Estabilidad guiada para dominar el patrón unipodal.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+reverse+lunge+zancadas+polea" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> El mejor ejercicio del mundo para eliminar desbalances entre piernas y proteger la rodilla en saltos de voley.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Corrige desbalances entre piernas y mejora el salto a una y dos piernas en la cancha.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d2-ex4">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d2-ex4')">
 <div class="ex-check-circle" id="check-btn-d2-ex4" onclick="event.stopPropagation(); toggleExerciseCheck('d2-ex4', 2);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -2308,78 +2269,74 @@
 <span class="ex-compact-name">Hip Thrust con Barra o Mancuerna en Banco</span>
 </div>
 <div class="ex-compact-sub">
-<span class="ex-chip-sets">4 series · 10 - 12 reps</span>
-<span class="ex-chip-weight">15 kg a 20 kg (barra con discos ligeros o mancuerna de 12kg en cadera)</span>
+<span class="ex-chip-sets">3 series · 10 - 12 reps</span>
+<span class="ex-chip-weight">20 kg a 30 kg en barra acolchada o mancuerna pesada</span>
 <span class="ex-chip-muscle">Glúteos (Motor principal de la extensión de cadera)</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d2-ex4">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d2-ex4" style="display: none;">
 <div class="ex-params-grid">
-<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
+<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series</div></div>
 <div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">10 - 12 reps</div></div>
 <div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">90 seg</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">15 kg a 20 kg (barra con discos ligeros o mancuerna de 12kg en cadera)</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">20 kg a 30 kg en barra acolchada o mancuerna pesada</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Espalda alta apoyada en el borde del banco. Al subir, extiende completamente la cadera formando una línea recta entre rodillas, caderas y hombros. Aprieta los glúteos 1 segundo arriba y mete la barbilla hacia el pecho.</div>
+<div class="ex-sec-text">Espalda alta apoyada en el borde del banco justo debajo de las escápulas. Mancuerna o barra sobre las caderas. Empuja desde los talones hasta alinear rodillas, caderas y hombros en tabla horizontal apretando glúteos 1-2 segundos arriba con barbilla al pecho.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes cómo el tendón rotuliano y la parte frontal del muslo (recto femoral) trabajan de forma aislada.</li><li>✓ Haces una pausa de 1 segundo arriba apretando los cuádriceps al máximo antes de iniciar el descenso.</li><li>✓ Tus rodillas se mantienen alineadas con el eje de rotación de la máquina.</li>
+<li>✓ Sientes una contracción máxima en los glúteos en el punto alto.</li><li>✓ Tus espinillas quedan completamente verticales perpendiculares al suelo a 90°.</li><li>✓ La barbilla se mantiene pegada al pecho mirando al frente (no dejes caer la cabeza atrás).</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Patear con impulso usando el peso del cuerpo en lugar de la fuerza de los muslos.</li><li>✗ Despegar los muslos del asiento al subir.</li><li>✗ Cargar un peso que no permita extender la pierna completamente arriba.</li>
+<li>✗ Arquear la espalda baja en exceso en lugar de bascular la pelvis hacia arriba.</li><li>✗ Pies demasiado lejos (activa solo isquios) o demasiado cerca (sobrecarga rodillas).</li><li>✗ Subir rápido sin hacer la pausa de 1-2 segundos arriba.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=hip+thrust+tecnica+paso+a+paso" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Hip+Thrust+con+Barra+o+Mancuerna+en+Banco+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d2-ex4', 'Hip Thrust con Barra o Mancuerna en Banco')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
-<div class="alt-name"><strong>Extensión de Cuádriceps Sentado con Mancuerna en los Pies</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Siéntate en un banco alto donde los pies no toquen el suelo. Sujeta una mancuerna entre los pies y extiende las piernas hacia adelante hasta dejarlas rectas.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Gran congestión en el vasto interno y recto anterior del cuádriceps.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=extension+de+cuadriceps+con+mancuerna+sentado" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+<div class="alt-name"><strong>Puente de Glúteos en el Suelo con Mancuerna Pesada (Glute Bridge)</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Acuéstate boca arriba en suelo con rodillas flexionadas y pies planos. Apoya la mancuerna en la pelvis y elévate apretando glúteos 2 segundos.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Extensión pura de cadera sin necesidad de banco ni máquinas.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=puente+de+gluteo+con+mancuerna+en+suelo+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
-<div class="alt-name"><strong>Extensión de Cuádriceps Unilateral en Polea Baja con Tobillera</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> De espaldas a la polea baja sentado en una caja o banco, engancha la tobillera y extiende la pierna hacia el frente.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Tensión suave y progresiva, excelente para acondicionar los tendones rotulianos.</div>
-<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+leg+extension+seated+polea+tobillera" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+<div class="alt-name"><strong>Patada de Glúteo en Polea Baja con Tobillera o Cable Pull-Through</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Engancha la tobillera a la polea baja y patea hacia atrás y arriba, o de espaldas con cuerda entre piernas haz bisagra de cadera.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Aislamiento total del glúteo mayor para potencia de salto.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+glute+kickback+patada+de+gluteo+polea" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> El glúteo es el músculo que más centímetros añade a tu salto vertical en carrera.
-            </div>
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> El motor principal de la extensión de cadera que genera los centímetros verticales de tu salto.
+        </div>
 </div>
 </div>
 <div class="ex-compact-card" id="card-d2-ex5">
-<!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
 <div class="ex-compact-header" onclick="toggleExerciseAccordion('d2-ex5')">
 <div class="ex-check-circle" id="check-btn-d2-ex5" onclick="event.stopPropagation(); toggleExerciseCheck('d2-ex5', 2);" title="Marcar como culminado">
 <span class="check-icon">✓</span>
@@ -2391,129 +2348,155 @@
 </div>
 <div class="ex-compact-sub">
 <span class="ex-chip-sets">4 series · 12 - 15 reps</span>
-<span class="ex-chip-weight">15 kg a 20 kg en máquina (o peso corporal unilateral)</span>
+<span class="ex-chip-weight">25 kg a 35 kg en máquina o con mancuernas</span>
 <span class="ex-chip-muscle">Gastrocnemio (Gemelos)</span>
 </div>
 </div>
 <div class="ex-compact-arrow" id="arrow-d2-ex5">▼</div>
 </div>
-<!-- Cuerpo Desplegable (Acordeón) -->
 <div class="ex-compact-body" id="body-d2-ex5" style="display: none;">
 <div class="ex-params-grid">
 <div class="param-box"><div class="p-lbl">Series</div><div class="p-val">4 series</div></div>
 <div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">12 - 15 reps</div></div>
 <div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">60 seg</div></div>
-<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">15 kg a 20 kg en máquina (o peso corporal unilateral)</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">25 kg a 35 kg en máquina o con mancuernas</div></div>
 </div>
 <div class="ex-section-box">
 <div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
-<div class="ex-sec-text">Baja los talones lo más profundo posible para estirar el gemelo por 1 segundo completo. Sube de forma explosiva hasta la punta del metatarso y aguanta 1 segundo arriba. ¡Cero rebotes rápidos!</div>
+<div class="ex-sec-text">Puntas de pies en el escalón con rodillas estiradas. Desciende los talones sintiendo un estiramiento profundo del tendón de Aquiles. Elévate al punto máximo sobre el metatarso aguantando 2 segundos arriba.</div>
 </div>
 <div class="ex-biofeedback-box">
 <div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
 <ul class="ex-check-list">
-<li>✓ Sientes un estiramiento profundo del tendón de Aquiles en la parte más baja (talones bien abajo).</li><li>✓ Arriba te elevas sobre el metatarso al punto más alto contrayendo gemelos durante 2 segundos.</li><li>✓ Las rodillas están completamente extendidas para trabajar el gastrocnemio (músculo del salto).</li>
+<li>✓ Sientes estiramiento profundo del tendón en la bajada lenta.</li><li>✓ Arriba te elevas al punto más alto contrayendo gemelos durante 2 segundos.</li><li>✓ Las rodillas están rectas para trabajar el gastrocnemio (músculo del salto).</li>
 </ul>
 </div>
 <div class="ex-mistakes-box">
 <div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
 <ul class="ex-mistake-list">
-<li>✗ Rebotar rápido como resorte sin frenar en el estiramiento (anula el trabajo del músculo y sobrecarga la fascia).</li><li>✗ Doblar las rodillas al subir (si doblas rodillas pasas el trabajo al sóleo en vez de a los gemelos).</li><li>✗ Hacer medio recorrido sin bajar los talones del escalón.</li>
+<li>✗ Rebotar rápido como resorte sin frenar en el estiramiento.</li><li>✗ Doblar las rodillas al subir (desvía el trabajo al sóleo).</li><li>✗ Hacer medio recorrido sin bajar los talones del escalón.</li>
 </ul>
 </div>
 <div class="ex-actions-bar">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=elevacion+de+talones+de+pie+gemelos" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica en Video
-              </a>
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Elevación+de+Talones+de+Pie+en+Máquina+o+Escalón+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
 <button class="log-weight-btn" onclick="openLogModal('d2-ex5', 'Elevación de Talones de Pie en Máquina o Escalón')">
-                📝 Anotar Peso
-              </button>
+            📝 Anotar Peso
+          </button>
 </div>
-<!-- Alternativa Plan B: Mancuernas -->
 <div class="alt-block dumbbell-alt">
 <div class="alt-header">
 <span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
 <span class="alt-condition">(Si máquina/barra ocupada)</span>
 </div>
-<div class="alt-name"><strong>Elevación de Gemelos Unilateral sobre un Disco o Escalón con Mancuerna</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Pisa el borde de un disco o peldaño con un solo pie. Sostén una mancuerna con la mano del mismo lado y elévate en punta de pie con rango completo.</div>
-<div class="alt-bio"><strong>Sensación correcta:</strong> Permite cargar el doble de peso relativo por pierna y corregir debilidades de tobillo.</div>
+<div class="alt-name"><strong>Elevación de Gemelos Unilateral sobre Escalón con Mancuerna</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Pisa el borde con un solo pie sosteniendo una mancuerna en la mano del mismo lado y elévate en punta de pie.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Carga el doble de peso relativo por pierna y fortalece tobillos.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=elevacion+de+gemelos+a+una+pierna+con+mancuerna" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Mancuernas en Video
-              </a>
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
 </div>
-<!-- Alternativa Plan C: Poleas / Cables -->
 <div class="alt-block cable-alt">
 <div class="alt-header">
 <span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
 <span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
 </div>
 <div class="alt-name"><strong>Elevación de Gemelos en Polea Baja con Cinturón o Barra</strong></div>
-<div class="alt-technique"><strong>Técnica:</strong> Colócate sobre una plataforma o escalón frente a la polea baja con un cinturón o barra en las manos y sube a puntas de pie.</div>
-<div class="alt-bio"><strong>Sensación en polea:</strong> Tracción vertical constante que exige estabilización de los tobillos.</div>
+<div class="alt-technique"><strong>Técnica:</strong> Colócate sobre una plataforma frente a la polea baja con cinturón o barra en las manos y sube a puntas de pie.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Tracción vertical constante que exige estabilización de tobillo.</div>
 <a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+calf+raise+polea+gemelos" rel="noopener noreferrer" target="_blank">
-                ▶ Ver Técnica Polea en Video
-              </a>
+            ▶ Ver Técnica Polea en Video
+          </a>
 </div>
 <div class="ex-voley-benefit">
-<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Rigidez elástica para el despegue inmediato y amortiguación de la caída.
-            </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="exercise-card" id="card-d2-ex6">
-<div class="ex-top">
-<div class="ex-index-title">
-<div class="ex-number">6</div>
-<div class="ex-title-wrap">
-<h3>Extensión de Cuádriceps en Máquina (Leg Extension - Intensity Gym)</h3>
-<div class="ex-target-muscle">🎯 Aislamiento de Cuádriceps (Recto Femoral &amp; Tendón Rotuliano)</div>
-</div>
-</div>
-<div class="ex-weight-badge" title="Carga recomendada para hipertrofia">
-          15 kg a 25 kg
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Rigidez elástica para el despegue inmediato y amortiguación de la caída en vóley.
         </div>
 </div>
+</div>
+<div class="ex-compact-card" id="card-d2-ex6">
+<div class="ex-compact-header" onclick="toggleExerciseAccordion('d2-ex6')">
+<div class="ex-check-circle" id="check-btn-d2-ex6" onclick="event.stopPropagation(); toggleExerciseCheck('d2-ex6', 2);" title="Marcar como culminado">
+<span class="check-icon">✓</span>
+</div>
+<div class="ex-compact-info">
+<div class="ex-compact-title">
+<span class="ex-compact-num">#6</span>
+<span class="ex-compact-name">Extensión de Cuádriceps en Máquina (Leg Extension - Intensity Gym)</span>
+</div>
+<div class="ex-compact-sub">
+<span class="ex-chip-sets">3 series · 12 - 15 reps</span>
+<span class="ex-chip-weight">15 kg a 25 kg en placas</span>
+<span class="ex-chip-muscle">Cuádriceps Aislado (Recto Femoral</span>
+</div>
+</div>
+<div class="ex-compact-arrow" id="arrow-d2-ex6">▼</div>
+</div>
+<div class="ex-compact-body" id="body-d2-ex6" style="display: none;">
 <div class="ex-params-grid">
-<div class="param-box">
-<div class="p-lbl">Series</div>
-<div class="p-val">3 series</div>
+<div class="param-box"><div class="p-lbl">Series</div><div class="p-val">3 series</div></div>
+<div class="param-box"><div class="p-lbl">Repeticiones</div><div class="p-val">12 - 15 reps</div></div>
+<div class="param-box"><div class="p-lbl">Descanso</div><div class="p-val">60 seg</div></div>
+<div class="param-box"><div class="p-lbl">Peso Sugerido</div><div class="p-val">15 kg a 25 kg en placas</div></div>
 </div>
-<div class="param-box">
-<div class="p-lbl">Repeticiones</div>
-<div class="p-val">12 a 15 reps</div>
+<div class="ex-section-box">
+<div class="ex-sec-title">🎯 Técnica de Ejecución Correcta</div>
+<div class="ex-sec-text">Espalda bien apoyada contra el respaldo. Extiende las piernas hasta la horizontal aguantando 1 segundo la contracción en el punto más alto para bombear sangre a los cuádriceps. Baja en 3 segundos lentos.</div>
 </div>
-<div class="param-box">
-<div class="p-lbl">Descanso</div>
-<div class="p-val">60 seg</div>
+<div class="ex-biofeedback-box">
+<div class="ex-sec-title" style="color:#34d399;">💡 ¿Cómo saber si lo estás haciendo bien?</div>
+<ul class="ex-check-list">
+<li>✓ Sientes cómo el recto femoral arde en el punto alto con contracción de 1 segundo.</li><li>✓ La espalda permanece pegada al respaldo sin despegar los muslos del cojín.</li><li>✓ El descenso se realiza en 3 segundos controlados sin dejar caer las placas.</li>
+</ul>
 </div>
+<div class="ex-mistakes-box">
+<div class="ex-sec-title" style="color:#f87171;">⚠️ Errores comunes a evitar</div>
+<ul class="ex-mistake-list">
+<li>✗ Patear con impulso usando el peso del cuerpo.</li><li>✗ Despegar los muslos del asiento al subir.</li><li>✗ No llegar a la horizontal por usar peso excesivo.</li>
+</ul>
 </div>
-<div class="ex-details">
-<div class="ex-instruction">
-<strong>Técnica:</strong> Espalda bien apoyada contra el respaldo. Extiende las piernas hasta la horizontal aguantando 1 segundo la contracción en el punto más alto para bombear sangre a los cuádriceps. Baja en 3 segundos lentos. Es el ejercicio que la hoja de Intensity Gym señala para rematar la masa muscular de los muslos de 43 cm.
-        </div>
-<div class="ex-alt-box">
-<strong>🔄 Plan B con Mancuernas (Si Leg Extension está ocupada):</strong> Sentadilla Española con mancuernas o Sentadilla Sissy.<br/><div class="ex-cable-box"><strong>🔌 Plan C en Polea (Si Leg Extension está ocupada):</strong> Extensión de rodilla unilateral en polea baja con tobillera sentado sobre un banco plano. Extiende la pierna hacia adelante apretando el cuádriceps 1 segundo arriba.</div>
-</div>
-<div class="ex-voley-benefit">
-<strong>🏐 Beneficio Voleibol &amp; Estética:</strong> Fortalece la porción distal del cuádriceps que protege la rótula contra la sobrecarga del salto.
-        </div>
-</div>
-<div class="ex-actions">
-<a class="video-link-btn" href="https://www.youtube.com/results?search_query=leg+extension+maquina+tecnica" rel="noopener noreferrer" target="_blank">
-          ▶ Ver Técnica en Video
-        </a>
-<div style="display: flex; gap: 8px; align-items: center;">
-<button class="log-weight-btn" onclick="openLogModal('d2-ex6', 'Leg Extension Máquina')">
+<div class="ex-actions-bar">
+<a class="video-link-btn" href="https://www.youtube.com/results?search_query=Extensión+de+Cuádriceps+en+Máquina+(Leg+Extension+-+Intensity+Gym)+tecnica" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica en Video
+          </a>
+<button class="log-weight-btn" onclick="openLogModal('d2-ex6', 'Extensión de Cuádriceps en Máquina (Leg Extension - Intensity Gym)')">
             📝 Anotar Peso
           </button>
 </div>
+<div class="alt-block dumbbell-alt">
+<div class="alt-header">
+<span class="alt-badge">🏋️ Plan B: Alternativa Mancuernas</span>
+<span class="alt-condition">(Si máquina/barra ocupada)</span>
+</div>
+<div class="alt-name"><strong>Sentadilla Española con Mancuerna o Sentadilla Sissy</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Coloca una banda o apoyo detrás de las rodillas y realiza una flexión con torso vertical, o haz sentadilla sissy con apoyo en pared.</div>
+<div class="alt-bio"><strong>Sensación correcta:</strong> Tensión y bombeo extremo en el tendón rotuliano y recto anterior.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=sentadilla+espanola+cuadriceps+sissy+squat" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Mancuernas en Video
+          </a>
+</div>
+<div class="alt-block cable-alt">
+<div class="alt-header">
+<span class="alt-badge cable">🔌 Plan C: Alternativa en Polea</span>
+<span class="alt-condition">(Si no hay mancuernas ni máquinas)</span>
+</div>
+<div class="alt-name"><strong>Extensión de Rodilla Unilateral en Polea Baja con Tobillera</strong></div>
+<div class="alt-technique"><strong>Técnica:</strong> Sentado en un banco de espaldas a la polea baja con tobillera enganchada, extiende la pierna hacia adelante apretando el cuádriceps.</div>
+<div class="alt-bio"><strong>Sensación en polea:</strong> Tensión uniforme perfecta para acondicionar los tendones rotulianos.</div>
+<a class="alt-video-btn" href="https://www.youtube.com/results?search_query=cable+leg+extension+seated+polea+tobillera" rel="noopener noreferrer" target="_blank">
+            ▶ Ver Técnica Polea en Video
+          </a>
+</div>
+<div class="ex-voley-benefit">
+<strong>🏐 Transferencia a Voleibol &amp; Salto:</strong> Fortalece la porción distal del cuádriceps que protege la rótula contra la sobrecarga del salto en la cancha.
+        </div>
 </div>
 </div>
 </div>
 
+</div>
+
+</div>
 <div class="day-view-block" id="day-view-3" style="display: none;">
 <div class="day-header-card">
 <div>
@@ -2528,7 +2511,6 @@
 </div>
 </div>
 </div>
-
 <!-- Barra de Progreso Interactivo del Día -->
 <div class="workout-progress-card">
 <div class="progress-info-row">
@@ -2588,7 +2570,6 @@
 </div>
 </div>
 </div>
-
 <div class="exercise-list compact-mode">
 <div class="ex-compact-card" id="card-d3-ex1">
 <!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
@@ -3001,7 +2982,6 @@
 </div>
 </div>
 </div>
-
 </div>
 <div class="day-view-block" id="day-view-4" style="display: none;">
 <div class="day-header-card">
@@ -3017,7 +2997,6 @@
 </div>
 </div>
 </div>
-
 <!-- Barra de Progreso Interactivo del Día -->
 <div class="workout-progress-card">
 <div class="progress-info-row">
@@ -3077,7 +3056,6 @@
 </div>
 </div>
 </div>
-
 <div class="exercise-list compact-mode">
 <div class="ex-compact-card" id="card-d4-ex1">
 <!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
@@ -3490,7 +3468,6 @@
 </div>
 </div>
 </div>
-
 </div>
 <div class="day-view-block" id="day-view-5" style="display: none;">
 <div class="day-header-card">
@@ -3506,7 +3483,6 @@
 </div>
 </div>
 </div>
-
 <!-- Barra de Progreso Interactivo del Día -->
 <div class="workout-progress-card">
 <div class="progress-info-row">
@@ -3566,7 +3542,6 @@
 </div>
 </div>
 </div>
-
 <div class="exercise-list compact-mode">
 <div class="ex-compact-card" id="card-d5-ex1">
 <!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
@@ -3979,7 +3954,6 @@
 </div>
 </div>
 </div>
-
 </div>
 <div class="day-view-block" id="day-view-6" style="display: none;">
 <div class="day-header-card">
@@ -3995,7 +3969,6 @@
 </div>
 </div>
 </div>
-
 <!-- Barra de Progreso Interactivo del Día -->
 <div class="workout-progress-card">
 <div class="progress-info-row">
@@ -4064,7 +4037,6 @@
 </div>
 </div>
 </div>
-
 <div class="exercise-list compact-mode">
 <div class="ex-compact-card" id="card-d6-ex1">
 <!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
@@ -4559,7 +4531,6 @@
 </div>
 </div>
 </div>
-
 </div>
 <div class="day-view-block" id="day-view-7" style="display: none;">
 <div class="day-header-card">
@@ -4575,7 +4546,6 @@
 </div>
 </div>
 </div>
-
 <!-- Barra de Progreso Interactivo del Día -->
 <div class="workout-progress-card">
 <div class="progress-info-row">
@@ -4626,7 +4596,6 @@
 </div>
 </div>
 </div>
-
 <div class="exercise-list compact-mode">
 <div class="ex-compact-card" id="card-d7-ex1">
 <!-- Cabecera Compacta visible en pantalla (Touch Target amplio) -->
@@ -5039,9 +5008,7 @@
 </div>
 </div>
 </div>
-
 </div>
-
 </section>
 <!-- TAB 2: VÓLEY & PRECALENTAMIENTO PRE-PARTIDO EN CANCHA -->
 <section class="tab-pane" id="tab-voley" style="display: none;">

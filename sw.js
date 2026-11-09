@@ -1,4 +1,4 @@
-const CACHE_NAME = 'voleyfit-v4';
+const CACHE_NAME = 'voleyfit-v5';
 const ASSETS = [
   './',
   './index.html',

@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Glow -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#070b14" stop-opacity="1"/>
+    </radialGradient>
+
+    <!-- Ball 3D Shading Spherical -->
+    <radialGradient id="sphereShade" cx="35%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050814" stop-opacity="0.6"/>
+    </radialGradient>
+
+    <!-- Outer Glow for Ball -->
+    <filter id="ballGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#ff6b35" flood-opacity="0.35"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#38bdf8" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- Colors for panels -->
+    <linearGradient id="goldPanel1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+
+    <linearGradient id="goldPanel2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <linearGradient id="bluePanel1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+
+    <linearGradient id="bluePanel2" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <linearGradient id="whitePanel" x1="30%" y1="20%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <linearGradient id="ringOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8c42"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Rounded Container / App Icon Base -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGlow)"/>
+  
+  <!-- Subtle Outer Speed Rings / Motion Effect -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="rgba(255, 107, 53, 0.15)" stroke-width="2"/>
+  <circle cx="256" cy="256" r="224" fill="none" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+  <!-- Energy Arc Behind Ball -->
+  <path d="M 96,256 A 160,160 0 1,1 416,256" fill="none" stroke="url(#ringOrange)" stroke-width="4" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- MAIN VOLLEYBALL BODY (Circle clipping) -->
+  <g filter="url(#ballGlow)">
+    <clipPath id="ballClip">
+      <circle cx="256" cy="256" r="180"/>
+    </clipPath>
+
+    <!-- Base Ball Background -->
+    <circle cx="256" cy="256" r="180" fill="#f8fafc"/>
+
+    <!-- Volleyball Panels Group -->
+    <g clip-path="url(#ballClip)">
+      <!-- Panel Group 1: Top Center Section (3 Curved Stripes) -->
+      <!-- White top-left -->
+      <path d="M 256,76 C 220,130 205,185 208,242 L 238,240 C 235,190 250,140 286,81 Z" fill="url(#whitePanel)"/>
+      <!-- Blue top-mid -->
+      <path d="M 286,81 C 250,140 235,190 238,240 L 268,238 C 265,195 280,150 316,88 Z" fill="url(#bluePanel1)"/>
+      <!-- Gold top-right -->
+      <path d="M 316,88 C 280,150 265,195 268,238 L 298,236 C 295,200 310,160 346,98 Z" fill="url(#goldPanel1)"/>
+
+      <!-- Panel Group 2: Center-Left Section (3 Horizontal/Swirling Stripes) -->
+      <!-- Gold left-top -->
+      <path d="M 76,256 C 130,220 185,205 242,208 L 240,238 C 190,235 140,250 81,286 Z" fill="url(#goldPanel2)"/>
+      <!-- White left-mid -->
+      <path d="M 81,286 C 140,250 190,235 240,238 L 238,268 C 195,265 150,280 88,316 Z" fill="url(#whitePanel)"/>
+      <!-- Blue left-bot -->
+      <path d="M 88,316 C 150,280 195,265 238,268 L 236,298 C 200,295 160,310 98,346 Z" fill="url(#bluePanel2)"/>
+
+      <!-- Panel Group 3: Center-Right Section (3 Vertical/Swirling Stripes) -->
+      <!-- White right-top -->
+      <path d="M 436,256 C 382,220 327,205 270,208 L 272,238 C 322,235 372,250 431,286 Z" fill="url(#whitePanel)"/>
+      <!-- Blue right-mid -->
+      <path d="M 431,286 C 372,250 322,235 272,238 L 274,268 C 317,265 362,280 424,316 Z" fill="url(#bluePanel1)"/>
+      <!-- Gold right-bot -->
+      <path d="M 424,316 C 362,280 317,265 274,268 L 276,298 C 312,295 352,310 414,346 Z" fill="url(#goldPanel1)"/>
+
+      <!-- Panel Group 4: Bottom Center Section (3 Curved Stripes) -->
+      <!-- Gold bot-left -->
+      <path d="M 256,436 C 220,382 205,327 208,270 L 238,272 C 235,322 250,372 286,431 Z" fill="url(#goldPanel2)"/>
+      <!-- Blue bot-mid -->
+      <path d="M 286,431 C 250,372 235,322 238,272 L 268,274 C 265,317 280,362 316,424 Z" fill="url(#bluePanel2)"/>
+      <!-- White bot-right -->
+      <path d="M 316,424 C 280,362 265,317 268,274 L 298,276 C 295,312 310,352 346,414 Z" fill="url(#whitePanel)"/>
+
+      <!-- Panel Group 5: Top-Left Cap -->
+      <path d="M 128,128 C 160,100 205,85 256,76 L 208,242 C 165,220 135,175 128,128 Z" fill="url(#bluePanel1)" opacity="0.95"/>
+
+      <!-- Panel Group 6: Bottom-Right Cap -->
+      <path d="M 384,384 C 352,412 307,427 256,436 L 304,270 C 347,292 377,337 384,384 Z" fill="url(#goldPanel1)" opacity="0.95"/>
+
+      <!-- Seam Groove Lines (Classic Volleyball Grooves) -->
+      <g stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity="0.6">
+        <!-- Vertical/Central Seams -->
+        <path d="M 256,76 C 220,130 205,185 208,242" fill="none"/>
+        <path d="M 286,81 C 250,140 235,190 238,240" fill="none"/>
+        <path d="M 316,88 C 280,150 265,195 268,238" fill="none"/>
+        <path d="M 346,98 C 295,200 268,238 256,256" fill="none"/>
+
+        <path d="M 76,256 C 130,220 185,205 242,208" fill="none"/>
+        <path d="M 81,286 C 140,250 190,235 240,238" fill="none"/>
+        <path d="M 88,316 C 150,280 195,265 238,268" fill="none"/>
+        <path d="M 98,346 C 200,295 238,268 256,256" fill="none"/>
+
+        <path d="M 436,256 C 382,220 327,205 270,208" fill="none"/>
+        <path d="M 431,286 C 372,250 322,235 272,238" fill="none"/>
+        <path d="M 424,316 C 362,280 317,265 274,268" fill="none"/>
+        <path d="M 414,346 C 312,295 274,268 256,256" fill="none"/>
+
+        <path d="M 256,436 C 220,382 205,327 208,270" fill="none"/>
+        <path d="M 286,431 C 250,372 235,322 238,272" fill="none"/>
+        <path d="M 316,424 C 280,362 265,317 268,274" fill="none"/>
+        <path d="M 346,414 C 295,312 268,274 256,256" fill="none"/>
+
+        <!-- Center Junction Circle -->
+        <circle cx="256" cy="256" r="3" fill="#0f172a"/>
+      </g>
+
+      <!-- 3D Spherical Volume Overlay (Lighting & Shadow) -->
+      <circle cx="256" cy="256" r="180" fill="url(#sphereShade)"/>
+
+      <!-- Specular Highlight (Reflection of light) -->
+      <ellipse cx="205" cy="185" rx="55" ry="32" transform="rotate(-25 205 185)" fill="#ffffff" opacity="0.35"/>
+    </g>
+
+    <!-- Ball Perimeter Border with Clean Rim Highlight -->
+    <circle cx="256" cy="256" r="180" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2.5"/>
+    <circle cx="256" cy="256" r="180" fill="none" stroke="rgba(15, 23, 42, 0.5)" stroke-width="1"/>
+  </g>
+
+  <!-- Small Athletic Sparkle / Impact Star -->
+  <g transform="translate(390, 110) scale(0.9)">
+    <polygon points="0,-18 5,-5 18,0 5,5 0,18 -5,5 -18,0 -5,-5" fill="#facc15" opacity="0.9"/>
+    <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+  </g>
+</svg>

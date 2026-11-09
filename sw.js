@@ -1,7 +1,14 @@
-const CACHE_NAME = 'voleyfit-v7';
+const CACHE_NAME = 'voleyfit-v8';
 const ASSETS = [
   './',
   './index.html',
+  './manifest.json',
+  './logo.svg',
+  './icon.png',
+  './icon-192.png',
+  './icon-512.png',
+  './favicon.png',
+  './favicon.ico',
   './RUTINA_VOLEYFIT_PRO.pdf'
 ];
 

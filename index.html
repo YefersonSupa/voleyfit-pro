@@ -15,18 +15,21 @@
 <link href="manifest.json" rel="manifest"/>
 <title>VoleyFit Pro · Rutina 7 Días, Vóley &amp; Examen Físico</title>
 <script>
-    // Detección automática de actualizaciones y control del Service Worker
+    // SISTEMA DE CONTROL DE VERSIONES Y AUTO-ACTUALIZACIÓN VOLEYFIT PRO V13
+    const APP_VERSION = 'v13';
+
+    // 1. Registro y actualización inmediata del Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js?v=12').then(function(reg) {
-          reg.update();
+        navigator.serviceWorker.register('./sw.js?v=13').then(function(reg) {
+          reg.update(); // Forzar chequeo de nueva versión en cada carga
           reg.addEventListener('updatefound', function() {
             var newWorker = reg.installing;
             if (newWorker) {
               newWorker.addEventListener('statechange', function() {
                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  console.log('Nueva versión detectada, recargando...');
-                  window.location.reload();
+                  console.log('[App] Nueva versión instalada, ejecutando auto-recarga...');
+                  forceAppUpdate(true);
                 }
               });
             }
@@ -43,28 +46,58 @@
       });
     }
 
-    // Función universal para forzar actualización inmediata y limpiar cachés antiguas
-    function forceAppUpdate() {
-      if (confirm('¿Deseas recargar la app para obtener la última versión actualizada?')) {
-        if ('caches' in window) {
-          caches.keys().then(function(names) {
-            return Promise.all(names.map(function(name) { return caches.delete(name); }));
-          }).then(function() {
-            if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.getRegistrations().then(function(regs) {
-                return Promise.all(regs.map(function(r) { return r.unregister(); }));
-              }).then(function() {
-                window.location.href = window.location.pathname + '?t=' + Date.now();
-              });
-            } else {
-              window.location.href = window.location.pathname + '?t=' + Date.now();
-            }
-          });
-        } else {
-          window.location.reload(true);
-        }
+    // 2. Función infalible para purgar cachés y forzar actualización
+    function forceAppUpdate(silent) {
+      if (!silent) {
+        if (!confirm('¿Deseas recargar la app para instalar la última versión ' + APP_VERSION + '?')) return;
+      }
+      var banner = document.getElementById('updateNotificationBanner');
+      if (banner) {
+        banner.style.display = 'flex';
+        banner.innerHTML = '<span>⚡ Instalando última versión...</span>';
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          return Promise.all(names.map(function(name) { return caches.delete(name); }));
+        }).then(function() {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+              return Promise.all(regs.map(function(r) { return r.unregister(); }));
+            }).then(function() {
+              var cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
+              window.location.replace(cleanUrl);
+            });
+          } else {
+            var cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
+            window.location.replace(cleanUrl);
+          }
+        });
+      } else {
+        window.location.reload(true);
       }
     }
+
+    // 3. Verificación periódica contra version.json en arranque y reanudación
+    function checkRemoteVersion() {
+      fetch('./version.json?t=' + Date.now(), { cache: 'no-store' })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data && data.version && data.version !== APP_VERSION) {
+            console.log('[App] Versión remota más reciente detectada:', data.version);
+            var banner = document.getElementById('updateNotificationBanner');
+            if (banner) banner.style.display = 'flex';
+            setTimeout(function() { forceAppUpdate(true); }, 1200);
+          }
+        })
+        .catch(function(e) { console.log('[App] Error al verificar version.json', e); });
+    }
+
+    window.addEventListener('DOMContentLoaded', checkRemoteVersion);
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'visible') {
+        checkRemoteVersion();
+      }
+    });
   </script>
 <style>
     :root {
@@ -1249,6 +1282,12 @@
 </style>
 </head>
 <body>
+  <!-- Banner flotante de auto-actualización disponible -->
+  <div id="updateNotificationBanner" style="display:none; position:fixed; top:0; left:0; right:0; background:linear-gradient(90deg, #10b981, #0284c7); color:#ffffff; padding:10px 14px; text-align:center; font-size:0.75rem; font-weight:800; z-index:999999; box-shadow:0 4px 16px rgba(0,0,0,0.6); align-items:center; justify-content:center; gap:10px;">
+    <span>🚀 ¡Nueva versión disponible (v13)!</span>
+    <button onclick="forceAppUpdate(false)" style="background:#ffffff; color:#0f172a; border:none; padding:4px 10px; border-radius:12px; font-weight:800; cursor:pointer; font-size:0.72rem;">Actualizar Ahora</button>
+  </div>
+
 <!-- Header Superior -->
 <header class="app-header">
 <div class="header-inner">
@@ -1263,8 +1302,8 @@
 </div>
 <div class="user-pill" style="display:flex; align-items:center; gap:8px;">
 <span>1.72 m · 55.3 kg · 8.8% Grasa</span>
-<button onclick="forceAppUpdate()" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; cursor: pointer;" title="Forzar recarga de última versión">
-          🔄 Actualizar
+<button onclick="forceAppUpdate(false)" style="background: linear-gradient(135deg, #10b981, #0284c7); border: none; color: #ffffff; font-size: 0.68rem; font-weight: 800; padding: 4px 10px; border-radius: 12px; cursor: pointer; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); display: flex; align-items: center; gap: 4px;" title="Forzar recarga de última versión v13">
+          🔄 Actualizar v13
         </button>
 </div>
 </div>
